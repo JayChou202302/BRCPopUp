@@ -1,0 +1,498 @@
+//
+//  BRCPopUpMainTestViewController.m
+//  BRCPopUp_Example
+//
+//  Created by sunzhixiong on 2024/8/1.
+//  Copyright © 2024 zhixiongsun. All rights reserved.
+//
+
+#import "BRCPopUpMainTestViewController.h"
+#import "BRCToast.h"
+#import "NSString+Localizable.h"
+#import <BRCPopUp/BRCPopUper.h>
+#import <Masonry/Masonry.h>
+#import <YYKit/NSString+YYAdd.h>
+#import <BRCPopUp/BRCPopUpConst.h>
+#import <YYKit/YYKitMacro.h>
+#import <YYKit/UIControl+YYAdd.h>
+
+@interface BRCPopUpMainTestViewController ()
+<BRCPopUperDelegate>
+
+@property (nonatomic, assign) BRCPopUpContentAlignment alignmentStyle;
+@property (nonatomic, assign) BRCPopUpAnimationType    animationStyle;
+@property (nonatomic, assign) BRCPopUpDirection        popUpDirection;
+@property (nonatomic, assign) BRCPopUpContextStyle     contextStyle;
+@property (nonatomic, assign) BRCPopUpDismissMode      dismissMode;
+@property (nonatomic, assign) BOOL     autoCutoffRelief;
+@property (nonatomic, assign) BOOL     autoFitContainerSize;
+@property (nonatomic, assign) BOOL     arrowCenterAlignToContainer;
+@property (nonatomic, assign) CGFloat  offsetToAnchorView;
+@property (nonatomic, assign) CGFloat  marginToAnchorView;
+@property (nonatomic, assign) CGFloat  cornerRadius;
+@property (nonatomic, assign) CGFloat  arrowRadius;
+@property (nonatomic, assign) CGFloat  arrowWidth;
+@property (nonatomic, assign) CGFloat  arrowHeight;
+@property (nonatomic, assign) CGFloat  containerWidth;
+@property (nonatomic, assign) CGFloat  containerHeight;
+@property (nonatomic, assign) CGFloat  arrowRelativePosition;
+@property (nonatomic, assign) CGFloat  arrowAbsolutePosition;
+
+@property (nonatomic, strong) UIView   *lastView;
+
+@end
+
+@implementation BRCPopUpMainTestViewController
+
+- (void)loadView {
+    UIScrollView *scrollView = [[UIScrollView alloc] init];
+    scrollView.backgroundColor = [UIColor whiteColor];
+    scrollView.contentInset = UIEdgeInsetsMake(0, self.leftPadding,80, -self.leftPadding);
+    [scrollView setAlwaysBounceVertical:YES];
+    self.view = scrollView;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:YES];
+    self.autoCutoffRelief = NO;
+    self.autoFitContainerSize = NO;
+    self.arrowCenterAlignToContainer = YES;
+    self.offsetToAnchorView = 0;
+    self.marginToAnchorView = 5;
+    self.cornerRadius = 4;
+    self.arrowRadius = 2;
+    self.arrowWidth = 16;
+    self.arrowHeight = 8;
+    self.containerWidth = 100;
+    self.containerHeight = 100;
+    self.arrowAbsolutePosition = 12;
+    self.arrowRelativePosition = -1;
+    [self setUpViews];
+    [self.lastView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.lessThanOrEqualTo(self.view);
+    }];
+}
+
+- (void)setUpViews {
+    if ([self.componentTitle isNotBlank]) {
+        UILabel *titleLabel = [[UILabel alloc] init];
+        titleLabel.numberOfLines = 1;
+        titleLabel.text = self.componentTitle;
+        titleLabel.textColor = [UIColor blackColor];
+        titleLabel.font = [UIFont systemFontOfSize:25.0 weight:UIFontWeightBold];
+        [self.view addSubview:titleLabel];
+        [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.view);
+            make.leading.equalTo(self.view);
+        }];
+        self.lastView = titleLabel;
+    }
+    if ([self.componentDescription isNotBlank]) {
+        UILabel *descriptionLabel = [[UILabel alloc] init];
+        descriptionLabel.numberOfLines = 0;
+        descriptionLabel.textAlignment = NSTextAlignmentLeft;
+        descriptionLabel.text = self.componentDescription;
+        descriptionLabel.textColor = [UIColor grayColor];
+        descriptionLabel.font = [UIFont systemFontOfSize:18.0 weight:UIFontWeightMedium];
+        [self.view addSubview:descriptionLabel];
+        [descriptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.lastView.mas_bottom).offset(10);
+            make.leading.equalTo(self.view);
+            make.trailing.equalTo(self.view);
+            make.width.equalTo(@(kBRCScreenWidth - self.leftPadding * 2));
+        }];
+        self.lastView = descriptionLabel;
+    }
+    self.popUpDirection = BRCPopUpDirectionLeft;
+    @weakify(self)
+    [self addEnumControlWithItems:@[
+        @"Left",
+        @"Right",
+        @"Top",
+        @"Bottom"
+    ] withTitle:@"key.main.test.section.title.direction" chageBlock:^(UISegmentedControl *control) {
+        @strongify(self)
+        switch (control.selectedSegmentIndex) {
+            case 0:
+                self.popUpDirection = BRCPopUpDirectionLeft;
+                break;
+            case 1:
+                self.popUpDirection = BRCPopUpDirectionRight;
+                break;
+            case 2:
+                self.popUpDirection = BRCPopUpDirectionTop;
+                break;
+            case 3:
+                self.popUpDirection = BRCPopUpDirectionBottom;
+                break;
+            default:
+                break;
+        }
+    }];
+
+    [self addEnumControlWithItems:@[
+        @"None",
+        @"Fade",
+        @"Scale",
+        @"Bounce",
+        @"FadeScale",
+        @"FadeBounce"
+    ] withTitle:@"key.main.test.section.title.animation" chageBlock:^(UISegmentedControl *control) {
+        @strongify(self)
+        self.animationStyle = control.selectedSegmentIndex;
+    }];
+    
+    [self addEnumControlWithItems:@[
+        @"Left",
+        @"Center",
+        @"Right"
+    ] withTitle:@"key.main.test.section.title.alignment" chageBlock:^(UISegmentedControl *control) {
+        @strongify(self)
+        self.alignmentStyle = control.selectedSegmentIndex;
+    }];
+    
+    [self addEnumControlWithItems:@[
+        @"ViewController",
+        @"Window",
+        @"View"
+    ] withTitle:@"key.main.test.section.title.context" chageBlock:^(UISegmentedControl *control) {
+        @strongify(self)
+        self.contextStyle = control.selectedSegmentIndex;
+    }];
+    
+    [self addEnumControlWithItems:@[
+        @"None",
+        @"Interactive"
+    ] withTitle:@"key.main.test.section.title.dismissmode" chageBlock:^(UISegmentedControl *control) {
+        @strongify(self)
+        self.dismissMode = control.selectedSegmentIndex;
+    }];
+    
+    [self addEnumControlWithItems:@[
+        @"NO",
+        @"YES"
+    ] withTitle:@"key.main.test.section.title.cutoff" chageBlock:^(UISegmentedControl *control) {
+        @strongify(self)
+        self.autoCutoffRelief = [@(control.selectedSegmentIndex) boolValue];
+    }];
+    
+    [self addEnumControlWithItems:@[
+        @"NO",
+        @"YES"
+    ] withTitle:@"key.main.test.section.title.autofitsize" chageBlock:^(UISegmentedControl *control) {
+        @strongify(self)
+        self.autoFitContainerSize = [@(control.selectedSegmentIndex) boolValue];
+    }];
+    
+    [self addEnumControlWithItems:@[
+        @"YES",
+        @"NO"
+    ] withTitle:@"key.main.test.section.title.arrowcenter" chageBlock:^(UISegmentedControl *control) {
+        @strongify(self)
+        self.arrowCenterAlignToContainer = [@(1 - control.selectedSegmentIndex) boolValue];
+    }];
+    
+    [self addSliderControlWithTitle:@"offsetToAnchorView" desc:@"key.main.test.section.title.hoffset" valueArray:@[@(-20),@(40)] chageBlock:^(UISlider *control) {
+        @strongify(self)
+        self.offsetToAnchorView = control.value;
+    }];
+    
+    [self addSliderControlWithTitle:@"marginToAnchorView" desc:@"key.main.test.section.title.voffset" valueArray:@[@0,@20] chageBlock:^(UISlider *control) {
+        @strongify(self)
+        self.marginToAnchorView = control.value;
+    }];
+    
+    [self addSliderControlWithTitle:@"cornerRadius" desc:@"key.main.test.section.title.cornerradius" valueArray:@[@0,@30] chageBlock:^(UISlider *control) {
+        @strongify(self)
+        self.cornerRadius = control.value;
+    }];
+    
+    [self addSliderControlWithTitle:@"arrowRadius" desc:@"key.main.test.section.title.arrowradius" valueArray:@[@0,@30] chageBlock:^(UISlider *control) {
+        @strongify(self)
+        self.arrowRadius = control.value;
+    }];
+    
+    [self addSliderControlWithTitle:@"arrowWidth" desc:@"key.main.test.section.title.arrowW" valueArray:@[@0,@(30)] chageBlock:^(UISlider *control) {
+        @strongify(self)
+        self.arrowWidth = control.value;
+    }];
+    
+    [self addSliderControlWithTitle:@"arrowHeight" desc:@"key.main.test.section.title.arrowH" valueArray:@[@0,@30] chageBlock:^(UISlider *control) {
+        @strongify(self)
+        self.arrowHeight = control.value;
+    }];
+    
+    [self addSliderControlWithTitle:@"containerWidth" desc:@"key.main.test.section.title.containerW" valueArray:@[@0,@(kBRCScreenWidth)] chageBlock:^(UISlider *control) {
+        @strongify(self)
+        self.containerWidth = control.value;
+    }];
+    
+    [self addSliderControlWithTitle:@"containerHeight" desc:@"key.main.test.section.title.containerH" valueArray:@[@0,@(kBRCScreenHeight)] chageBlock:^(UISlider *control) {
+        @strongify(self)
+        self.containerHeight = control.value;
+    }];
+    
+    [self addSliderControlWithTitle:@"arrowRelativePosition" desc:@"key.main.test.section.title.arrowRP" valueArray:@[@0,@1] chageBlock:^(UISlider *control) {
+        @strongify(self)
+        self.arrowRelativePosition = control.value;
+    }];
+    
+    [self addSliderControlWithTitle:@"arrowAbsolutePosition" desc:@"key.main.test.section.title.arrowAP" valueArray:@[@(-40),@(80)] chageBlock:^(UISlider *control) {
+        @strongify(self)
+        self.arrowAbsolutePosition = control.value;
+    }];
+    
+    [self createButtonWithTitle:@"key.main.test.button.title" popUpStyle:^(BRCPopUper *popUp) {
+        
+    }];
+}
+
+- (void)addEnumControlWithItems:(NSArray *)items
+                      withTitle:(NSString *)title
+                     chageBlock:(void (^)(UISegmentedControl *control))chageBlock{
+    UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:items];
+    [control setSelectedSegmentIndex:0];
+    @weakify(control)
+    [control addBlockForControlEvents:UIControlEventValueChanged block:^(id  _Nonnull sender) {
+        @strongify(control)
+        if (chageBlock) chageBlock(control);
+    }];
+    [self addTestView:control withTitle:title height:0 isFitWidth:NO space:10];
+}
+
+- (void)addSliderControlWithTitle:(NSString *)title
+                             desc:(NSString *)desc
+                       valueArray:(NSArray *)valueArray
+                       chageBlock:(void (^)(UISlider *control))chageBlock{
+    NSNumber *defaultNSValue = [self valueForKey:title];
+    CGFloat defaultValue = [defaultNSValue floatValue];
+    
+    UIView *containerView = [UIView new];
+    UISlider *control = [[UISlider alloc] init];
+    [control setTintColor:[UIColor grayColor]];
+    control.value = defaultValue;
+    control.minimumValue = [valueArray[0] floatValue];
+    control.maximumValue = [valueArray[1] floatValue];
+    [containerView addSubview:control];
+    
+    UILabel *label = [[UILabel alloc] init];
+    label.text = title;
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightMedium];
+    [containerView addSubview:label];
+    
+    UILabel *desclabel = [[UILabel alloc] init];
+    desclabel.text = [NSString localizableWithKey:desc];
+    desclabel.numberOfLines = 0;
+    desclabel.textColor = [UIColor systemGrayColor];
+    desclabel.font = [UIFont systemFontOfSize:12.0 weight:UIFontWeightMedium];
+    [containerView addSubview:desclabel];
+    
+    UILabel *valueLabel = [[UILabel alloc] init];
+    valueLabel.text = [NSString stringWithFormat:@"%.1f",[@(defaultValue) doubleValue]];
+    valueLabel.textAlignment = NSTextAlignmentRight;
+    valueLabel.textColor = [UIColor systemRedColor];
+    valueLabel.font = [UIFont boldSystemFontOfSize:14.0];
+    [containerView addSubview:valueLabel];
+    
+    @weakify(control)
+    [control addBlockForControlEvents:UIControlEventValueChanged block:^(id  _Nonnull sender) {
+        @strongify(control)
+        if (chageBlock) chageBlock(control);
+        valueLabel.text = [NSString stringWithFormat:@"%.1f",[@(control.value) doubleValue]];
+    }];
+    
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(containerView);
+        make.top.equalTo(containerView);
+        make.trailing.equalTo(valueLabel.mas_leading).offset(-5);
+    }];
+    
+    [desclabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(containerView);
+        make.top.equalTo(label.mas_bottom).offset(5);
+        make.trailing.equalTo(label);
+    }];
+    
+    [valueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(containerView);
+        make.top.equalTo(containerView);
+    }];
+    
+    [control mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(containerView);
+        make.trailing.equalTo(containerView);
+        make.top.equalTo(desclabel.mas_bottom).offset(5);
+        make.bottom.equalTo(containerView);
+    }];
+    
+    [self addSubView:containerView space:10 height:0 isFitWidth:NO];
+}
+
+
+- (void)createButtonWithTitle:(NSString *)title
+                popUpStyle:(void (^)(BRCPopUper * popUp))popUpStyle{
+    UIButton *button = [[UIButton alloc] init];
+    [button setTitle:[NSString localizableWithKey:title] forState:UIControlStateNormal];
+    [button setBackgroundColor:[UIColor redColor]];
+    button.layer.cornerRadius = 10;
+    button.clipsToBounds = YES;
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    BRCPopUper *buttonpopUp = [[BRCPopUper alloc] initWithContentStyle:BRCPopUpContentStyleCustom];
+    buttonpopUp.anchorView = button;
+    buttonpopUp.delegate = self;
+    popUpStyle(buttonpopUp);
+    [button addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+        buttonpopUp.cornerRadius = self.cornerRadius;
+        buttonpopUp.offsetToAnchorView = self.offsetToAnchorView;
+        buttonpopUp.marginToAnchorView = self.marginToAnchorView;
+        buttonpopUp.arrowRadius = self.arrowRadius;
+        buttonpopUp.arrowSize = CGSizeMake(self.arrowWidth, self.arrowHeight);
+        buttonpopUp.containerHeight = self.containerHeight;
+        buttonpopUp.containerWidth = self.containerWidth;
+        buttonpopUp.arrowRelativePosition = self.arrowRelativePosition;
+        buttonpopUp.arrowAbsolutePosition = self.arrowAbsolutePosition;
+        buttonpopUp.autoCutoffRelief = self.autoCutoffRelief;
+        buttonpopUp.autoFitContainerSize = self.autoFitContainerSize;
+        buttonpopUp.arrowCenterAlignToAnchor = self.arrowCenterAlignToContainer;
+        buttonpopUp.dismissMode = self.dismissMode;
+        buttonpopUp.popUpDirection = self.popUpDirection;
+        buttonpopUp.popUpAnimationType = self.animationStyle;
+        buttonpopUp.contextStyle = self.contextStyle;
+        buttonpopUp.contentAlignment = self.alignmentStyle;
+        [buttonpopUp toggleDisplay];
+    }];
+    [self addTestView:button withTitle:title height:50 width:kBRCScreenWidth/2 space:20];
+}
+
+- (UILabel *)createFunctionLabel:(NSString *)text {
+    UILabel *functionLabel = [[UILabel alloc] init];
+    functionLabel.numberOfLines = 1;
+    functionLabel.text = text;
+    functionLabel.textColor = [UIColor grayColor];
+    functionLabel.font = [UIFont systemFontOfSize:16.0];
+    [self.view addSubview:functionLabel];
+    return functionLabel;
+}
+
+- (void)addTestView:(UIView *)testView
+          withTitle:(NSString *)title
+             height:(CGFloat)height
+         isFitWidth:(BOOL)isFitWidth{
+    [self addTestView:testView withTitle:title height:height isFitWidth:isFitWidth space:10];
+}
+
+- (void)addTestView:(UIView *)testView
+          withTitle:(NSString *)title
+             height:(CGFloat)height
+              width:(CGFloat)width
+              space:(CGFloat)space {
+    UILabel *label = [[UILabel alloc] init];
+    label.text = title;
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightMedium];
+    [self addSubView:label space:space height:0];
+    [self addSubView:testView space:10 height:height width:width];
+}
+
+- (void)addTestView:(UIView *)testView
+          withTitle:(NSString *)title
+             height:(CGFloat)height
+         isFitWidth:(BOOL)isFitWidth
+              space:(CGFloat)space {
+    UILabel *label = [[UILabel alloc] init];
+    label.text = [NSString localizableWithKey:title];
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightMedium];
+    [self addSubView:label space:space height:0];
+    if (testView) {
+        [self addSubView:testView space:10 height:height isFitWidth:isFitWidth];
+    }
+}
+
+- (void)addSubView:(UIView *)view space:(CGFloat)space height:(CGFloat)height {
+    [self addSubView:view space:space height:height isFitWidth:NO];
+}
+
+- (void)addSubView:(UIView *)view
+             space:(CGFloat)space
+            height:(CGFloat)height
+             width:(CGFloat)width {
+    [self.view addSubview:view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        if (self.lastView) {
+            make.top.equalTo(self.lastView.mas_bottom).offset(space);
+        } else {
+            make.top.equalTo(self.view).offset(space);
+        }
+        make.centerX.equalTo(self.view);
+        make.width.equalTo(@(width));
+        if (height != 0) {
+            make.height.equalTo(@(height));
+        }
+    }];
+    self.lastView = view;
+}
+
+- (void)addSubView:(UIView *)view
+             space:(CGFloat)space
+            height:(CGFloat)height
+        isFitWidth:(BOOL)isFitWidth{
+    [self.view addSubview:view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        if (self.lastView) {
+            make.top.equalTo(self.lastView.mas_bottom).offset(space);
+        } else {
+            make.top.equalTo(self.view).offset(space);
+        }
+        make.leading.equalTo(self.view);
+        if (!isFitWidth) {
+            make.trailing.equalTo(self.view);
+        }
+        if (height != 0) {
+            make.height.equalTo(@(height));
+        }
+    }];
+    self.lastView = view;
+}
+
+#pragma mark - BRCPopUperDelegate
+
+- (void)willHidePopUper:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView {
+    [BRCToast show:@"willHidePopUper"];
+}
+
+- (void)willShowPopUper:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView {
+    [BRCToast show:@"willShowPopUper"];
+}
+
+- (void)didShowPopUper:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView {
+    [BRCToast show:@"didShowPopUper"];
+}
+
+- (void)didHidePopUper:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView {
+    [BRCToast show:@"didHidePopUper"];
+}
+
+- (void)didUserDismissPopUper:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView {
+    [BRCToast show:@"didUserDismissPopUper"];
+}
+
+#pragma mark - debug
+
+- (NSString *)componentTitle {
+    return @"BRCPopUp";
+}
+
+- (NSString *)componentDescription {
+    return [NSString localizableWithKey:@"key.main.test.main.title"];
+}
+
+- (CGFloat)leftPadding {
+    return 15;
+}
+
+@end
+
+

@@ -1,0 +1,43 @@
+/* 
+  Localizable.strings
+  BRCPopUp
+
+  Created by sunzhixiong on 2024/8/3.
+  Copyright © 2024 zhixiongsun. All rights reserved.
+*/
+"key.main.tab.test" = "测试";
+"key.main.tab.popup" = "弹出框";
+"key.main.tab.down" = "下拉框";
+"key.main.tab.selectTab" = "选中了第%@个Tab栏";
+"key.main.test.section.title.direction" = "弹出方向";
+"key.main.test.section.title.animation" = "弹出动画";
+"key.main.test.section.title.alignment" = "弹出框对齐方式";
+"key.main.test.section.title.context" = "弹出框的父视图";
+"key.main.test.section.title.dismissmode" = "弹出框的消失方式";
+"key.main.test.section.title.cutoff" = "是否切除超过屏幕的内容";
+"key.main.test.section.title.autofitsize" = "是否自适应内容大小";
+"key.main.test.section.title.arrowcenter" = "箭头是否总是居中";
+"key.main.test.section.title.hoffset" = "弹出框和锚定视图相对水平方向的偏移";
+"key.main.test.section.title.voffset" = "弹出框和锚定视图相对垂直方向的偏移";
+"key.main.test.section.title.cornerradius" = "弹出框的圆角大小";
+"key.main.test.section.title.arrowradius" = "弹出框的箭头圆角大小";
+"key.main.test.section.title.arrowW" = "弹出框箭头的宽度";
+"key.main.test.section.title.arrowH" = "弹出框箭头的高度";
+"key.main.test.section.title.containerW" = "弹出框的宽度";
+"key.main.test.section.title.containerH" = "弹出框的高度";
+"key.main.test.section.title.arrowRP" = "弹出框箭头的相对位置";
+"key.main.test.section.title.arrowAP" = "弹出框箭头的绝对位置";
+"key.main.test.button.title" = "点击我测试";
+"key.main.test.main.title" = "一个易用的弹出/下拉框组件，适用于大部分的场景";
+"key.popup.test.center.title.popup" = "你好,我是一个功能完善,高度定制化的DropDown/PopUp组件,很高兴认识你!";
+"key.popup.test.more.option.click.toast" = "点击～";
+"key.popup.test.section.title1.style" = "1.示例样式1";
+"key.popup.test.button.title1.style" = "示例1";
+"key.popup.test.section.title2.style" = "2.示例样式2";
+"key.popup.test.button.title2.style" = "示例2";
+"key.popup.test.section.title3.style" = "3.示例样式3";
+"key.popup.test.button.title3.style" = "示例3";
+"key.popup.test.section.title4.style" = "4.示例样式4";
+"key.popup.test.button.title4.style" = "示例4";
+"key.popup.gesture.button.title" = "跟随手指";
+"key.dropdown.input.placeholder" = "输入一些........";

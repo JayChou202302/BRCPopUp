@@ -6,18 +6,18 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-black.svg)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/cocoapods/p/BRCPopUp.svg?style=flat)](https://cocoapods.org/pods/BRCPopUp)
 
-`BRCPopUper` is a powerful pop-up management tool that offers high customization and rich animation effects, easily meeting the needs of various complex scenarios.
+`BRCPopUp` 是一个强大的弹出框管理工具，具有高自定义性和丰富的动画效果，可以轻松满足各种复杂场景下的弹出需求
 
-## Features
+## 特点
 
-- **Highly Customizable**: Supports custom content views, background colors, shadow effects, rounded corners, etc.
-- **Rich Animation Effects**: Built-in multiple animation effects and supports custom animations.
-- **Diverse Content Support**: Supports both text and image content, providing convenient methods for setting them.
-- **Flexible Pop-up and Dismiss Methods**: Supports pop-ups anchored to views or points, with both automatic and manual dismiss controls.
-- **Comprehensive Delegate Callbacks**: Provides various delegate callback methods to monitor pop-up events like display, dismissal, and clicks.
+- **高度自定义**：支持自定义内容视图、背景颜色、阴影效果、圆角等。
+- **丰富的动画效果**：内置多种动画效果，并支持自定义动画。
+- **多样的内容支持**：支持文本和图片内容，且提供便捷的方法进行设置。
+- **灵活的弹出和消失方式**：支持锚定视图和锚点位置弹出，支持自动消失和手动控制消失。
+- **完善的代理回调**：提供多种代理回调方法，方便监听弹出框的各种事件。
 
 
-## Fast Usage
+## 快速使用
 ```objective-c
 #import <BRCPopUp/UIView+BRCPopUp.h>
 
@@ -28,7 +28,7 @@
 ];
 ```
 
-## Usage
+## 使用
 ```objective-c
 BRCPopUper *popUper = [[BRCPopUper alloc] initWithContentStyle:BRCPopUpContentStyleCustom];
 [popUper showWithAnchorView:anchorView hideAfterDelay:3.0]

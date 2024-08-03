@@ -14,7 +14,7 @@
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
 		6003F59E195388D20070C39A /* BRCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* BRCAppDelegate.m */; };
-		6003F5A7195388D20070C39A /* BRCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* BRCViewController.m */; };
+		6003F5A7195388D20070C39A /* BRCViewRootController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* BRCViewRootController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -22,6 +22,13 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
+		7AC5DA742C5B97EE007795C1 /* BRCPopUpMainTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC5DA732C5B97EE007795C1 /* BRCPopUpMainTestViewController.m */; };
+		7AC75F362C5A33CC00872E89 /* BRCPopUperExampleTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC75F352C5A33CC00872E89 /* BRCPopUperExampleTestViewController.m */; };
+		7AC75F392C5A33D400872E89 /* BRCPopUperInputTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC75F382C5A33D400872E89 /* BRCPopUperInputTestViewController.m */; };
+		7AC75F402C5A351100872E89 /* BRCToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC75F3C2C5A351100872E89 /* BRCToast.m */; };
+		7AC75F412C5A351100872E89 /* BRCImageCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC75F3E2C5A351100872E89 /* BRCImageCollectionCell.m */; };
+		7AEBB6982C5E007600246CB9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7AEBB69A2C5E007600246CB9 /* Localizable.strings */; };
+		7AEBB69E2C5E01CD00246CB9 /* NSString+Localizable.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AEBB69D2C5E01CD00246CB9 /* NSString+Localizable.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A945A242E7FDC2315AB5B319 /* Pods_BRCPopUp_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D08D9D983B4E03CF71F171C /* Pods_BRCPopUp_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -37,7 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0C4D6A1A5E07EA3C008213FB /* BRCPopUp.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = BRCPopUp.podspec; path = ../BRCPopUp.podspec; sourceTree = "<group>"; };
+		0C4D6A1A5E07EA3C008213FB /* BRCPopUp.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BRCPopUp.podspec; path = ../BRCPopUp.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		39E9EF2039041B1575496823 /* Pods_BRCPopUp_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BRCPopUp_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4203718EC3818D592A9816A6 /* Pods-BRCPopUp_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRCPopUp_Tests.release.xcconfig"; path = "Target Support Files/Pods-BRCPopUp_Tests/Pods-BRCPopUp_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		4D1DB861FB52169C54CDD553 /* Pods-BRCPopUp_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRCPopUp_Example.release.xcconfig"; path = "Target Support Files/Pods-BRCPopUp_Example/Pods-BRCPopUp_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -47,25 +54,41 @@
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6003F595195388D20070C39A /* BRCPopUp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BRCPopUp-Info.plist"; sourceTree = "<group>"; };
-		6003F597195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F599195388D20070C39A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6003F59B195388D20070C39A /* BRCPopUp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BRCPopUp-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* BRCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BRCAppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* BRCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BRCAppDelegate.m; sourceTree = "<group>"; };
-		6003F5A5195388D20070C39A /* BRCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BRCViewController.h; sourceTree = "<group>"; };
-		6003F5A6195388D20070C39A /* BRCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BRCViewController.m; sourceTree = "<group>"; };
+		6003F5A5195388D20070C39A /* BRCViewRootController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BRCViewRootController.h; sourceTree = "<group>"; };
+		6003F5A6195388D20070C39A /* BRCViewRootController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BRCViewRootController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6003F5AE195388D20070C39A /* BRCPopUp_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BRCPopUp_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
-		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		6D08D9D983B4E03CF71F171C /* Pods_BRCPopUp_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BRCPopUp_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7AC5DA722C5B97EE007795C1 /* BRCPopUpMainTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BRCPopUpMainTestViewController.h; sourceTree = "<group>"; };
+		7AC5DA732C5B97EE007795C1 /* BRCPopUpMainTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BRCPopUpMainTestViewController.m; sourceTree = "<group>"; };
+		7AC75F342C5A33CC00872E89 /* BRCPopUperExampleTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BRCPopUperExampleTestViewController.h; sourceTree = "<group>"; };
+		7AC75F352C5A33CC00872E89 /* BRCPopUperExampleTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BRCPopUperExampleTestViewController.m; sourceTree = "<group>"; };
+		7AC75F372C5A33D400872E89 /* BRCPopUperInputTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BRCPopUperInputTestViewController.h; sourceTree = "<group>"; };
+		7AC75F382C5A33D400872E89 /* BRCPopUperInputTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BRCPopUperInputTestViewController.m; sourceTree = "<group>"; };
+		7AC75F3B2C5A351100872E89 /* BRCToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRCToast.h; sourceTree = "<group>"; };
+		7AC75F3C2C5A351100872E89 /* BRCToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRCToast.m; sourceTree = "<group>"; };
+		7AC75F3E2C5A351100872E89 /* BRCImageCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRCImageCollectionCell.m; sourceTree = "<group>"; };
+		7AC75F3F2C5A351100872E89 /* BRCImageCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRCImageCollectionCell.h; sourceTree = "<group>"; };
+		7AEBB6952C5DFE6600246CB9 /* README_CH.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README_CH.md; sourceTree = "<group>"; };
+		7AEBB6992C5E007600246CB9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7AEBB69B2C5E007800246CB9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7AEBB69C2C5E01CD00246CB9 /* NSString+Localizable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Localizable.h"; sourceTree = "<group>"; };
+		7AEBB69D2C5E01CD00246CB9 /* NSString+Localizable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Localizable.m"; sourceTree = "<group>"; };
+		7AEBB6A32C5E0DDB00246CB9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7AEBB6A42C5E0DDB00246CB9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		7AEBB6A52C5E0DDB00246CB9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D93E84532BC2A3B2E4596DC6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		EC46D87E732F3622627371DC /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		D93E84532BC2A3B2E4596DC6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		EC46D87E732F3622627371DC /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F9CBF9DD8E713E8CF0520E71 /* Pods-BRCPopUp_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BRCPopUp_Example.debug.xcconfig"; path = "Target Support Files/Pods-BRCPopUp_Example/Pods-BRCPopUp_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,8 +158,19 @@
 				6003F59C195388D20070C39A /* BRCAppDelegate.h */,
 				6003F59D195388D20070C39A /* BRCAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
-				6003F5A5195388D20070C39A /* BRCViewController.h */,
-				6003F5A6195388D20070C39A /* BRCViewController.m */,
+				6003F5A5195388D20070C39A /* BRCViewRootController.h */,
+				6003F5A6195388D20070C39A /* BRCViewRootController.m */,
+				7AC5DA722C5B97EE007795C1 /* BRCPopUpMainTestViewController.h */,
+				7AC5DA732C5B97EE007795C1 /* BRCPopUpMainTestViewController.m */,
+				7AC75F342C5A33CC00872E89 /* BRCPopUperExampleTestViewController.h */,
+				7AC75F352C5A33CC00872E89 /* BRCPopUperExampleTestViewController.m */,
+				7AC75F372C5A33D400872E89 /* BRCPopUperInputTestViewController.h */,
+				7AC75F382C5A33D400872E89 /* BRCPopUperInputTestViewController.m */,
+				7AEBB69C2C5E01CD00246CB9 /* NSString+Localizable.h */,
+				7AEBB69D2C5E01CD00246CB9 /* NSString+Localizable.m */,
+				7AEBB69A2C5E007600246CB9 /* Localizable.strings */,
+				7AC75F3A2C5A351100872E89 /* BRCToast */,
+				7AC75F3D2C5A351100872E89 /* View */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -180,6 +214,7 @@
 			children = (
 				0C4D6A1A5E07EA3C008213FB /* BRCPopUp.podspec */,
 				D93E84532BC2A3B2E4596DC6 /* README.md */,
+				7AEBB6952C5DFE6600246CB9 /* README_CH.md */,
 				EC46D87E732F3622627371DC /* LICENSE */,
 			);
 			name = "Podspec Metadata";
@@ -193,8 +228,25 @@
 				55E212826BE5B000120B4190 /* Pods-BRCPopUp_Tests.debug.xcconfig */,
 				4203718EC3818D592A9816A6 /* Pods-BRCPopUp_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		7AC75F3A2C5A351100872E89 /* BRCToast */ = {
+			isa = PBXGroup;
+			children = (
+				7AC75F3B2C5A351100872E89 /* BRCToast.h */,
+				7AC75F3C2C5A351100872E89 /* BRCToast.m */,
+			);
+			path = BRCToast;
+			sourceTree = "<group>";
+		};
+		7AC75F3D2C5A351100872E89 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7AC75F3E2C5A351100872E89 /* BRCImageCollectionCell.m */,
+				7AC75F3F2C5A351100872E89 /* BRCImageCollectionCell.h */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,6 +300,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = zhixiongsun;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = TR8685W29A;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -255,11 +310,12 @@
 			};
 			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "BRCPopUp" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = "zh-Hans";
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 6003F581195388D10070C39A;
 			productRefGroup = 6003F58B195388D20070C39A /* Products */;
@@ -277,6 +333,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AEBB6982C5E007600246CB9 /* Localizable.strings in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
@@ -325,10 +382,20 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BRCPopUp_Example/Pods-BRCPopUp_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BRCPopUp/BRCPopUp.framework",
+				"${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BRCPopUp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLEX.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -364,9 +431,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AC75F412C5A351100872E89 /* BRCImageCollectionCell.m in Sources */,
 				6003F59E195388D20070C39A /* BRCAppDelegate.m in Sources */,
-				6003F5A7195388D20070C39A /* BRCViewController.m in Sources */,
+				7AC75F362C5A33CC00872E89 /* BRCPopUperExampleTestViewController.m in Sources */,
+				7AEBB69E2C5E01CD00246CB9 /* NSString+Localizable.m in Sources */,
+				6003F5A7195388D20070C39A /* BRCViewRootController.m in Sources */,
+				7AC5DA742C5B97EE007795C1 /* BRCPopUpMainTestViewController.m in Sources */,
+				7AC75F402C5A351100872E89 /* BRCToast.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				7AC75F392C5A33D400872E89 /* BRCPopUperInputTestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,7 +465,7 @@
 		6003F596195388D20070C39A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6003F597195388D20070C39A /* en */,
+				7AEBB6A52C5E0DDB00246CB9 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -400,7 +473,7 @@
 		6003F5B8195388D20070C39A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6003F5B9195388D20070C39A /* en */,
+				7AEBB6A32C5E0DDB00246CB9 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -409,8 +482,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				71719F9E1E33DC2100824A3D /* Base */,
+				7AEBB6A42C5E0DDB00246CB9 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		7AEBB69A2C5E007600246CB9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7AEBB6992C5E007600246CB9 /* zh-Hans */,
+				7AEBB69B2C5E007800246CB9 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -435,6 +518,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -475,6 +560,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -494,11 +580,13 @@
 			baseConfigurationReference = F9CBF9DD8E713E8CF0520E71 /* Pods-BRCPopUp_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TR8685W29A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BRCPopUp/BRCPopUp-Prefix.pch";
 				INFOPLIST_FILE = "BRCPopUp/BRCPopUp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sunzhixiong.BRCPopUp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
@@ -510,11 +598,13 @@
 			baseConfigurationReference = 4D1DB861FB52169C54CDD553 /* Pods-BRCPopUp_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TR8685W29A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BRCPopUp/BRCPopUp-Prefix.pch";
 				INFOPLIST_FILE = "BRCPopUp/BRCPopUp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sunzhixiong.BRCPopUp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;

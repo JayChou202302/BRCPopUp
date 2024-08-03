@@ -1,5 +1,5 @@
 //
-//  BRCAppDelegate.h
+//  BRCViewController.h
 //  BRCPopUp
 //
 //  Created by zhixiongsun on 07/30/2021.
@@ -8,8 +8,6 @@
 
 @import UIKit;
 
-@interface BRCAppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+@interface BRCViewRootController : UITabBarController
 
 @end

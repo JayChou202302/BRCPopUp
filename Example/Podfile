@@ -4,10 +4,29 @@ platform :ios, '10.0'
 
 target 'BRCPopUp_Example' do
   pod 'BRCPopUp', :path => '../'
+  pod 'Masonry'
+  pod 'SDWebImage'
+  pod 'YYKit'
+  pod 'MBProgressHUD'
+  pod 'FLEX', :configurations => ['Debug']
 
   target 'BRCPopUp_Tests' do
     inherit! :search_paths
 
     
+  end
+end
+
+post_install do |installer|
+  installer.generated_projects.each do |project|
+    project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+        if Gem::Version.new('13.0') > Gem::Version.new(config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'])
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+        end
+        config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+      end
+    end
   end
 end

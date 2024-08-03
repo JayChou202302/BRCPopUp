@@ -1,0 +1,44 @@
+/* 
+  Localizable.strings
+  BRCPopUp
+
+  Created by sunzhixiong on 2024/8/3.
+  Copyright © 2024 zhixiongsun. All rights reserved.
+*/
+
+"key.main.tab.test" = "Test";
+"key.main.tab.popup" = "Popup";
+"key.main.tab.down" = "Dropdown";
+"key.main.tab.selectTab" = "Selected the %@ th Tab";
+"key.main.test.section.title.direction" = "Popup Direction";
+"key.main.test.section.title.animation" = "Popup Animation";
+"key.main.test.section.title.alignment" = "Popup Alignment";
+"key.main.test.section.title.context" = "Popup Parent View";
+"key.main.test.section.title.dismissmode" = "Popup Dismiss Mode";
+"key.main.test.section.title.cutoff" = "Cut off content beyond screen";
+"key.main.test.section.title.autofitsize" = "Auto-fit content size";
+"key.main.test.section.title.arrowcenter" = "Arrow always centered";
+"key.main.test.section.title.hoffset" = "Horizontal offset relative to anchor view";
+"key.main.test.section.title.voffset" = "Vertical offset relative to anchor view";
+"key.main.test.section.title.cornerradius" = "Popup Corner Radius";
+"key.main.test.section.title.arrowradius" = "Popup Arrow Corner Radius";
+"key.main.test.section.title.arrowW" = "Popup Arrow Width";
+"key.main.test.section.title.arrowH" = "Popup Arrow Height";
+"key.main.test.section.title.containerW" = "Popup Width";
+"key.main.test.section.title.containerH" = "Popup Height";
+"key.main.test.section.title.arrowRP" = "Popup Arrow Relative Position";
+"key.main.test.section.title.arrowAP" = "Popup Arrow Absolute Position";
+"key.main.test.button.title" = "Click me to test";
+"key.main.test.main.title" = "An easy-to-use popup/dropdown component suitable for most scenarios";
+"key.popup.test.center.title.popup" = "Hello, I am a fully-featured, highly customizable DropDown/PopUp component. Nice to meet you!";
+"key.popup.test.more.option.click.toast" = "Click~";
+"key.popup.test.section.title1.style" = "1. Example Style 1";
+"key.popup.test.button.title1.style" = "Example 1";
+"key.popup.test.section.title2.style" = "2. Example Style 2";
+"key.popup.test.button.title2.style" = "Example 2";
+"key.popup.test.section.title3.style" = "3. Example Style 3";
+"key.popup.test.button.title3.style" = "Example 3";
+"key.popup.test.section.title4.style" = "4. Example Style 4";
+"key.popup.test.button.title4.style" = "Example 4";
+"key.popup.gesture.button.title" = "Follow Finger";
+"key.dropdown.input.placeholder" = "Enter something........";
