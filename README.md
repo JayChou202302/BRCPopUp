@@ -8,6 +8,29 @@
 
 `BRCPopUper` is a powerful pop-up management tool that offers high customization and rich animation effects, easily meeting the needs of various complex scenarios.
 
+<table>
+    <thead>
+        <tr>
+            <th>MainTest</th>
+            <th>PopUpTest</th>
+            <th>DropDownTest</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <img src="https://jaychou202302.github.io/media/BRCPopUp/main.png"/>
+            </td>
+            <td>
+                <img src="https://jaychou202302.github.io/media/BRCPopUp/popup.png"/>
+            </td>
+                 <td>
+                <img src="https://jaychou202302.github.io/media/BRCPopUp/dropdown.png"/>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
 ## Features
 
 - **Highly Customizable**: Supports custom content views, background colors, shadow effects, rounded corners, etc.

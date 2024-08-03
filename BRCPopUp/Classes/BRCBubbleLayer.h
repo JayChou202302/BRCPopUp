@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign, readonly) BOOL isAnimating;
 @property (nonatomic, strong, readonly) BRCBubbleLayer *bubbleLayer;
+@property (nonatomic, strong) UIColor *shadowColor;
 - (void)setAnchorPointWithAnimationType:(BRCPopUpAnimationType)type;
 
 #pragma mark - display

@@ -265,7 +265,7 @@
 
 - (void)updateStyleBeforeShow {
     self.containerView.backgroundColor = self.backgroundColor;
-    self.containerView.layer.shadowColor = self.shadowColor.CGColor;
+    self.containerView.shadowColor = self.shadowColor
     self.containerView.layer.shadowOffset = self.shadowOffset;
     self.containerView.layer.shadowRadius = self.shadowRadius;
     self.containerView.layer.shadowOpacity = self.shadowOpacity;

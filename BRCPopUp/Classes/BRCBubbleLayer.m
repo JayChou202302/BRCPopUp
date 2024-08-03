@@ -279,9 +279,15 @@
 
 - (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
     self.bubbleLayer.backgroundColor = self.backgroundBubbleColor.CGColor;
+    self.bubbleLayer.shadowColor = self.shadowColor.CGColor;
 }
 
 #pragma mark - props
+
+- (void)setShadowColor:(UIColor *)shadowColor {
+    _shadowColor = shadowColor;
+    self.bubbleLayer.shadowColor = shadowColor.CGColor;
+}
 
 - (void)setLayerAnchorPoint:(CGPoint)anchorPoint {
     CGRect oldFrame = self.frame;
