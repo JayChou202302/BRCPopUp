@@ -36,13 +36,13 @@
 }
 
 - (CGFloat)getArrowTopPointPosition:(CGSize)size{
+    CGFloat arrowRelativePosition = [self getArrowRelativePositionWithSize:size];
     if (self.arrowDirection == BRCPopUpDirectionRight ||
         self.arrowDirection == BRCPopUpDirectionLeft) {
-        return size.height * self.arrowRelativePosition;
+        return size.height * arrowRelativePosition;
     }
-    return size.width  * self.arrowRelativePosition;
+    return size.width * arrowRelativePosition;
 }
-
 
 #pragma mark - drawBubble
 
@@ -147,15 +147,19 @@
 #pragma mark - getter
 
 - (CGFloat)arrowRelativePosition {
+    return [self getArrowRelativePositionWithSize:self.bounds.size];
+}
+
+- (CGFloat)getArrowRelativePositionWithSize:(CGSize)size {
     if (_arrowRelativePosition > 0) {
         return _arrowRelativePosition;
     }
     CGFloat boundSize = 0;
     if (self.arrowDirection == BRCPopUpDirectionTop ||
         self.arrowDirection == BRCPopUpDirectionBottom) {
-        boundSize = self.bounds.size.width;
+        boundSize = size.width;
     } else {
-        boundSize = self.bounds.size.height;
+        boundSize = size.height;
     }
     if (_arrowAbsolutePosition > 0) {
         return _arrowAbsolutePosition / boundSize;

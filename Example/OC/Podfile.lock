@@ -11,7 +11,7 @@ PODS:
   - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
-  - BRCPopUp (from `../`)
+  - BRCPopUp (from `../../../BRCPopUp`)
   - FLEX
   - Masonry
   - MBProgressHUD
@@ -28,16 +28,16 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   BRCPopUp:
-    :path: "../"
+    :path: "../../../BRCPopUp"
 
 SPEC CHECKSUMS:
-  BRCPopUp: 27c4da6e8aa98afa3132734816d054c232dde703
+  BRCPopUp: dec87fb3229b13c1a66aa319da0e9952e46a83bc
   FLEX: f21ee4f498eed3f8a1eded66b21939fd3b7a22ce
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   SDWebImage: 066c47b573f408f18caa467d71deace7c0f8280d
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 4ac881a634078c6bbc34b6a3a33a0844a4ef4d6d
+PODFILE CHECKSUM: 5ff2190e61daa7b95639b4a3336f75da37ed5313
 
 COCOAPODS: 1.15.2
