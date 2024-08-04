@@ -51,10 +51,24 @@
 ];
 ```
 
+```swift
+import BRCPopUp
+
+DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+    self.navigationItem.titleView?.brc_popUpTip("你好,我是一个功能完善,高度定制化的DropDown/PopUp组件,很高兴认识你!", with: .bottom,hideAfterDuration: 1.0);
+};
+```
+
 ## Usage
+
 ```objective-c
 BRCPopUper *popUper = [[BRCPopUper alloc] initWithContentStyle:BRCPopUpContentStyleCustom];
 [popUper showWithAnchorView:anchorView hideAfterDelay:3.0]
+```
+
+```swift
+let popUper = BRCPopUper.init(contentStyle: .text);
+popUper.show(withAnchorView:anchorView , hideAfterDelay: 3.0);
 ```
 
 ## Requirements
