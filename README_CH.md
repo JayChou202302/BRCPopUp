@@ -1,5 +1,7 @@
 # BRCPopUp
 
+<a href="./README.md">英文文档</a>
+
 ![](https://img.shields.io/github/v/tag/jaychou202302/BRCPopUp?label=Version)
 [![Cocoapods Compatible](https://img.shields.io/badge/cocoapods-Compatible-brightgreen.svg)](https://cocoapods.org/pods/BRCPopUp)
 [![Version](https://img.shields.io/cocoapods/v/BRCPopUp.svg?style=flat)](https://cocoapods.org/pods/BRCPopUp)

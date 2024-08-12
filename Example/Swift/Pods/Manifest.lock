@@ -1,0 +1,20 @@
+PODS:
+  - BRCPopUp (1.0.0)
+  - SnapKit (5.7.1)
+
+DEPENDENCIES:
+  - BRCPopUp
+  - SnapKit
+
+SPEC REPOS:
+  trunk:
+    - BRCPopUp
+    - SnapKit
+
+SPEC CHECKSUMS:
+  BRCPopUp: dec87fb3229b13c1a66aa319da0e9952e46a83bc
+  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
+
+PODFILE CHECKSUM: 53622a289798dabd0be52b0bacb9045c832b25f9
+
+COCOAPODS: 1.15.2

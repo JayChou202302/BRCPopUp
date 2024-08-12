@@ -190,12 +190,25 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, weak)   id<BRCPopUperDelegate>   delegate;
 
+/**
+ * 弹出框的所在Window
+ * The Window for PopUper
+ * default is `[UIApplication sharedApplication].keyWindow`
+ * @discussion 当你将 `contextType` 设置为 `window` 之后
+ * 当你想要自定义弹出框弹出在某个window中时，可以设置该属性
+ *
+ * @discussion After you set `contextType` to `window`
+ * When you want a custom pop-up box to pop up in a window,
+ * you can set this attribute
+ */
+@property (nonatomic, strong) UIWindow *contextWindow;
+
 #pragma mark - init
 
 - (instancetype)initWithContentView:(UIView *)contentView;
 - (instancetype)initWithContentStyle:(BRCPopUpContentStyle)contentStyle;
 
-#pragma mark - display
+#pragma mark - show
 
 /**
  * 显示弹出框
@@ -205,14 +218,31 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)show;
 - (void)showAndHideAfterDelay:(NSTimeInterval)delay;
+- (void)showWithAnimation:(CAAnimation *)animation;
+- (void)showWithAnimation:(CAAnimation *)animation hideAfterDelay:(NSTimeInterval)delay;
+- (void)showWithAnimationType:(BRCPopUpAnimationType)animationType;
+- (void)showWithAnimationType:(BRCPopUpAnimationType)animationType hideAfterDelay:(NSTimeInterval)delay;
 
 - (void)showWithAnchorView:(UIView *)anchorView;
 - (void)showWithAnchorView:(UIView *)anchorView hideAfterDelay:(NSTimeInterval)delay;
+- (void)showWithAnchorView:(UIView *)anchorView withAnimationType:(BRCPopUpAnimationType)animationType;
+- (void)showWithAnchorView:(UIView *)anchorView withAnimationType:(BRCPopUpAnimationType)animationType hideAfterDelay:(NSTimeInterval)delay;
+- (void)showWithAnchorView:(UIView *)anchorView withAnimation:(CAAnimation *)animation;
+- (void)showWithAnchorView:(UIView *)anchorView withAnimation:(CAAnimation *)animation hideAfterDelay:(NSTimeInterval)delay;
 
 - (void)showAtAnchorPoint:(CGPoint)anchorPoint;
 - (void)showAtAnchorPoint:(CGPoint)anchorPoint hideAfterDelay:(NSTimeInterval)delay;
+- (void)showAtAnchorPoint:(CGPoint)anchorPoint withAnimationType:(BRCPopUpAnimationType)animationType;
+- (void)showAtAnchorPoint:(CGPoint)anchorPoint withAnimationType:(BRCPopUpAnimationType)animationType hideAfterDelay:(NSTimeInterval)delay;
+- (void)showAtAnchorPoint:(CGPoint)anchorPoint withAnimation:(CAAnimation *)animation;
+- (void)showAtAnchorPoint:(CGPoint)anchorPoint withAnimation:(CAAnimation *)animation hideAfterDelay:(NSTimeInterval)delay;
+
+#pragma mark - hide
 
 - (void)hide;
+- (void)hideWithAnimated:(BOOL)isAnimated;
+
+#pragma mark - toggle
 
 - (void)toggleDisplay;
 

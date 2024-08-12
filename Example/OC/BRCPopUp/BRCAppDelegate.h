@@ -7,9 +7,8 @@
 //
 
 @import UIKit;
+#import <BRCFastTest/BRCTestAppDelegate.h>
 
-@interface BRCAppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+@interface BRCAppDelegate : BRCTestAppDelegate
 
 @end

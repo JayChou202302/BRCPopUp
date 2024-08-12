@@ -8,13 +8,14 @@
 
 #import "BRCPopUperInputTestViewController.h"
 #import <BRCPopUp/BRCPopUper.h>
-#import <Masonry/Masonry.h>
-#import <YYKit/YYKitMacro.h>
-#import <YYKit/UIBarButtonItem+YYAdd.h>
-#import <YYKit/NSString+YYAdd.h>
+#import <BRCFastTest/Masonry.h>
+#import <BRCFastTest/YYKitMacro.h>
+#import <BRCFastTest/UIBarButtonItem+YYAdd.h>
+#import <BRCFastTest/NSString+YYAdd.h>
 #import <BRCPopUp/BRCPopUpConst.h>
-#import <YYKit/UIScrollView+YYAdd.h>
-#import "NSString+Localizable.h"
+#import <BRCFastTest/UIScrollView+YYAdd.h>
+#import <BRCFastTest/NSString+BRCTestLocalizable.h>
+#import <BRCFastTest/UIColor+BRCFastTest.h>
 
 #define kSafeAreaBottomSpcing [UIApplication sharedApplication].delegate.window.safeAreaInsets.bottom
  
@@ -24,15 +25,10 @@
 <UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) UIView       *contentView;
-@property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) UIView       *containerView;
 @property (nonatomic, strong) UITextField *inputTextField;
 @property (nonatomic, strong) UITextField *inputTextField1;
 @property (nonatomic, strong) BRCPopUper *textFieldPopUp;
 @property (nonatomic, strong) NSMutableArray<BRCPopUper *> *PopUpManager;
-
-@property (nonatomic, assign) CGFloat currentKeyboardY;
 
 @end
 
@@ -53,105 +49,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setUpViews];
+    [self setNavBar];
+    [self.scrollView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.inputTextField1).offset(self.textFieldPopUp.containerHeight + 100);
+    }];
+}
+
+- (void)setNavBar {
     self.title = @"DropDown";
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"sun.min"] menu:nil];
-    item.tintColor = [UIColor blackColor];
+    item.tintColor = [UIColor brtest_black];
     item.actionBlock = ^(id _Nonnull obj) {
         BRCPopUperInputTestViewController *vc = [BRCPopUperInputTestViewController new];
         [self presentViewController:vc animated:YES completion:nil];
     };
     [self.navigationItem setRightBarButtonItem:item animated:YES];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 - (void)setUpViews {
-    self.view.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.contentView];
-    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(self.view);
-        make.top.equalTo(self.view);
-    }];
-    [self.contentView addSubview:self.scrollView];
-    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.contentView);
-    }];
-    [self.scrollView addSubview:self.containerView];
-    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.scrollView);
-        make.width.equalTo(self.scrollView);
-    }];
-    [self.containerView addSubview:self.inputTextField];
+    [super setUpViews];
+    [self addSubView:self.inputTextField];
     [self.inputTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.containerView).offset(20);
-        make.leading.trailing.equalTo(self.containerView).inset(20);
+        make.top.equalTo(self.scrollView).offset(20);
         make.height.equalTo(@40);
+        make.width.equalTo(@(UIScreen.mainScreen.bounds.size.width - 40));
     }];
-    [self.containerView addSubview:self.inputTextField1];
+    [self addSubView:self.inputTextField1];
     [self.inputTextField1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.inputTextField.mas_bottom).offset(300);
-        make.leading.trailing.equalTo(self.containerView).inset(20);
+        make.width.equalTo(@(UIScreen.mainScreen.bounds.size.width - 40));
         make.height.equalTo(@40);
     }];
-    [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.inputTextField1).offset(self.textFieldPopUp.containerHeight);
-    }];
 }
-
-#pragma mark - keyboard
-
-- (void)handleKeyboardWillChangeFrame:(NSNotification *)notification {
-    NSDictionary *userInfo = notification.userInfo;
-    NSValue *keyboardFrameEndValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGFloat keyboardY = [keyboardFrameEndValue CGRectValue].origin.y;
-    double duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
-    CGFloat backScrollViewNeedHeight;
-    CGFloat bottomSpace = kSafeAreaBottomSpcing;
-    CGFloat containerBottomHeight = 20;
-    CGFloat otherHeight = kSafeAreaBottomSpcing + containerBottomHeight;
-    BOOL isTryScroll = NO;
-  
-    if (keyboardY < kBRCScreenHeight - 1) {  // show
-        backScrollViewNeedHeight = keyboardY -  otherHeight;
-        bottomSpace = [keyboardFrameEndValue CGRectValue].size.height + 10;
-        // 设置scrollView偏移
-        if (self.currentKeyboardY != keyboardY) {
-            // 有时候键盘起来的时候，输入框输入文本，键盘仍会回调，此时不去偏移
-            isTryScroll = YES;
-        }
-    } else {
-        bottomSpace = kSafeAreaBottomSpcing;
-        backScrollViewNeedHeight = kBRCScreenHeight - bottomSpace;
-    }
-    
-    self.currentKeyboardY = keyboardY;
-    
-    if (duration == 0) {
-        [self.contentView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(backScrollViewNeedHeight);
-        }];
-        if (isTryScroll) {
-            [self.scrollView scrollToBottomAnimated:YES];
-        }
-        [self.view updateConstraintsIfNeeded];
-        [self.view layoutIfNeeded];
-    } else {
-        UIViewAnimationCurve curve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-        [UIView animateWithDuration:duration delay:0 options:(curve << 16 | UIViewAnimationOptionBeginFromCurrentState) animations:^{
-            [self.contentView mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.height.mas_equalTo(backScrollViewNeedHeight);
-            }];
-            [self.view updateConstraintsIfNeeded];
-            [self.view layoutIfNeeded];
-            
-            if (isTryScroll) {
-                [self.scrollView scrollToBottomAnimated:YES];
-            }
-        } completion:nil];
-    }
-}
-
 
 #pragma mark - UITextFieldDelegate
 
@@ -161,8 +90,14 @@
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    [self.textFieldPopUp hideWithAnimated:NO];
     [self.textFieldPopUp showWithAnchorView:textField];
     [self.tableView reloadData];
+    if (textField == self.inputTextField1) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.scrollView scrollToBottomAnimated:YES];
+        });
+    }
     return YES;
 }
 
@@ -209,7 +144,7 @@
     }
     if (indexPath.row < [self dataSource].count) {
         cell.textLabel.text = [self dataSource][indexPath.row];
-        cell.textLabel.textColor = [UIColor blackColor];
+        cell.textLabel.textColor = [UIColor brtest_black];
         cell.backgroundColor = [UIColor clearColor];
     }
     return cell;
@@ -228,9 +163,9 @@
     if (!_inputTextField) {
         _inputTextField = [[UITextField alloc] init];
         _inputTextField.delegate = self;
-        _inputTextField.placeholder = [NSString localizableWithKey:@"key.dropdown.input.placeholder"];
+        _inputTextField.placeholder = [NSString brctest_localizableWithKey:@"key.dropdown.input.placeholder"];
         _inputTextField.borderStyle = UITextBorderStyleRoundedRect;
-        _inputTextField.backgroundColor = [UIColor whiteColor];
+        _inputTextField.backgroundColor = [UIColor brtest_contentWhite];
     }
     return _inputTextField;
 }
@@ -239,32 +174,11 @@
     if (!_inputTextField1) {
         _inputTextField1 = [[UITextField alloc] init];
         _inputTextField1.delegate = self;
-        _inputTextField1.placeholder = [NSString localizableWithKey:@"key.dropdown.input.placeholder"];
+        _inputTextField1.placeholder = [NSString brctest_localizableWithKey:@"key.dropdown.input.placeholder"];
         _inputTextField1.borderStyle = UITextBorderStyleRoundedRect;
-        _inputTextField1.backgroundColor = [UIColor whiteColor];
+        _inputTextField1.backgroundColor = [UIColor brtest_contentWhite];
     }
     return _inputTextField1;
-}
-
-- (UIView *)contentView {
-    if (!_contentView) {
-        _contentView = UIView.new;
-    }
-    return _contentView;
-}
-
-- (UIScrollView *)scrollView {
-    if (!_scrollView) {
-        _scrollView = [[UIScrollView alloc] init];
-    }
-    return _scrollView;
-}
-
-- (UIView *)containerView {
-    if (!_containerView) {
-        _containerView = UIView.new;
-    }
-    return _containerView;
 }
 
 - (BRCPopUper *)textFieldPopUp {
@@ -344,6 +258,14 @@
         }
         return NO;
     }]];
+}
+
+- (BOOL)isAutoHandlerKeyBoard {
+    return YES;
+}
+
+- (CGFloat)keyBoardBottomSpace {
+    return 30;
 }
 
 @end

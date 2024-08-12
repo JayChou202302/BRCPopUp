@@ -9,14 +9,15 @@
 #import "BRCPopUperExampleTestViewController.h"
 #import <BRCPopUp/UIView+BRCPopUp.h>
 #import <BRCPopUp/BRCPopUper.h>
-#import <Masonry/Masonry.h>
-#import <YYKit/UIBarButtonItem+YYAdd.h>
-#import <SDWebImage/SDWebImage.h>
-#import <YYKit/UIControl+YYAdd.h>
-#import <YYKit/YYKitMacro.h>
+#import <BRCFastTest/Masonry.h>
+#import <BRCFastTest/UIBarButtonItem+YYAdd.h>
+#import <BRCFastTest/UIImageView+WebCache.h>
+#import <BRCFastTest/UIControl+YYAdd.h>
+#import <FLEX/FLEXMacros.h>
 #import "BRCToast.h"
 #import "BRCImageCollectionCell.h"
-#import "NSString+Localizable.h"
+#import <BRCFastTest/NSString+BRCTestLocalizable.h>
+#import <BRCFastTest/UIColor+BRCFastTest.h>
 
 @interface BRCPopUperExampleTestViewController ()
 <
@@ -26,29 +27,11 @@ UIScrollViewDelegate
 
 @property (nonatomic, strong) BRCPopUper *gesturePopUp;
 @property (nonatomic, strong) NSMutableArray<BRCPopUper *>  *popUpArray;
-@property (nonatomic, strong) UIView *lastView;
 
 
 @end
 
 @implementation BRCPopUperExampleTestViewController
-
-- (void)loadView {
-    UIScrollView *scrollView = [[UIScrollView alloc] init];
-    scrollView.backgroundColor = [UIColor whiteColor];
-    scrollView.contentInset = UIEdgeInsetsMake(0, 0,100, 0);
-    scrollView.contentSize =  [UIScreen mainScreen].bounds.size;
-    scrollView.delegate = self;
-    [scrollView setAlwaysBounceVertical:YES];
-    UIView *contentView = [UIView new];
-    [scrollView addSubview:contentView];
-    [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(scrollView);
-        make.height.equalTo(@([UIScreen mainScreen].bounds.size.height));
-        make.width.equalTo(@([UIScreen mainScreen].bounds.size.width));
-    }];
-    self.view = scrollView;
-}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -60,12 +43,8 @@ UIScrollViewDelegate
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.navigationItem.titleView brc_popUpTip:[NSString localizableWithKey:@"key.popup.test.center.title.popup"] withDirection:BRCPopUpDirectionBottom hideAfterDuration:3.0];
+        [self.navigationItem.titleView brc_popUpTip:[NSString brctest_localizableWithKey:@"key.popup.test.center.title.popup"] withDirection:BRCPopUpDirectionBottom hideAfterDuration:3.0];
     });
-}
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
 }
 
 - (void)viewDidLoad {
@@ -73,7 +52,6 @@ UIScrollViewDelegate
     _popUpArray = [NSMutableArray array];
     // Do any additional setup after loading the view.
     [self setNavigationBar];
-    [self setUpViews];
 }
 
 - (void)setUpPopUpWithItem:(UIBarButtonItem *)item
@@ -91,9 +69,9 @@ UIScrollViewDelegate
     buttonpopUp.arrowAbsolutePosition = isLeft ? 12 : -12;
     dropStyle(buttonpopUp);
     [self.popUpArray addObject:buttonpopUp];
-    @weakify(item);
+    weakify(item);
     item.actionBlock = ^(id _Nonnull) {
-        @strongify(item);
+        strongify(item);
         buttonpopUp.anchorView = [item performSelector:@selector(view)];
         [buttonpopUp toggleDisplay];
     };
@@ -103,7 +81,7 @@ UIScrollViewDelegate
                                      dropStyle:(void (^)(BRCPopUper *buttonpopUp))dropStyle
                                       dropSize:(CGSize)dropSize{
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:imageName] menu:nil];
-    item.tintColor = [UIColor blackColor];
+    item.tintColor = [UIColor brtest_black];
     [self setUpPopUpWithItem:item size:CGSizeMake(dropSize.width, dropSize.height) dropStyle:dropStyle isLeft:NO];
     [self.navigationItem setRightBarButtonItem:item animated:YES];
     return item;
@@ -113,7 +91,7 @@ UIScrollViewDelegate
                                      dropStyle:(void (^)(BRCPopUper *buttonpopUp))dropStyle
                                       dropSize:(CGSize)dropSize{
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:imageName] menu:nil];
-    item.tintColor = [UIColor blackColor];
+    item.tintColor = [UIColor brtest_black];
     [self setUpPopUpWithItem:item size:CGSizeMake(dropSize.width, dropSize.height) dropStyle:dropStyle isLeft:NO];
     return item;
 }
@@ -122,7 +100,7 @@ UIScrollViewDelegate
                                      dropStyle:(void (^)(BRCPopUper *buttonpopUp))dropStyle
                                       dropSize:(CGSize)dropSize{
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:imageName] menu:nil];
-    item.tintColor = [UIColor blackColor];
+    item.tintColor = [UIColor brtest_black];
     [self setUpPopUpWithItem:item size:CGSizeMake(dropSize.width, dropSize.height) dropStyle:dropStyle isLeft:YES];
     [self.navigationItem setLeftBarButtonItem:item animated:YES];
 }
@@ -130,7 +108,7 @@ UIScrollViewDelegate
 - (void)setNavigationBar {
     UILabel *label = [[UILabel alloc] init];
     label.text = @"PopUp";
-    label.textColor = [UIColor blackColor];
+    label.textColor = [UIColor brtest_black];
     label.font = [UIFont boldSystemFontOfSize:18.0];
     self.navigationItem.titleView = label;
     
@@ -155,13 +133,11 @@ UIScrollViewDelegate
 }
 
 - (void)setUpViews {
+    [super setUpViews];
     [self addPopupTest1Button];
     [self addPopupTest2Button];
     [self addPopupTest3Button];
     [self addPopupTest4View];
-    [self.lastView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.lessThanOrEqualTo(self.view);
-    }];
 }
 
 #pragma mark - test1
@@ -230,13 +206,13 @@ UIScrollViewDelegate
             if (onTap) {
                 onTap();
             } else {
-                [BRCToast show:[NSString localizableWithKey:@"key.popup.test.more.option.click.toast"]];
+                [BRCToast show:[NSString brctest_localizableWithKey:@"key.popup.test.more.option.click.toast"]];
             }
         }];
     }];
     
     UIView *lineView = [UIView new];
-    lineView.backgroundColor = [UIColor systemGray5Color];
+    lineView.backgroundColor = [UIColor brtest_fifthGray];
     
     UIStackView *bottomView = [[UIStackView alloc] init];
     bottomView.axis = UILayoutConstraintAxisHorizontal;
@@ -250,7 +226,7 @@ UIScrollViewDelegate
             if (onTap) {
                 onTap();
             } else {
-                [BRCToast show:[NSString localizableWithKey:@"key.popup.test.more.option.click.toast"]];
+                [BRCToast show:[NSString brctest_localizableWithKey:@"key.popup.test.more.option.click.toast"]];
             }
         }];
     }];
@@ -279,11 +255,11 @@ UIScrollViewDelegate
 
 - (void)addPopupTest1Button {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    button.backgroundColor = [UIColor systemGreenColor];
+    button.backgroundColor = [UIColor brtest_green];
     button.layer.cornerRadius = 10;
     button.clipsToBounds = YES;
     button.layer.cornerCurve = kCACornerCurveContinuous;
-    [button setTitle:[NSString localizableWithKey:@"key.popup.test.button.title1.style"] forState:UIControlStateNormal];
+    [button setTitle:[NSString brctest_localizableWithKey:@"key.popup.test.button.title1.style"] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     BRCPopUper *popUp = [[BRCPopUper alloc] initWithContentStyle:BRCPopUpContentStyleCustom];
     popUp.anchorView = button;
@@ -343,18 +319,18 @@ UIScrollViewDelegate
     collectionView.dataSource = self;
     [collectionView registerClass:[BRCImageCollectionCell class] forCellWithReuseIdentifier:@"cell"];
     [collectionView setShowsHorizontalScrollIndicator:NO];
-    collectionView.backgroundColor = [UIColor systemGray6Color];
+    collectionView.backgroundColor = [UIColor clearColor];
     return collectionView;
 }
 
 - (void)addPopupTest2Button {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    button.backgroundColor = [UIColor systemGreenColor];
+    button.backgroundColor = [UIColor brtest_green];
     button.layer.cornerRadius = 10;
     button.clipsToBounds = YES;
     button.layer.cornerCurve = kCACornerCurveContinuous;
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [button setTitle:[NSString localizableWithKey:@"key.popup.test.button.title2.style"] forState:UIControlStateNormal];
+    [button setTitle:[NSString brctest_localizableWithKey:@"key.popup.test.button.title2.style"] forState:UIControlStateNormal];
     BRCPopUper *popUp = [[BRCPopUper alloc] initWithContentStyle:BRCPopUpContentStyleCustom];
     
     popUp.contentAlignment = BRCPopUpContentAlignmentRight;
@@ -408,8 +384,8 @@ UIScrollViewDelegate
     
     UIButton *leftLabelView = [[UIButton alloc] init];
     leftLabelView.userInteractionEnabled = NO;
-    [leftLabelView setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [leftLabelView setTintColor:[UIColor blackColor]];
+    [leftLabelView setTitleColor:[UIColor brtest_black] forState:UIControlStateNormal];
+    [leftLabelView setTintColor:[UIColor brtest_black]];
     [leftLabelView setTitle:@"UserName" forState:UIControlStateNormal];
     [leftLabelView setImage:[UIImage systemImageNamed:@"person"] forState:UIControlStateNormal];
     
@@ -418,16 +394,16 @@ UIScrollViewDelegate
     
     UIButton *warnButton = [[UIButton alloc] init];
     [warnButton setImage:[UIImage systemImageNamed:@"exclamationmark.shield.fill"] forState:UIControlStateNormal];
-    [warnButton setTintColor:[UIColor systemYellowColor]];
+    [warnButton setTintColor:[UIColor brtest_orange]];
     
     NSString *allString = @"There may be an error in your name. Please modify it within 10 days.";
     NSString *highLightedString = @"10 days.";
     NSMutableAttributedString *warnString = [[NSAttributedString alloc] initWithString:allString attributes:@{
         NSFontAttributeName : [UIFont systemFontOfSize:14.0],
-        NSForegroundColorAttributeName : [UIColor blackColor]
+        NSForegroundColorAttributeName : [UIColor brtest_black]
     }].mutableCopy;
     [warnString addAttributes:@{
-        NSForegroundColorAttributeName : [UIColor systemPinkColor]
+        NSForegroundColorAttributeName : [UIColor brtest_pink]
     } range:[allString rangeOfString:highLightedString]];
     warnButton.showPopUperImmediately = NO;
     [warnButton brc_popUpTip:warnString withDirection:BRCPopUpDirectionBottom withAnimationType:BRCPopUpAnimationTypeFadeBounce];
@@ -439,7 +415,7 @@ UIScrollViewDelegate
     popUper.shadowOpacity = 1;
     popUper.shadowRadius = 10.0;
     popUper.offsetToAnchorView = 10;
-    popUper.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    popUper.shadowColor = [[UIColor brtest_black] colorWithAlphaComponent:0.5];
     
     [warnButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
         [popUper toggleDisplay];
@@ -479,47 +455,13 @@ UIScrollViewDelegate
     }];
     [button setImage:image forState:UIControlStateNormal];
 //    [button setTitle:text forState:UIControlStateNormal];
-    [button setTintColor:[UIColor blackColor]];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button setTintColor:[UIColor brtest_black]];
+    [button setTitleColor:[UIColor brtest_black] forState:UIControlStateNormal];
     [stackView addArrangedSubview:button];
-}
-
-- (void)addLabelWithText:(NSString *)text withTopSpace:(CGFloat)space {
-    UILabel *label = [[UILabel alloc] init];
-    label.text = [NSString localizableWithKey:text];
-    label.textColor = [UIColor blackColor];
-    label.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightMedium];
-    [self addSubView:label topSpace:space width:[UIScreen mainScreen].bounds.size.width - 40 height:30 isCenter:NO isRight:NO];
 }
 
 - (void)addButton:(UIView *)button withTopSpace:(CGFloat)space isRight:(BOOL)isRight{
     [self addSubView:button topSpace:space width:[UIScreen mainScreen].bounds.size.width / 2 height:50 isCenter:NO isRight:isRight];
-}
-
-- (void)addSubView:(UIView *)view
-          topSpace:(CGFloat)space
-             width:(CGFloat)width
-            height:(CGFloat)height
-          isCenter:(BOOL)isCenter
-           isRight:(BOOL)isRight{
-    [self.view addSubview:view];
-    [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        if (self.lastView == nil) {
-            make.top.equalTo(self.view).offset(0);
-        } else {
-            make.top.equalTo(self.lastView.mas_bottom).offset(space);
-        }
-        if (isCenter) {
-            make.centerX.equalTo(self.view);
-        } else if (isRight){
-            make.trailing.equalTo(self.view).offset(-20);
-        } else {
-            make.leading.equalTo(self.view).offset(20);
-        }
-        make.width.equalTo(@(width));
-        make.height.equalTo(@(height));
-    }];
-    self.lastView = view;
 }
 
 #pragma mark - props
@@ -536,7 +478,7 @@ UIScrollViewDelegate
         _gesturePopUp.popUpAnimationType = BRCPopUpAnimationTypeFadeBounce;
         _gesturePopUp.marginToAnchorView = 0;
         [_gesturePopUp setContentStyle:BRCPopUpContentStyleText];
-        [_gesturePopUp.contentLabel setText:[NSString localizableWithKey:@"key.popup.gesture.button.title"]];
+        [_gesturePopUp.contentLabel setText:[NSString brctest_localizableWithKey:@"key.popup.gesture.button.title"]];
         [self.popUpArray addObject:_gesturePopUp];
     }
     return _gesturePopUp;

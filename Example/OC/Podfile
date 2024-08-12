@@ -4,11 +4,7 @@ platform :ios, '13.0'
 
 target 'BRCPopUp_Example' do
   pod 'BRCPopUp',:path =>'../../../BRCPopUp'
-  pod 'Masonry'
-  pod 'SDWebImage'
-  pod 'YYKit'
-  pod 'MBProgressHUD'
-  pod 'FLEX', :configurations => ['Debug']
+  pod 'BRCFastTest'
 
   target 'BRCPopUp_Tests' do
     inherit! :search_paths

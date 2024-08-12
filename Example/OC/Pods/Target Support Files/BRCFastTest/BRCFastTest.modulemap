@@ -1,0 +1,6 @@
+framework module BRCFastTest {
+  umbrella header "BRCFastTest-umbrella.h"
+
+  export *
+  module * { export * }
+}

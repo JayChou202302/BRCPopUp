@@ -7,7 +7,7 @@
 //
 
 #import "BRCImageCollectionCell.h"
-#import <Masonry/Masonry.h>
+#import <BRCFastTest/Masonry.h>
 
 @implementation BRCImageCollectionCell
 

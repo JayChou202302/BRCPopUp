@@ -5,8 +5,8 @@
 //
 
 #import "BRCToast.h"
-#import <Masonry/Masonry.h>
-#import <MBProgressHUD/MBProgressHUD.h>
+#import <BRCFastTest/Masonry.h>
+#import <BRCFastTest/MBProgressHUD.h>
 
 @implementation BRCToast
 

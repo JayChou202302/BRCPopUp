@@ -6,11 +6,11 @@
 //  Copyright © 2024 zhixiongsun. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <BRCFastTest/BRCBaseTestViewController.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BRCPopUperExampleTestViewController : UIViewController
+@interface BRCPopUperExampleTestViewController : BRCBaseTestViewController
 
 @end
 

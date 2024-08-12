@@ -28,7 +28,6 @@
 		7AC75F402C5A351100872E89 /* BRCToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC75F3C2C5A351100872E89 /* BRCToast.m */; };
 		7AC75F412C5A351100872E89 /* BRCImageCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC75F3E2C5A351100872E89 /* BRCImageCollectionCell.m */; };
 		7AEBB6982C5E007600246CB9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7AEBB69A2C5E007600246CB9 /* Localizable.strings */; };
-		7AEBB69E2C5E01CD00246CB9 /* NSString+Localizable.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AEBB69D2C5E01CD00246CB9 /* NSString+Localizable.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A945A242E7FDC2315AB5B319 /* Pods_BRCPopUp_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D08D9D983B4E03CF71F171C /* Pods_BRCPopUp_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -81,8 +80,6 @@
 		7AEBB6952C5DFE6600246CB9 /* README_CH.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README_CH.md; sourceTree = "<group>"; };
 		7AEBB6992C5E007600246CB9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7AEBB69B2C5E007800246CB9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		7AEBB69C2C5E01CD00246CB9 /* NSString+Localizable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Localizable.h"; sourceTree = "<group>"; };
-		7AEBB69D2C5E01CD00246CB9 /* NSString+Localizable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Localizable.m"; sourceTree = "<group>"; };
 		7AEBB6A32C5E0DDB00246CB9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7AEBB6A42C5E0DDB00246CB9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7AEBB6A52C5E0DDB00246CB9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -166,8 +163,6 @@
 				7AC75F352C5A33CC00872E89 /* BRCPopUperExampleTestViewController.m */,
 				7AC75F372C5A33D400872E89 /* BRCPopUperInputTestViewController.h */,
 				7AC75F382C5A33D400872E89 /* BRCPopUperInputTestViewController.m */,
-				7AEBB69C2C5E01CD00246CB9 /* NSString+Localizable.h */,
-				7AEBB69D2C5E01CD00246CB9 /* NSString+Localizable.m */,
 				7AEBB69A2C5E007600246CB9 /* Localizable.strings */,
 				7AC75F3A2C5A351100872E89 /* BRCToast */,
 				7AC75F3D2C5A351100872E89 /* View */,
@@ -381,21 +376,15 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BRCPopUp_Example/Pods-BRCPopUp_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BRCFastTest/BRCFastTest.framework",
 				"${BUILT_PRODUCTS_DIR}/BRCPopUp/BRCPopUp.framework",
 				"${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BRCFastTest.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BRCPopUp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLEX.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -434,7 +423,6 @@
 				7AC75F412C5A351100872E89 /* BRCImageCollectionCell.m in Sources */,
 				6003F59E195388D20070C39A /* BRCAppDelegate.m in Sources */,
 				7AC75F362C5A33CC00872E89 /* BRCPopUperExampleTestViewController.m in Sources */,
-				7AEBB69E2C5E01CD00246CB9 /* NSString+Localizable.m in Sources */,
 				6003F5A7195388D20070C39A /* BRCViewRootController.m in Sources */,
 				7AC5DA742C5B97EE007795C1 /* BRCPopUpMainTestViewController.m in Sources */,
 				7AC75F402C5A351100872E89 /* BRCToast.m in Sources */,

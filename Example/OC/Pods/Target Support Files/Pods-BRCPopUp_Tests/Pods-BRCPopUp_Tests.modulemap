@@ -1,0 +1,6 @@
+framework module Pods_BRCPopUp_Tests {
+  umbrella header "Pods-BRCPopUp_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

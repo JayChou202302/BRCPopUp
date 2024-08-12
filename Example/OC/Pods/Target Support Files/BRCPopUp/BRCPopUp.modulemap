@@ -1,0 +1,6 @@
+framework module BRCPopUp {
+  umbrella header "BRCPopUp-umbrella.h"
+
+  export *
+  module * { export * }
+}

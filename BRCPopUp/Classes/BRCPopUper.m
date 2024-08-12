@@ -6,14 +6,16 @@
 
 #import "BRCPopUper.h"
 #import "BRCBubbleLayer.h"
+#import <objc/message.h>
 
 @interface BRCPopUper ()
 
+@property (nonatomic, assign) BOOL                      display;
 @property (nonatomic, strong) UIControl                 *backgroundDismissView;
 @property (nonatomic, strong) BRCBubbleContainerView    *containerView;
 @property (nonatomic, strong) CADisplayLink             *displayLink;
 @property (nonatomic, strong, readonly) UIView          *popUpContextView;
-@property (nonatomic, assign) BOOL                      display;
+@property (nonatomic, strong, readonly) UIView          *rootView;
 @property (nonatomic, assign, readonly) BOOL            isDirectionHorizontal;
 @property (nonatomic, assign, readonly) CGFloat         sildeAnchorViewSize;
 @property (nonatomic, assign, readonly) CGFloat         sildeContainerViewSize;
@@ -95,8 +97,7 @@
     _bubbleAnchorPoint = CGPointZero;
     
     _contentInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-    
-    _popUpAnimation = nil;
+    _contextWindow = nil;
 }
 
 #pragma mark - view monitoring
@@ -122,13 +123,53 @@
 
 #pragma mark - public method
 
+#pragma mark - show
+
+- (void)show {
+    [self showAndHideAfterDelay:-1];
+}
+
+- (void)showAndHideAfterDelay:(NSTimeInterval)delay {
+    [self showWithAnimationType:self.popUpAnimationType hideAfterDelay:delay];
+}
+
+- (void)showWithAnimationType:(BRCPopUpAnimationType)animationType {
+    [self showWithAnimationType:animationType hideAfterDelay:-1];
+}
+
+- (void)showWithAnimationType:(BRCPopUpAnimationType)animationType hideAfterDelay:(NSTimeInterval)delay {
+    self.popUpAnimationType = animationType;
+    [self showWithAnimation:[self animationWithIsShow:YES] hideAfterDelay:delay];
+}
+
+- (void)showWithAnimation:(CAAnimation *)animation {
+    [self showWithAnimation:animation hideAfterDelay:-1];
+}
+
 - (void)showWithAnchorView:(UIView *)anchorView {
     [self showWithAnchorView:anchorView hideAfterDelay:-1];
 }
 
 - (void)showWithAnchorView:(UIView *)anchorView hideAfterDelay:(NSTimeInterval)delay {
+    [self showWithAnchorView:anchorView withAnimationType:self.popUpAnimationType hideAfterDelay:delay];
+}
+
+- (void)showWithAnchorView:(UIView *)anchorView withAnimationType:(BRCPopUpAnimationType)animationType {
+    [self showWithAnchorView:anchorView withAnimationType:animationType hideAfterDelay:-1];
+}
+
+- (void)showWithAnchorView:(UIView *)anchorView withAnimationType:(BRCPopUpAnimationType)animationType hideAfterDelay:(NSTimeInterval)delay {
+    self.popUpAnimationType = animationType;
+    [self showWithAnchorView:anchorView withAnimation:[self animationWithIsShow:YES] hideAfterDelay:delay];
+}
+
+- (void)showWithAnchorView:(UIView *)anchorView withAnimation:(CAAnimation *)animation {
+    [self showWithAnchorView:anchorView withAnimation:animation hideAfterDelay:-1];
+}
+
+- (void)showWithAnchorView:(UIView *)anchorView withAnimation:(CAAnimation *)animation hideAfterDelay:(NSTimeInterval)delay {
     self.anchorView = anchorView;
-    [self showAndHideAfterDelay:delay];
+    [self showWithAnimation:animation hideAfterDelay:delay];
 }
 
 - (void)showAtAnchorPoint:(CGPoint)anchorPoint {
@@ -136,18 +177,60 @@
 }
 
 - (void)showAtAnchorPoint:(CGPoint)anchorPoint hideAfterDelay:(NSTimeInterval)delay {
-    [self setAnchorPoint:anchorPoint];
-    [self showWithAnchorView:self.anchorView hideAfterDelay:delay];
+    [self showAtAnchorPoint:anchorPoint withAnimationType:self.popUpAnimationType hideAfterDelay:delay];
 }
 
+- (void)showAtAnchorPoint:(CGPoint)anchorPoint withAnimationType:(BRCPopUpAnimationType)animationType {
+    [self showAtAnchorPoint:anchorPoint withAnimationType:animationType hideAfterDelay:-1];
+}
+
+- (void)showAtAnchorPoint:(CGPoint)anchorPoint withAnimationType:(BRCPopUpAnimationType)animationType hideAfterDelay:(NSTimeInterval)delay {
+    self.popUpAnimationType = animationType;
+    [self showAtAnchorPoint:anchorPoint withAnimation:[self animationWithIsShow:YES] hideAfterDelay:delay];
+}
+
+- (void)showAtAnchorPoint:(CGPoint)anchorPoint withAnimation:(CAAnimation *)animation {
+    [self showAtAnchorPoint:anchorPoint withAnimation:animation hideAfterDelay:-1];
+}
+
+- (void)showAtAnchorPoint:(CGPoint)anchorPoint withAnimation:(CAAnimation *)animation hideAfterDelay:(NSTimeInterval)delay {
+    self.anchorPoint = anchorPoint;
+    [self showWithAnimation:animation hideAfterDelay:delay];
+}
+
+/// `CoreMethod`
+- (void)showWithAnimation:(CAAnimation *)animation hideAfterDelay:(NSTimeInterval)delay {
+    if ((![self.anchorView isKindOfClass:[UIView class]]) ||
+        self.display) {
+        return;
+    }
+    [self startMonitoring];
+    CAAnimation *popUpAnimation = [animation isKindOfClass:[CAAnimation class]] ? animation : self.popUpAnimation;
+    [self showContainerViewWithAnimation:popUpAnimation];
+    if (delay > 0) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self hide];
+        });
+    }
+}
+
+#pragma mark - hide
+
 - (void)hide {
+    [self hideWithAnimated:YES];
+}
+
+- (void)hideWithAnimated:(BOOL)isAnimated {
     if ((![self.anchorView isKindOfClass:[UIView class]]) ||
         self.display == NO) {
         return;
     }
     [self stopMonitoring];
-    [self dimissContainerViewAnimated];
+    [self dimissContainerView:isAnimated];
 }
+
+
+#pragma mark - toggle
 
 - (void)toggleDisplay {
     if (self.display) {
@@ -157,66 +240,21 @@
     }
 }
 
-- (void)show {
-    [self showAndHideAfterDelay:-1];
-}
-
-- (void)showAndHideAfterDelay:(NSTimeInterval)delay {
-    if ((![self.anchorView isKindOfClass:[UIView class]]) ||
-        self.display) {
-        return;
-    }
-    [self startMonitoring];
-    [self showContainerViewAnimated];
-    if (delay > 0) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self hide];
-        });
-    }
-}
+#pragma mark - fit
 
 - (void)sizeThatFits:(CGSize)size {
     [self _sizeThatFits:size isFromInside:NO];
-}
-
-- (void)_sizeThatFits:(CGSize)size isFromInside:(BOOL)isFromInside{
-    if ([self.contentLabel isKindOfClass:[UILabel class]]) {
-        CGSize labelFitSize = [self.contentLabel sizeThatFits:size];
-        CGFloat containerWidth = labelFitSize.width + self.contentInsets.left + self.contentInsets.right;
-        CGFloat containerHeight = labelFitSize.height + self.contentInsets.top + self.contentInsets.bottom;
-        if ([self isDirectionHorizontal]) {
-            containerHeight += self.arrowSize.height;
-        } else {
-            containerWidth += self.arrowSize.width;
-        }
-        if (isFromInside) {
-            _containerSize = CGSizeMake(containerWidth, containerHeight);
-        } else {
-            self.containerSize = CGSizeMake(containerWidth, containerHeight);
-        }
-    }
 }
 
 #pragma mark - private
 
 - (void)dismissView {
     [self stopMonitoring];
-    [self dimissContainerViewAnimated];
+    [self dimissContainerView:YES];
     [self sendDelegateEventWithSEL:@selector(didUserDismissPopUper:withAchorView:)];
 }
 
-- (void)addEdgeConstraintsFromView:(UIView *)fromView toView:(UIView *)toView needEdgeInsets:(BOOL)needEdgeInsets {
-    UIEdgeInsets insests = needEdgeInsets ? self.contentInsets : UIEdgeInsetsZero;
-    [toView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [NSLayoutConstraint activateConstraints:@[
-        [toView.leadingAnchor constraintEqualToAnchor:fromView.leadingAnchor constant:insests.left],
-        [toView.trailingAnchor constraintEqualToAnchor:fromView.trailingAnchor constant:-insests.right],
-        [toView.topAnchor constraintEqualToAnchor:fromView.topAnchor constant:insests.top],
-        [toView.bottomAnchor constraintEqualToAnchor:fromView.bottomAnchor constant:-insests.bottom]
-    ]];
-}
-
-- (void)showContainerViewAnimated {
+- (void)showContainerViewWithAnimation:(CAAnimation *)animation{
     if ([self.anchorView isKindOfClass:[UIView class]]) {
         [self sendDelegateEventWithSEL:@selector(willShowPopUper:withAchorView:)];
         [self updateContainerViewWithPopupFrame];
@@ -235,29 +273,27 @@
             [self addEdgeConstraintsFromView:self.containerView toView:self.contentView needEdgeInsets:YES];
         }
         [self updateStyleBeforeShow];
-        [self.containerView showWithAnimation:self.popUpAnimation completionBlock:^(BOOL finished) {
+        [self.containerView showWithAnimation:animation completionBlock:^(BOOL finished) {
             self.display = YES;
             [self sendDelegateEventWithSEL:@selector(didShowPopUper:withAchorView:)];
-            if (finished) {
-                if ([self isHeightAnimationType]) {
-                    self.contentView.alpha = 1;
-                }
+            if ([self isHeightAnimationType]) {
+                self.contentView.alpha = 1;
             }
         }];
     }
 }
 
-- (void)dimissContainerViewAnimated {
+- (void)dimissContainerView:(BOOL)isAnimated {
     [self sendDelegateEventWithSEL:@selector(willHidePopUper:withAchorView:)];
     [self updateBubbleLayerAnchorPoint];
-    CAAnimation *animation = [self animationWithDuration:self.popUpAnimationDuration isShow:NO];
+    CAAnimation *animation = [self animationWithIsShow:NO];
     [self.containerView hideWithAnimation:animation completionBlock:nil];
-    if (self.popUpAnimationType == BRCPopUpAnimationTypeNone) {
-        [self.backgroundDismissView removeFromSuperview];
+    if (self.popUpAnimationType == BRCPopUpAnimationTypeNone || isAnimated == NO) {
+        [self.rootView removeFromSuperview];
         self.display = NO;
     } else {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.popUpAnimationDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.backgroundDismissView removeFromSuperview];
+            [self.rootView removeFromSuperview];
             self.display = NO;
         });
     }
@@ -288,6 +324,24 @@
         [self.containerView setAnchorPointWithAnimationType:self.popUpAnimationType];
     }
     [self.containerView.bubbleLayer updateLayer];
+}
+
+- (void)_sizeThatFits:(CGSize)size isFromInside:(BOOL)isFromInside{
+    if ([self.contentLabel isKindOfClass:[UILabel class]]) {
+        CGSize labelFitSize = [self.contentLabel sizeThatFits:size];
+        CGFloat containerWidth = labelFitSize.width + self.contentInsets.left + self.contentInsets.right;
+        CGFloat containerHeight = labelFitSize.height + self.contentInsets.top + self.contentInsets.bottom;
+        if ([self isDirectionHorizontal]) {
+            containerHeight += self.arrowSize.height;
+        } else {
+            containerWidth += self.arrowSize.width;
+        }
+        if (isFromInside) {
+            _containerSize = CGSizeMake(containerWidth, containerHeight);
+        } else {
+            self.containerSize = CGSizeMake(containerWidth, containerHeight);
+        }
+    }
 }
 
 #pragma mark - setter & getter
@@ -395,12 +449,8 @@
         CGSize fitSize = self.isDirectionHorizontal ? CGSizeMake(self.sildeAnchorViewSize, HUGE) : CGSizeMake(HUGE, self.sildeAnchorViewSize);
         [self _sizeThatFits:fitSize isFromInside:YES];
     } else {
-        if (containerWidth == 0) {
-            containerWidth = self.sildeAnchorViewSize;
-        }
-        if (containerHeight == 0) {
-            containerHeight = self.sildeAnchorViewSize;
-        }
+        if (containerWidth == 0) { containerWidth = self.sildeAnchorViewSize; }
+        if (containerHeight == 0) { containerHeight = self.sildeAnchorViewSize; }
         _containerSize = CGSizeMake(containerWidth, containerHeight);
     }
 }
@@ -433,13 +483,9 @@
 
 #pragma mark - getter
 
-- (CGFloat)containerHeight {
-    return _containerSize.height;
-}
+- (CGFloat)containerHeight { return _containerSize.height; }
 
-- (CGFloat)containerWidth {
-    return _containerSize.width;
-}
+- (CGFloat)containerWidth { return _containerSize.width; }
 
 - (BOOL)isHeightAnimationType {
     return self.popUpAnimationType == BRCPopUpAnimationTypeHeightExpansion ||
@@ -447,46 +493,32 @@
 }
 
 - (BRCPopUpDirection)arrowDirection {
-    switch (_popUpDirection) {
-        case BRCPopUpDirectionTop:
-            return BRCPopUpDirectionBottom;
-        case BRCPopUpDirectionBottom:
-            return BRCPopUpDirectionTop;
-        case BRCPopUpDirectionLeft:
-            return BRCPopUpDirectionRight;
-        case BRCPopUpDirectionRight:
-            return BRCPopUpDirectionLeft;
+    if (self.popUpDirection == BRCPopUpDirectionTop) {
+        return BRCPopUpDirectionBottom;
+    } else if (self.popUpDirection == BRCPopUpDirectionBottom) {
+        return BRCPopUpDirectionTop;
+    } else if (self.popUpDirection == BRCPopUpDirectionRight) {
+        return BRCPopUpDirectionLeft;
+    } else {
+        return BRCPopUpDirectionRight;
     }
 }
 
 - (UIEdgeInsets)contentInsets {
-    switch (self.arrowDirection) {
-        case BRCPopUpDirectionTop:
-            return UIEdgeInsetsMake(_contentInsets.top + self.arrowSize.height, _contentInsets.left,
-                                              _contentInsets.bottom, _contentInsets.right);
-        case BRCPopUpDirectionBottom:
-            return UIEdgeInsetsMake(_contentInsets.top, _contentInsets.left,
-                                              _contentInsets.bottom + self.arrowSize.height, _contentInsets.right);
-        case BRCPopUpDirectionLeft:
-            return UIEdgeInsetsMake(_contentInsets.top, _contentInsets.left,
-                                              _contentInsets.bottom, _contentInsets.right + self.arrowSize.width);
-        case BRCPopUpDirectionRight:
-            return UIEdgeInsetsMake(_contentInsets.top, _contentInsets.left + self.arrowSize.width,
-                                              _contentInsets.bottom, _contentInsets.right);
-    }
+    CGFloat top = self.arrowDirection == BRCPopUpDirectionTop ? self.arrowSize.height : 0,
+            left = self.arrowDirection == BRCPopUpDirectionRight ? self.arrowSize.width : 0,
+            bottom = self.arrowDirection == BRCPopUpDirectionBottom ? self.arrowSize.height : 0,
+            right = self.arrowDirection == BRCPopUpDirectionLeft ? self.arrowSize.width : 0;
+    return UIEdgeInsetsMake(_contentInsets.top + top, _contentInsets.left + left, _contentInsets.bottom + bottom,_contentInsets.right + right);
 }
 
 - (UIImageView *)contentImageView {
-    if ([self.contentView isKindOfClass:[UIImageView class]]) {
-        return (UIImageView *)self.contentView;
-    }
+    if ([self.contentView isKindOfClass:[UIImageView class]]) return (UIImageView *)self.contentView;
     return nil;
 }
 
 - (UILabel *)contentLabel {
-    if ([self.contentView isKindOfClass:[UILabel class]]) {
-        return (UILabel *)self.contentView;
-    }
+    if ([self.contentView isKindOfClass:[UILabel class]]) return (UILabel *)self.contentView;
     return nil;
 }
 
@@ -495,19 +527,15 @@
     if (self.arrowCenterAlignToAnchor) {
         CGFloat anchorSize = self.sildeAnchorViewSize;
         CGFloat containerSize = self.sildeContainerViewSize;
-        
         position = anchorSize / 2;
-        
         if (self.contentAlignment == BRCPopUpContentAlignmentRight){
             position = -position - self.offsetToAnchorView;
         } else if (self.contentAlignment == BRCPopUpContentAlignmentLeft){
             position = position - self.offsetToAnchorView;
         }
-        
         if (position > containerSize) {
             position = containerSize / 2;
         }
-        
         if (fabs(position - 0) < 5) {
             position = 5;
         }
@@ -523,34 +551,19 @@
     return _arrowRelativePosition;
 }
 
-- (CGFloat)anchorViewLeft {
-    return CGRectGetMinX(self.anchorViewFrame);
-}
+- (CGFloat)anchorViewLeft { return CGRectGetMinX(self.anchorViewFrame);}
 
-- (CGFloat)anchorViewRight {
-    return CGRectGetMaxX(self.anchorViewFrame);
-}
+- (CGFloat)anchorViewRight { return CGRectGetMaxX(self.anchorViewFrame);}
 
-- (CGFloat)anchorViewTop {
-    return CGRectGetMinY(self.anchorViewFrame);
-}
+- (CGFloat)anchorViewTop { return CGRectGetMinY(self.anchorViewFrame);}
 
-- (CGFloat)anchorViewBottom {
-    return CGRectGetMaxY(self.anchorViewFrame);
-}
+- (CGFloat)anchorViewBottom { return CGRectGetMaxY(self.anchorViewFrame); }
 
-- (CGFloat)anchorViewCenterX {
-    return CGRectGetMidX(self.anchorViewFrame);
-}
+- (CGFloat)anchorViewCenterX { return CGRectGetMidX(self.anchorViewFrame); }
 
-- (CGFloat)anchorViewCenterY {
-    return CGRectGetMidY(self.anchorViewFrame);
-}
+- (CGFloat)anchorViewCenterY { return CGRectGetMidY(self.anchorViewFrame);}
 
-- (CGRect)anchorViewFrame {
-    UIView *contextView = self.popUpContextView;
-    return [self getFrameForView:self.anchorView inView:contextView];
-}
+- (CGRect)anchorViewFrame { return [self getFrameForView:self.anchorView inView:self.popUpContextView];}
 
 - (CGRect)popUpContextViewFrame {
     UIView *popUpContextView = self.popUpContextView;
@@ -564,19 +577,13 @@
 }
 
 - (BOOL)autoFitContainerSize {
-    if (CGSizeEqualToSize(self.containerSize, CGSizeZero)) {
-        return YES;
-    }
+    if (CGSizeEqualToSize(self.containerSize, CGSizeZero))  return YES;
     return _autoFitContainerSize;
 }
 
 - (BOOL)isAnchorViewInTabBarOrNavigationBar {
-    if (![self.anchorView isKindOfClass:[UIView class]]) {
-        return NO;
-    }
-    if ([self.anchorView isKindOfClass:NSClassFromString(@"_UIButtonBarButton")]) {
-        return YES;
-    }
+    if (![self.anchorView isKindOfClass:[UIView class]]) return NO;
+    if ([self.anchorView isKindOfClass:NSClassFromString(@"_UIButtonBarButton")]) return YES;
     if ([self isInClassViewWithClassName:@"UINavigationBar" withView:self.anchorView] ||
         [self isInClassViewWithClassName:@"UITabBar" withView:self.anchorView]) {
         return YES;
@@ -590,13 +597,6 @@
     self.popUpDirection == BRCPopUpDirectionBottom;
 }
 
-- (CAAnimation *)popUpAnimation {
-    if ([_popUpAnimation isKindOfClass:[CAAnimation class]]) {
-        return _popUpAnimation;
-    }
-    return [self animationWithDuration:self.popUpAnimationDuration isShow:YES];
-}
-
 - (CGFloat)sildeAnchorViewSize {
     return [self getSildeViewSizeWithView:self.anchorView];
 }
@@ -607,13 +607,37 @@
 
 - (CGFloat)getSildeViewSizeWithView:(UIView *)view {
     if ([view isKindOfClass:[UIView class]]) {
-        if (self.isDirectionHorizontal) {
-            return view.frame.size.width;
-        } else {
-            return view.frame.size.height;
-        }
+        return self.isDirectionHorizontal ? view.frame.size.width : view.frame.size.height;
     }
     return 0;
+}
+
+- (UIView *)rootView {
+    return self.dismissMode == BRCPopUpDismissModeInteractive ? self.backgroundDismissView : self.containerView;
+}
+
+- (UIWindow *)contextWindow {
+    if ([_contextWindow isKindOfClass:[UIWindow class]]) return _contextWindow;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    return [UIApplication sharedApplication].keyWindow;
+#pragma clang diagnostic pop
+}
+
+- (UIView *)popUpContextView {
+    if ([self.anchorView isKindOfClass:[UIView class]]) {
+        UIScrollView *nearestScrollView = [self findNearestAnchorSuperScrollView];
+        if ([nearestScrollView isKindOfClass:[UIScrollView class]]) return nearestScrollView;
+        if (self.contextStyle == BRCPopUpContextStyleViewController) {
+            UIViewController *anchorVC = [self findViewControllerForView:self.anchorView];
+            if ([anchorVC isKindOfClass:[UIViewController class]])  return anchorVC.view;
+        } else if (self.contextStyle == BRCPopUpContextStyleSuperView){
+            if ([self.anchorView.superview isKindOfClass:[UIView class]]) return self.anchorView.superview;
+        } else if (self.contextStyle == BRCPopUpContextStyleWindow) {
+            return self.contextWindow;
+        }
+    }
+    return nil;
 }
 
 #pragma mark - animations
@@ -648,16 +672,11 @@
 }
 
 - (NSArray *)animationValuesWithIsShow:(BOOL)isShow{
-    if (isShow == NO) {
-        return @[@1,@0];
-    }
-    return @[@0,@1];
+    return isShow == 0 ? @[@1,@0] : @[@0,@1];
 }
 
-- (CAAnimation *)animationWithDuration:(CGFloat)duration isShow:(BOOL)isShow{
-    if (self.popUpAnimationType == BRCPopUpAnimationTypeNone) {
-        return nil;
-    }
+- (CAAnimation *)animationWithIsShow:(BOOL)isShow{
+    if (self.popUpAnimationType == BRCPopUpAnimationTypeNone) return nil;
     if (self.popUpAnimationType == BRCPopUpAnimationTypeFadeScale ||
         self.popUpAnimationType == BRCPopUpAnimationTypeFadeBounce ||
         self.popUpAnimationType == BRCPopUpAnimationTypeFadeHeightExpansion) {
@@ -673,10 +692,10 @@
         groupAnimation.animations = @[fadeAnimation,otherAnimation];
         groupAnimation.fillMode = kCAFillModeForwards;
         groupAnimation.removedOnCompletion = NO;
-        groupAnimation.duration = duration;
+        groupAnimation.duration = self.popUpAnimationDuration;
         return groupAnimation;
     }
-    CAKeyframeAnimation *animation = [self createKeyFrameAnimationWithKeyPath:[self animationKeyPath] duration:duration];
+    CAKeyframeAnimation *animation = [self createKeyFrameAnimationWithKeyPath:[self animationKeyPath] duration:self.popUpAnimationDuration];
     animation.values = [self animationValuesWithIsShow:isShow];
     return animation;
 }
@@ -687,23 +706,9 @@
     return [view convertRect:view.bounds toView:inView];
 }
 
-- (UIView *)popUpContextView {
-    if ([self.anchorView isKindOfClass:[UIView class]]) {
-        if (self.contextStyle == BRCPopUpContextStyleViewController) {
-            UIViewController *anchorVC = [self findViewControllerForView:self.anchorView];
-            if ([anchorVC isKindOfClass:[UIViewController class]]) {
-                return anchorVC.view;
-            }
-        } else if (self.contextStyle == BRCPopUpContextStyleSuperView){
-            if ([self.anchorView.superview isKindOfClass:[UIView class]]) {
-                return self.anchorView.superview;
-            }
-        } else if (self.contextStyle == BRCPopUpContextStyleWindow) {
-            #pragma clang diagnostic push
-            #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-                return [UIApplication sharedApplication].keyWindow;
-            #pragma clang diagnostic pop
-        }
+- (UIScrollView *)findNearestAnchorSuperScrollView {
+    for (UIView *view = self.anchorView.superview; view; view = view.superview) {
+        if ([view isKindOfClass:[UIScrollView class]]) return (UIScrollView *)view;
     }
     return nil;
 }
@@ -711,32 +716,38 @@
 - (UIViewController *)findViewControllerForView:(UIView *)originView {
     for (UIView *view = originView; view; view = view.superview) {
         UIResponder *nextResponder = [view nextResponder];
-        if ([nextResponder isKindOfClass:[UIViewController class]]) {
-            return (UIViewController *)nextResponder;
-        }
+        if ([nextResponder isKindOfClass:[UIViewController class]]) return (UIViewController *)nextResponder;
     }
    return nil;
 }
 
 - (BOOL)isInClassViewWithClassName:(NSString *)className withView:(UIView *)view {
-    if (![className isKindOfClass:[NSString class]]) {
-        return NO;
-    }
+    if (![className isKindOfClass:[NSString class]]) return NO;
     UIView *currentView = view;
     while (currentView) {
-        if ([currentView isKindOfClass:NSClassFromString(className)]) {
-            return YES;
-        }
+        if ([currentView isKindOfClass:NSClassFromString(className)]) return YES;
         currentView = currentView.superview;
     }
     return NO;
 }
 
 - (void)sendDelegateEventWithSEL:(SEL)selector {
-    if (self.delegate &&
-        [self.delegate respondsToSelector:selector]) {
-        [self.delegate performSelector:selector withObject:self withObject:self.anchorView];
+    if (self.delegate && [self.delegate respondsToSelector:selector]) {
+        void(*func)(id, SEL, id, id) = (void*)objc_msgSend;
+        func(self.delegate, selector, self, self.anchorView);
     }
+}
+
+- (void)addEdgeConstraintsFromView:(UIView *)fromView toView:(UIView *)toView needEdgeInsets:(BOOL)needEdgeInsets {
+    if (![fromView isKindOfClass:[UIView class]] || ![toView isKindOfClass:[UIView class]]) return;
+    UIEdgeInsets insests = needEdgeInsets ? self.contentInsets : UIEdgeInsetsZero;
+    [toView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [NSLayoutConstraint activateConstraints:@[
+        [toView.leadingAnchor constraintEqualToAnchor:fromView.leadingAnchor constant:insests.left],
+        [toView.trailingAnchor constraintEqualToAnchor:fromView.trailingAnchor constant:-insests.right],
+        [toView.topAnchor constraintEqualToAnchor:fromView.topAnchor constant:insests.top],
+        [toView.bottomAnchor constraintEqualToAnchor:fromView.bottomAnchor constant:-insests.bottom]
+    ]];
 }
 
 #pragma mark - props
@@ -776,9 +787,7 @@
 #pragma mark - public
 
 - (void)setContentText:(id)contentText {
-    if (![self.contentLabel isKindOfClass:[UILabel class]]) {
-        return;
-    }
+    if (![self.contentLabel isKindOfClass:[UILabel class]]) return;
     if ([contentText isKindOfClass:[NSString class]]) {
         [self.contentLabel setText:contentText];
     } else if ([contentText isKindOfClass:[NSAttributedString class]]) {
@@ -787,19 +796,13 @@
 }
 
 - (void)setContentImage:(UIImage *)image {
-    if (![self.contentImageView isKindOfClass:[UIImageView class]]) {
-        return;
-    }
+    if (![self.contentImageView isKindOfClass:[UIImageView class]]) return;
     [self.contentImageView setImage:image];
 }
 
 - (void)setContentImageUrl:(NSString *)imageUrl {
-    if (![self.contentImageView isKindOfClass:[UIImageView class]]) {
-        return;
-    }
-    if (self.webImageLoadBlock) {
-        self.webImageLoadBlock(self.contentImageView, [NSURL URLWithString:imageUrl]);
-    }
+    if (![self.contentImageView isKindOfClass:[UIImageView class]]) return;
+    if (self.webImageLoadBlock) self.webImageLoadBlock(self.contentImageView, [NSURL URLWithString:imageUrl]);
 }
 
 #pragma mark - props

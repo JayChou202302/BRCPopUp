@@ -7,7 +7,8 @@
 //
 
 @import UIKit;
+#import <BRCFastTest/BRCTestRootTabBarViewController.h>
 
-@interface BRCViewRootController : UITabBarController
+@interface BRCViewRootController : BRCTestRootTabBarViewController
 
 @end
