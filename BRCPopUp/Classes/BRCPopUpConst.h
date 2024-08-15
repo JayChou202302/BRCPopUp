@@ -47,6 +47,7 @@ typedef NS_ENUM(NSInteger, BRCPopUpContextStyle) {
     BRCPopUpContextStyleViewController = 0,        // Context as view controller
     BRCPopUpContextStyleWindow,           // Context as window
     BRCPopUpContextStyleSuperView,            // Context as superview
+    BRCPopUpContextStyleAutoFind    // Will Find The Nearest ScrollView
 };
 
 typedef NS_ENUM(NSInteger, BRCPopUpDismissMode) {
@@ -66,11 +67,11 @@ typedef NS_ENUM(NSInteger, BRCPopUpArrowStyle) {
 @protocol BRCPopUperDelegate <NSObject>
 
 @optional
-- (void)willShowPopUper:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView;
-- (void)didShowPopUper:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView;
-- (void)willHidePopUper:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView;
-- (void)didHidePopUper:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView;
-- (void)didUserDismissPopUper:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView;
+- (void)willShowPopUper:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView NS_SWIFT_NAME(willShowPopUper(popUper:anchorView:));
+- (void)didShowPopUper:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView NS_SWIFT_NAME(didShowPopUper(popUper:anchorView:));
+- (void)willHidePopUper:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView NS_SWIFT_NAME(willHidePopUper(popUper:anchorView:));
+- (void)didHidePopUper:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView NS_SWIFT_NAME(didHidePopUper(popUper:anchorView:));
+- (void)didUserDismissPopUper:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView NS_SWIFT_NAME(didUserDismissPopUper(popUper:anchorView:));
 
 @end
 

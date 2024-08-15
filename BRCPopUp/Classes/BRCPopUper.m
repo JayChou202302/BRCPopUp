@@ -15,7 +15,6 @@
 @property (nonatomic, strong) BRCBubbleContainerView    *containerView;
 @property (nonatomic, strong) CADisplayLink             *displayLink;
 @property (nonatomic, strong, readonly) UIView          *popUpContextView;
-@property (nonatomic, strong, readonly) UIView          *rootView;
 @property (nonatomic, assign, readonly) BOOL            isDirectionHorizontal;
 @property (nonatomic, assign, readonly) CGFloat         sildeAnchorViewSize;
 @property (nonatomic, assign, readonly) CGFloat         sildeContainerViewSize;
@@ -67,12 +66,9 @@
     _cornerRadius = 4;
     
     _webImageLoadBlock = nil;
-    _cornerRadius = 10;
     _marginToAnchorView = 5;
-    _shadowRadius = 8;
     _shadowOpacity = 1.0;
     _popUpAnimationDuration = 0.2;
-    _offsetToAnchorView = 0;
     
     _dismissMode = BRCPopUpDismissModeInteractive;
     _contextStyle = BRCPopUpContextStyleViewController;
@@ -107,6 +103,7 @@
 }
 
 - (void)startMonitoring {
+    if ([self.popUpContextView isKindOfClass:[UIScrollView class]]) return;
     if (self.dismissMode != BRCPopUpDismissModeInteractive) {
         self.displayLink.paused = NO;
     }
@@ -172,29 +169,29 @@
     [self showWithAnimation:animation hideAfterDelay:delay];
 }
 
-- (void)showAtAnchorPoint:(CGPoint)anchorPoint {
-    [self showAtAnchorPoint:anchorPoint hideAfterDelay:-1];
+- (void)showWithAnchorFrame:(CGRect)anchorFrame {
+    [self showWithAnchorFrame:anchorFrame hideAfterDelay:-1];
 }
 
-- (void)showAtAnchorPoint:(CGPoint)anchorPoint hideAfterDelay:(NSTimeInterval)delay {
-    [self showAtAnchorPoint:anchorPoint withAnimationType:self.popUpAnimationType hideAfterDelay:delay];
+- (void)showWithAnchorFrame:(CGRect)anchorFrame hideAfterDelay:(NSTimeInterval)delay {
+    [self showWithAnchorFrame:anchorFrame withAnimationType:self.popUpAnimationType hideAfterDelay:delay];
 }
 
-- (void)showAtAnchorPoint:(CGPoint)anchorPoint withAnimationType:(BRCPopUpAnimationType)animationType {
-    [self showAtAnchorPoint:anchorPoint withAnimationType:animationType hideAfterDelay:-1];
+- (void)showWithAnchorFrame:(CGRect)anchorFrame withAnimationType:(BRCPopUpAnimationType)animationType {
+    [self showWithAnchorFrame:anchorFrame withAnimationType:animationType hideAfterDelay:-1];
 }
 
-- (void)showAtAnchorPoint:(CGPoint)anchorPoint withAnimationType:(BRCPopUpAnimationType)animationType hideAfterDelay:(NSTimeInterval)delay {
+- (void)showWithAnchorFrame:(CGRect)anchorFrame withAnimationType:(BRCPopUpAnimationType)animationType hideAfterDelay:(NSTimeInterval)delay {
     self.popUpAnimationType = animationType;
-    [self showAtAnchorPoint:anchorPoint withAnimation:[self animationWithIsShow:YES] hideAfterDelay:delay];
+    [self showWithAnchorFrame:anchorFrame withAnimation:[self animationWithIsShow:YES] hideAfterDelay:delay];
 }
 
-- (void)showAtAnchorPoint:(CGPoint)anchorPoint withAnimation:(CAAnimation *)animation {
-    [self showAtAnchorPoint:anchorPoint withAnimation:animation hideAfterDelay:-1];
+- (void)showWithAnchorFrame:(CGRect)anchorFrame withAnimation:(CAAnimation *)animation {
+    [self showWithAnchorFrame:anchorFrame withAnimation:animation hideAfterDelay:-1];
 }
 
-- (void)showAtAnchorPoint:(CGPoint)anchorPoint withAnimation:(CAAnimation *)animation hideAfterDelay:(NSTimeInterval)delay {
-    self.anchorPoint = anchorPoint;
+- (void)showWithAnchorFrame:(CGRect)anchorFrame withAnimation:(CAAnimation *)animation hideAfterDelay:(NSTimeInterval)delay {
+    self.anchorFrame = anchorFrame;
     [self showWithAnimation:animation hideAfterDelay:delay];
 }
 
@@ -283,18 +280,22 @@
     }
 }
 
+- (void)finishDismissContainerView {
+    [self sendDelegateEventWithSEL:@selector(didHidePopUper:withAchorView:)];
+    [self.rootView removeFromSuperview];
+    self.display = NO;
+}
+
 - (void)dimissContainerView:(BOOL)isAnimated {
     [self sendDelegateEventWithSEL:@selector(willHidePopUper:withAchorView:)];
     [self updateBubbleLayerAnchorPoint];
     CAAnimation *animation = [self animationWithIsShow:NO];
     [self.containerView hideWithAnimation:animation completionBlock:nil];
     if (self.popUpAnimationType == BRCPopUpAnimationTypeNone || isAnimated == NO) {
-        [self.rootView removeFromSuperview];
-        self.display = NO;
+        [self finishDismissContainerView];
     } else {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.popUpAnimationDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.rootView removeFromSuperview];
-            self.display = NO;
+            [self finishDismissContainerView];
         });
     }
 }
@@ -475,10 +476,10 @@
     _containerSize = CGSizeMake(containerWidth, originSize.height);
 }
 
-- (void)setAnchorPoint:(CGPoint)anchorPoint {
-    _anchorPoint = anchorPoint;
-    self.anchorView = [UIView new];
-    self.anchorView.frame = CGRectMake(anchorPoint.x, anchorPoint.y, 0, 0);
+- (void)setAnchorFrame:(CGRect)anchorFrame {
+    _anchorFrame = anchorFrame;
+    if (![self.anchorView isKindOfClass:[UIView class]]) self.anchorView = [UIView new];
+    self.anchorView.frame = anchorFrame;
 }
 
 #pragma mark - getter
@@ -625,19 +626,23 @@
 }
 
 - (UIView *)popUpContextView {
+    UIView *contextView = nil;
     if ([self.anchorView isKindOfClass:[UIView class]]) {
-        UIScrollView *nearestScrollView = [self findNearestAnchorSuperScrollView];
-        if ([nearestScrollView isKindOfClass:[UIScrollView class]]) return nearestScrollView;
-        if (self.contextStyle == BRCPopUpContextStyleViewController) {
+        if (self.contextStyle == BRCPopUpContextStyleAutoFind) {
+            UIScrollView *nearestScrollView = [self findNearestAnchorSuperScrollView];
+            if ([nearestScrollView isKindOfClass:[UIScrollView class]]) contextView = nearestScrollView;
+        } else if (self.contextStyle == BRCPopUpContextStyleViewController) {
             UIViewController *anchorVC = [self findViewControllerForView:self.anchorView];
-            if ([anchorVC isKindOfClass:[UIViewController class]])  return anchorVC.view;
+            if ([anchorVC isKindOfClass:[UIViewController class]])  contextView = anchorVC.view;
         } else if (self.contextStyle == BRCPopUpContextStyleSuperView){
-            if ([self.anchorView.superview isKindOfClass:[UIView class]]) return self.anchorView.superview;
+            if ([self.anchorView.superview isKindOfClass:[UIView class]]) contextView = self.anchorView.superview;
         } else if (self.contextStyle == BRCPopUpContextStyleWindow) {
-            return self.contextWindow;
+            contextView = self.contextWindow;
         }
     }
-    return nil;
+    // 如果都没有找到的话 那么就给一个兜底的取Window
+    if (![contextView isKindOfClass:[UIView class]]) contextView = self.contextWindow;
+    return contextView;
 }
 
 #pragma mark - animations

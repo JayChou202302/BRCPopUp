@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  BRCPopUp_SwiftUI
+
+  Created by sunzhixiong on 2024/8/15.
+  
+*/
+"key.tag.api.useful" = "Rich API";
+"key.tag.api.easy.use" = "Easy to use";
+"key.tag.api.ios.available" = "Available on iOS 13.0 and above";
+"key.test.label.01" = "1. Display a text message";
+"key.test.label.02" = "2. Display a text message - scrollable with the anchor view";
+"key.test.label.03" = "3. Display a custom view - with event callback";
+"key.test.menu.01" = "Scan";
+"key.test.menu.02" = "Add Friend";
+"key.test.menu.03" = "Payment";
+"key.test.menu.04" = "Play Game";
+"key.test.left.navigation.back" = "Click me to return to the previous page";
+"key.test.button.click.me" = "Click me";

@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-BRCPopUp_SwiftUI/Pods-BRCPopUp_SwiftUI-frameworks.sh
+${BUILT_PRODUCTS_DIR}/BRCFastTest/BRCFastTest.framework
+${BUILT_PRODUCTS_DIR}/BRCPopUp/BRCPopUp.framework
+${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework

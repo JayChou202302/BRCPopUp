@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  BRCPopUp_SwiftUI
+
+  Created by sunzhixiong on 2024/8/15.
+  
+*/
+
+"key.tag.api.useful" = "API丰富";
+"key.tag.api.easy.use" = "简单易用";
+"key.tag.api.ios.available" = "iOS 13.0 以上";
+"key.test.label.01" = "1.弹出一段文本";
+"key.test.label.02" = "2.弹出一段文本-可跟随锚定视图滑动";
+"key.test.label.03" = "3.弹出自定义视图-带事件回调";
+"key.test.menu.01" = "扫一扫";
+"key.test.menu.02" = "添加朋友";
+"key.test.menu.03" = "付款";
+"key.test.menu.04" = "玩游戏";
+"key.test.left.navigation.back" = "点击我，可返回上一个页面";
+"key.test.button.click.me" = "点击我";

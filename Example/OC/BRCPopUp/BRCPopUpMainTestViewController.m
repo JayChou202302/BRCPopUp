@@ -117,7 +117,8 @@
     [self addEnumControlWithItems:@[
         @"ViewController",
         @"Window",
-        @"View"
+        @"View",
+        @"Auto"
     ] withTitle:@"key.main.test.section.title.context" chageBlock:^(UISegmentedControl *control) {
         strongify(self)
         self.contextStyle = control.selectedSegmentIndex;

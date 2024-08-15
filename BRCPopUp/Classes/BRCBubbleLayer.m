@@ -290,7 +290,7 @@
 
 - (void)setShadowColor:(UIColor *)shadowColor {
     _shadowColor = shadowColor;
-    self.bubbleLayer.shadowColor = shadowColor.CGColor;
+    self.layer.shadowColor = shadowColor.CGColor;
 }
 
 - (void)setLayerAnchorPoint:(CGPoint)anchorPoint {

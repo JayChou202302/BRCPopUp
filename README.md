@@ -33,7 +33,7 @@
 </table>
 
 ## Features
-
+- **Multi Framework Support**: Supports SwiftUI and UIKit frameworks, as well as OC and Swift languages
 - **Highly Customizable**: Supports custom content views, background colors, shadow effects, rounded corners, etc.
 - **Rich Animation Effects**: Built-in multiple animation effects and supports custom animations.
 - **Diverse Content Support**: Supports both text and image content, providing convenient methods for setting them.
@@ -42,6 +42,7 @@
 
 
 ## Fast Usage
+`1.Objective-c`
 ```objective-c
 #import <BRCPopUp/UIView+BRCPopUp.h>
 
@@ -52,6 +53,7 @@
 ];
 ```
 
+`2.Swift`
 ```swift
 import BRCPopUp
 
@@ -60,16 +62,75 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
 };
 ```
 
+`3.SwiftUI`
+```swift
+import BRCPopUp
+
+struct PopUpView : View {
+    @State var isTest1Present : Bool = false;
+    var body : some View {
+        Vstack {
+            Text("Hello world")
+            .brc_popUpTip(isPresented: $isTest1Present, tipText: "") {
+               $0
+                .contentInsets(.init(top: 8, leading: 8, bottom: 8, trailing: 8))
+                .shadowOffset(.init(width: 0, height: 3))
+                .shadowRadius(10.0)
+                .shadowColor(.brtest_black.withAlphaComponent(0.2))
+                .backgroundColor(.brtest_contentWhite)
+                .textFont(.boldSystemFont(ofSize: 16.0))
+                .textColor(.brtest_orange)
+                .fitSize(.init(width: kBRCScreenWidth / 2, height: .infinity))
+            }
+        }
+    }
+}
+```
+
 ## Usage
 
+`1.Objective-c`
 ```objective-c
 BRCPopUper *popUper = [[BRCPopUper alloc] initWithContentStyle:BRCPopUpContentStyleCustom];
 [popUper showWithAnchorView:anchorView hideAfterDelay:3.0]
 ```
 
+`2.Swift`
 ```swift
 let popUper = BRCPopUper.init(contentStyle: .text);
-popUper.show(withAnchorView:anchorView , hideAfterDelay: 3.0);
+popUper.showWithAnimation(view:anchorView, hideAfterDelay: 3.0);
+```
+
+`3.SwiftUI`
+```swift
+ View()
+    .brc_popUpView(isPresented: $isTest3Present) {
+        CustomerView()
+    } customize: {
+       $0
+        .containerSize(.init(width: 100, height: 150))
+        .didUserDismissPopUper { popUp, view in
+            BRCToast.show("didUserDismissPopUper");
+            print("didUserDismissPopUper");
+        }
+        .didHidePopUper { popUp, view in
+            BRCToast.show("didHidePopUper");
+            print("didHidePopUper");
+        }
+        .didShowPopUper { popUp, view in
+            BRCToast.show("didShowPopUper");
+            print("didShowPopUper");
+        }
+        .willHidePopUper { popUp, view in
+            print("willHidePopUper");
+        }
+        .willShowPopUper { popUp, view in
+            print("willShowPopUper");
+        }
+    }
+    .onTapGesture {
+        isTest3Present.toggle()
+    }
 ```
 
 ## Requirements

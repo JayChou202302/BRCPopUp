@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BRCPopUp'
-  s.version          = '1.1.0'
+  s.version          = '1.2.0'
   s.summary          = 'BRCPopUp is a versatile, highly customizable PopUp menu library for iOS.'
 
 # This description is used to generate tags and improve search results.
@@ -30,5 +30,5 @@ Pod::Spec.new do |s|
 
   s.source_files = 'BRCPopUp/Classes/**/*'
   
-  s.frameworks = 'UIKit','Foundation'
+  s.frameworks = 'UIKit','Foundation',"SwiftUI"
 end

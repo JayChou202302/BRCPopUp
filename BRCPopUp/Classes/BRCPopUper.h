@@ -15,17 +15,25 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly, nullable) UILabel     *contentLabel;
 @property (nonatomic, strong) UIView                   *contentView;
 @property (nonatomic, strong) UIView                   *anchorView;
-@property (nonatomic, assign) CGPoint                  anchorPoint;
 @property (nonatomic, strong) UIColor                  *backgroundColor;
+@property (nonatomic, strong) UIColor                  *shadowColor;
+@property (nonatomic, assign) CGRect                   anchorFrame;
 @property (nonatomic, assign) CGFloat                  cornerRadius;
 @property (nonatomic, assign) CGSize                   containerSize;
 @property (nonatomic, assign) CGFloat                  containerHeight;
 @property (nonatomic, assign) CGFloat                  containerWidth;
-@property (nonatomic, strong) UIColor                  *shadowColor;
 @property (nonatomic, assign) CGSize                   shadowOffset;
 @property (nonatomic, assign) CGFloat                  shadowRadius;
 @property (nonatomic, assign) CGFloat                  shadowOpacity;
 @property (nonatomic, copy)   void (^webImageLoadBlock)(UIImageView *imageView, NSURL *imageUrl);
+
+/**
+ * 弹出框的根视图
+ * The RootView For PopUper
+ * @discussion - Used In SwiftUI
+ */
+@property (nonatomic, strong, readonly) UIView         *rootView;
+
 /**
  * 内容对齐方式
  * The Alignment for contentView
@@ -59,7 +67,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  * 弹出的方向
- * The Directio of PopUper
+ * The Direction of PopUper
  * default is `BRCPopUpDirectionBottom`
  */
 @property (nonatomic, assign) BRCPopUpDirection        popUpDirection;
@@ -217,25 +225,25 @@ NS_ASSUME_NONNULL_BEGIN
  * You Need Set `AnchorView` or `AnchorPoint` before show
  */
 - (void)show;
-- (void)showAndHideAfterDelay:(NSTimeInterval)delay;
-- (void)showWithAnimation:(CAAnimation *)animation;
-- (void)showWithAnimation:(CAAnimation *)animation hideAfterDelay:(NSTimeInterval)delay;
-- (void)showWithAnimationType:(BRCPopUpAnimationType)animationType;
-- (void)showWithAnimationType:(BRCPopUpAnimationType)animationType hideAfterDelay:(NSTimeInterval)delay;
+- (void)showAndHideAfterDelay:(NSTimeInterval)delay NS_SWIFT_NAME(showAndHideAfterDelay(delay:));
+- (void)showWithAnimation:(CAAnimation *)animation NS_SWIFT_NAME(showWithAnimation(animation:));
+- (void)showWithAnimation:(CAAnimation *)animation hideAfterDelay:(NSTimeInterval)delay NS_SWIFT_NAME(showWithAnimation(animation:hideDelay:));
+- (void)showWithAnimationType:(BRCPopUpAnimationType)animationType NS_SWIFT_NAME(showWithAnimationType(type:));
+- (void)showWithAnimationType:(BRCPopUpAnimationType)animationType hideAfterDelay:(NSTimeInterval)delay NS_SWIFT_NAME(showWithAnimationType(type:hideDelay:));
 
-- (void)showWithAnchorView:(UIView *)anchorView;
-- (void)showWithAnchorView:(UIView *)anchorView hideAfterDelay:(NSTimeInterval)delay;
-- (void)showWithAnchorView:(UIView *)anchorView withAnimationType:(BRCPopUpAnimationType)animationType;
-- (void)showWithAnchorView:(UIView *)anchorView withAnimationType:(BRCPopUpAnimationType)animationType hideAfterDelay:(NSTimeInterval)delay;
-- (void)showWithAnchorView:(UIView *)anchorView withAnimation:(CAAnimation *)animation;
-- (void)showWithAnchorView:(UIView *)anchorView withAnimation:(CAAnimation *)animation hideAfterDelay:(NSTimeInterval)delay;
+- (void)showWithAnchorView:(UIView *)anchorView NS_SWIFT_NAME(showWithAnchorView(view:));
+- (void)showWithAnchorView:(UIView *)anchorView hideAfterDelay:(NSTimeInterval)delay  NS_SWIFT_NAME(showWithAnchorView(view:hideDelay:));
+- (void)showWithAnchorView:(UIView *)anchorView withAnimationType:(BRCPopUpAnimationType)animationType NS_SWIFT_NAME(showWithAnchorView(view:animationType:));
+- (void)showWithAnchorView:(UIView *)anchorView withAnimationType:(BRCPopUpAnimationType)animationType hideAfterDelay:(NSTimeInterval)delay NS_SWIFT_NAME(showWithAnchorView(view:animationType:hideDelay:));
+- (void)showWithAnchorView:(UIView *)anchorView withAnimation:(CAAnimation *)animation NS_SWIFT_NAME(showWithAnchorView(view:animation:));
+- (void)showWithAnchorView:(UIView *)anchorView withAnimation:(CAAnimation *)animation hideAfterDelay:(NSTimeInterval)delay NS_SWIFT_NAME(showWithAnchorView(view:animation:hideDelay:));
 
-- (void)showAtAnchorPoint:(CGPoint)anchorPoint;
-- (void)showAtAnchorPoint:(CGPoint)anchorPoint hideAfterDelay:(NSTimeInterval)delay;
-- (void)showAtAnchorPoint:(CGPoint)anchorPoint withAnimationType:(BRCPopUpAnimationType)animationType;
-- (void)showAtAnchorPoint:(CGPoint)anchorPoint withAnimationType:(BRCPopUpAnimationType)animationType hideAfterDelay:(NSTimeInterval)delay;
-- (void)showAtAnchorPoint:(CGPoint)anchorPoint withAnimation:(CAAnimation *)animation;
-- (void)showAtAnchorPoint:(CGPoint)anchorPoint withAnimation:(CAAnimation *)animation hideAfterDelay:(NSTimeInterval)delay;
+- (void)showWithAnchorFrame:(CGRect)anchorFrame NS_SWIFT_NAME(showWithAnchorFrame(frame:));
+- (void)showWithAnchorFrame:(CGRect)anchorFrame hideAfterDelay:(NSTimeInterval)delay NS_SWIFT_NAME(showWithAnchorFrame(frame:hideDelay:));
+- (void)showWithAnchorFrame:(CGRect)anchorFrame withAnimationType:(BRCPopUpAnimationType)animationType NS_SWIFT_NAME(showWithAnchorFrame(frame:animationType:));
+- (void)showWithAnchorFrame:(CGRect)anchorFrame withAnimationType:(BRCPopUpAnimationType)animationType hideAfterDelay:(NSTimeInterval)delay NS_SWIFT_NAME(showWithAnchorFrame(frame:animationType:hideDelay:));
+- (void)showWithAnchorFrame:(CGRect)anchorFrame withAnimation:(CAAnimation *)animation NS_SWIFT_NAME(showWithAnchorFrame(frame:animation:));
+- (void)showWithAnchorFrame:(CGRect)anchorFrame withAnimation:(CAAnimation *)animation hideAfterDelay:(NSTimeInterval)delay NS_SWIFT_NAME(showWithAnchorFrame(frame:animation:hideDelay:));
 
 #pragma mark - hide
 

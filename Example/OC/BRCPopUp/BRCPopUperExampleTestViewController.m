@@ -358,7 +358,7 @@ UIScrollViewDelegate
     NSLog(@"%@",@(gesturePoint.x));
     if (gesture.state == UIGestureRecognizerStateBegan) {
         self.gesturePopUp.arrowAbsolutePosition = (gesturePoint.x - 20);
-        [self.gesturePopUp setAnchorPoint:CGPointMake(20, gesturePoint.y)];
+        [self.gesturePopUp setAnchorFrame:CGRectMake(20,gesturePoint.y, 0, 0)];
         [self.gesturePopUp show];
     }
 }
