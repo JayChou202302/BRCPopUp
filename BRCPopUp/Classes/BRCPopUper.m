@@ -60,6 +60,7 @@
 }
 
 - (void)commonInit {
+    _hideAfterDelayDuration = -1;
     _offsetToAnchorView = 0;
     _contentStyle = BRCPopUpContentStyleCustom;
     _popUpDirection = BRCPopUpDirectionBottom;
@@ -204,8 +205,9 @@
     [self startMonitoring];
     CAAnimation *popUpAnimation = [animation isKindOfClass:[CAAnimation class]] ? animation : self.popUpAnimation;
     [self showContainerViewWithAnimation:popUpAnimation];
-    if (delay > 0) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    if (delay > 0 || self.hideAfterDelayDuration > 0) {
+        CGFloat hideDelay = delay > 0 ? delay : self.hideAfterDelayDuration;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(hideDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self hide];
         });
     }

@@ -211,6 +211,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong) UIWindow *contextWindow;
 
+/**
+ * 弹出框自动消失的时间
+ * hide popUper after duration
+ * default is `-1`
+ */
+@property (nonatomic, assign) CGFloat hideAfterDelayDuration;
+
 #pragma mark - init
 
 - (instancetype)initWithContentView:(UIView *)contentView;

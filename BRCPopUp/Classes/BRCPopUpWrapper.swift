@@ -83,6 +83,7 @@ struct BRCPopUpWrapper<PopupContent: View> : ViewModifier {
             self.popUper.arrowRelativePosition = parameters!.arrowRelativePosition;
             self.popUper.arrowRadius = parameters!.arrowRadius;
             self.popUper.bubbleAnchorPoint = parameters!.bubbleAnchorPoint;
+            self.popUper.hideAfterDelayDuration = parameters!.hideAfterDelayDuration;
             if (parameters!.webImageLoadBlock != nil){
                 self.popUper.webImageLoadBlock = parameters!.webImageLoadBlock!;
             }
@@ -187,8 +188,9 @@ public struct BRCPopUpParameters {
     var popUpDirection           : BRCPopUpDirection = .bottom;
     var cornerRadius             : CGFloat = 4;
     var marginToAnchorView       : CGFloat = 5;
-    var shadowOpacity            : CGFloat  = 1.0;
+    var shadowOpacity            : CGFloat = 1.0;
     var popUpAnimationDuration   : CGFloat = 0.2;
+    var hideAfterDelayDuration   : CGFloat = -1;
     var dismissMode              : BRCPopUpDismissMode = .interactive;
     var animationType            : BRCPopUpAnimationType = .fadeBounce;
     var contentAlignment         : BRCPopUpContentAlignment = .center;
@@ -502,6 +504,15 @@ public struct BRCPopUpParameters {
     public func textColor(_ color : UIColor) -> BRCPopUpParameters {
         var param = self;
         param.textColor = color;
+        return param;
+    }
+    
+    /// 设置弹出框的自动消失时间
+    /// Hide PopUper after delay time
+    /// default is `-1`
+    public func hideAfterDelay(_ delay : CGFloat) -> BRCPopUpParameters {
+        var param = self;
+        param.hideAfterDelayDuration = delay;
         return param;
     }
 }

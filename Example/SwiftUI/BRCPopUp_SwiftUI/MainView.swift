@@ -168,6 +168,7 @@ struct MainView: View {
                             .background(.clear)
                         } customize: {
                             $0
+                            .hideAfterDelay(2.0)
                              .containerSize(.init(width: 100, height: 150))
                              .didUserDismissPopUper { popUp, view in
                                  BRCToast.show("didUserDismissPopUper");
