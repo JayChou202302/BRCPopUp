@@ -135,6 +135,8 @@ popUper.showWithAnimation(view:anchorView, hideAfterDelay: 3.0);
                 .background(.clear)
             } customize: {
                 $0
+                .dismissMode(.none)
+                .popUpContext(self.context)
                 .hideAfterDelay(2.0)
                 .containerSize(.init(width: 100, height: 150))
                 .didUserDismissPopUper { popUp, view in
