@@ -48,7 +48,7 @@ class BRCFindTopFrontViewController : UIViewController {
     }
 
     override func didMove(toParent parent: UIViewController?) {
-        super.didMove(toParent: parent)
+        super.didMove(toParent: parent);
         onViewChange?()
     }
 

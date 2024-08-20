@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-public enum BRCPopUpContextType{
+public enum BRCPopUpContextType {
     case topView /// will auto find the topest `UIView`
     case nearestScrollView /// will auto find the nearest `UIScrollView`
 }

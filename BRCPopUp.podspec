@@ -27,6 +27,8 @@ Pod::Spec.new do |s|
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '13.0'
+  
+  s.swift_versions = '4.2'
 
   s.source_files = 'BRCPopUp/Classes/**/*'
   
