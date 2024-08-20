@@ -81,6 +81,7 @@ popUper.showWithAnimation(view:anchorView, hideAfterDelay: 3.0);
 ```
 
 `3.SwiftUI`
+
 ```swift
  View()
     .brc_popUpView(isPresented: $isTest3Present) {
@@ -110,6 +111,59 @@ popUper.showWithAnimation(view:anchorView, hideAfterDelay: 3.0);
     .onTapGesture {
         isTest3Present.toggle()
     }
+```
+
+> [!Note]
+> 如果你使用了 1.3.0 及以上的版本，建议使用新增的 `BRCPopUpWrapper` 的工具类去获取你的上下文视图，传递到 PopUp 中去，这样将会让 BRCPopUp 发挥更强的实力 
+
+```swift
+ BRCPopUpWrapper(.nearestScrollView) {
+    ScrollView {
+        Text("Hello World")
+            .frame(width: 100, height: 40)
+            .background(Color.brtest_red())
+            .cornerRadius(4)
+            .clipped()
+            .foregroundColor(.brtest_white())
+            .brc_popUpView(isPresented: $isTest3Present) {
+                MenuButton(menuArray: [
+                    String.brctest_localizableWithKey("key.test.menu.01"),
+                    String.brctest_localizableWithKey("key.test.menu.02"),
+                    String.brctest_localizableWithKey("key.test.menu.03"),
+                    String.brctest_localizableWithKey("key.test.menu.04")
+                ])
+                .background(.clear)
+            } customize: {
+                $0
+                .hideAfterDelay(2.0)
+                .containerSize(.init(width: 100, height: 150))
+                .didUserDismissPopUper { popUp, view in
+                    BRCToast.show("didUserDismissPopUper");
+                    print("didUserDismissPopUper");
+                }
+                .didHidePopUper { popUp, view in
+                    BRCToast.show("didHidePopUper");
+                    print("didHidePopUper");
+                }
+                .didShowPopUper { popUp, view in
+                    BRCToast.show("didShowPopUper");
+                    print("didShowPopUper");
+                }
+                .willHidePopUper { popUp, view in
+                    print("willHidePopUper");
+                }
+                .willShowPopUper { popUp, view in
+                    print("willShowPopUper");
+                }
+            }
+            .onTapGesture {
+                isTest3Present.toggle()
+            }
+    }
+ } onFindContextUIView: { contextView in
+    context = contextView;
+ }
+
 ```
 
 ## Requirements
