@@ -3,21 +3,18 @@ PODS:
   - SnapKit (5.7.1)
 
 DEPENDENCIES:
-  - BRCPopUp (from `../../../BRCPopUp`)
+  - BRCPopUp (~> 1.2.0)
   - SnapKit
 
 SPEC REPOS:
   trunk:
+    - BRCPopUp
     - SnapKit
-
-EXTERNAL SOURCES:
-  BRCPopUp:
-    :path: "../../../BRCPopUp"
 
 SPEC CHECKSUMS:
   BRCPopUp: 084b09fa8d7435f4d75719057391d0f69836225d
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
 
-PODFILE CHECKSUM: 8dae98a326d291d484458c339f4463f3d5d3b04d
+PODFILE CHECKSUM: b6d262b0682a80fde86bce1e469f07dff3c24e0e
 
 COCOAPODS: 1.15.2

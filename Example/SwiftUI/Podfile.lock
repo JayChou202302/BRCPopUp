@@ -5,17 +5,16 @@ PODS:
   - FLEX (5.22.10)
 
 DEPENDENCIES:
-  - BRCFastTest (from `../../../BRCFastTest`)
+  - BRCFastTest
   - BRCPopUp (from `../../../BRCPopUp`)
   - FLEX
 
 SPEC REPOS:
   trunk:
+    - BRCFastTest
     - FLEX
 
 EXTERNAL SOURCES:
-  BRCFastTest:
-    :path: "../../../BRCFastTest"
   BRCPopUp:
     :path: "../../../BRCPopUp"
 
@@ -24,6 +23,6 @@ SPEC CHECKSUMS:
   BRCPopUp: 084b09fa8d7435f4d75719057391d0f69836225d
   FLEX: f21ee4f498eed3f8a1eded66b21939fd3b7a22ce
 
-PODFILE CHECKSUM: afff435a0459f61a82a9514bf49ee73cb106b7b3
+PODFILE CHECKSUM: 4361a4444b46ec5b6480c404c766e27192c691d9
 
 COCOAPODS: 1.15.2

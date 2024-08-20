@@ -32,7 +32,20 @@ NS_ASSUME_NONNULL_BEGIN
  * The RootView For PopUper
  * @discussion - Used In SwiftUI
  */
-@property (nonatomic, strong, readonly) UIView         *rootView;
+@property (nonatomic, strong, readonly) UIView          *rootView;
+
+/**
+ * 弹出框的父视图
+ * The SuperView For PopUper
+ */
+@property (nonatomic, strong, nullable) UIView  *popUpSuperView;
+
+/**
+ * 是否将弹出框添加到最近的可滑动视图中
+ * Whether to add popovers to recent swipeable views
+ * default is `YES`
+ */
+@property (nonatomic, assign) BOOL autoFindNearestScrollView;
 
 /**
  * 内容对齐方式

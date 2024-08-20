@@ -14,7 +14,7 @@
 @property (nonatomic, strong) UIControl                 *backgroundDismissView;
 @property (nonatomic, strong) BRCBubbleContainerView    *containerView;
 @property (nonatomic, strong) CADisplayLink             *displayLink;
-@property (nonatomic, strong, readonly) UIView          *popUpContextView;
+@property (nonatomic, strong) UIView                    *superView;
 @property (nonatomic, assign, readonly) BOOL            isDirectionHorizontal;
 @property (nonatomic, assign, readonly) CGFloat         sildeAnchorViewSize;
 @property (nonatomic, assign, readonly) CGFloat         sildeContainerViewSize;
@@ -77,6 +77,7 @@
     _contentAlignment = BRCPopUpContentAlignmentCenter;
     
     _autoFitContainerSize = YES;
+    _autoFindNearestScrollView = YES;
     _autoCutoffRelief = NO;
     _arrowCenterAlignToAnchor = YES;
     
@@ -104,7 +105,7 @@
 }
 
 - (void)startMonitoring {
-    if ([self.popUpContextView isKindOfClass:[UIScrollView class]]) return;
+    if ([self.popUpSuperView isKindOfClass:[UIScrollView class]]) return;
     if (self.dismissMode != BRCPopUpDismissModeInteractive) {
         self.displayLink.paused = NO;
     }
@@ -257,10 +258,10 @@
     if ([self.anchorView isKindOfClass:[UIView class]]) {
         [self sendDelegateEventWithSEL:@selector(willShowPopUper:withAchorView:)];
         [self updateContainerViewWithPopupFrame];
-        UIView *superView = self.popUpContextView;
+        UIView *superView = self.popUpSuperView;
         if (self.dismissMode == BRCPopUpDismissModeInteractive) {
-            [self.popUpContextView addSubview:self.backgroundDismissView];
-            [self addEdgeConstraintsFromView:self.popUpContextView toView:self.backgroundDismissView needEdgeInsets:NO];
+            [self.popUpSuperView addSubview:self.backgroundDismissView];
+            [self addEdgeConstraintsFromView:self.popUpSuperView toView:self.backgroundDismissView needEdgeInsets:NO];
             superView = self.backgroundDismissView;
         }
         [superView addSubview:self.containerView];
@@ -484,6 +485,12 @@
     self.anchorView.frame = anchorFrame;
 }
 
+- (void)setPopUpSuperView:(UIView *)popUpSuperView {
+    if (![popUpSuperView isKindOfClass:[UIView class]]) return;
+    _superView = popUpSuperView;
+    self.contextStyle = BRCPopUpContextStyleCustom;
+}
+
 #pragma mark - getter
 
 - (CGFloat)containerHeight { return _containerSize.height; }
@@ -566,12 +573,12 @@
 
 - (CGFloat)anchorViewCenterY { return CGRectGetMidY(self.anchorViewFrame);}
 
-- (CGRect)anchorViewFrame { return [self getFrameForView:self.anchorView inView:self.popUpContextView];}
+- (CGRect)anchorViewFrame { return [self getFrameForView:self.anchorView inView:self.popUpSuperView];}
 
 - (CGRect)popUpContextViewFrame {
-    UIView *popUpContextView = self.popUpContextView;
-    if ([self.popUpContextView isKindOfClass:[UIScrollView class]]) {
-        CGSize contentSize = [(UIScrollView *)self.popUpContextView contentSize];
+    UIView *popUpContextView = self.popUpSuperView;
+    if ([self.popUpSuperView isKindOfClass:[UIScrollView class]]) {
+        CGSize contentSize = [(UIScrollView *)self.popUpSuperView contentSize];
         return CGRectMake(popUpContextView.frame.origin.x, popUpContextView.frame.origin.y,
                           MAX(popUpContextView.frame.size.width, contentSize.width),
                           MAX(popUpContextView.frame.size.height, contentSize.height));
@@ -627,24 +634,28 @@
 #pragma clang diagnostic pop
 }
 
-- (UIView *)popUpContextView {
-    UIView *contextView = nil;
-    if ([self.anchorView isKindOfClass:[UIView class]]) {
-        if (self.contextStyle == BRCPopUpContextStyleAutoFind) {
-            UIScrollView *nearestScrollView = [self findNearestAnchorSuperScrollView];
-            if ([nearestScrollView isKindOfClass:[UIScrollView class]]) contextView = nearestScrollView;
+- (UIView *)popUpSuperView {
+    UIView *finalSuperView = nil;
+    if (self.contextStyle == BRCPopUpContextStyleCustom) {
+        finalSuperView = self.superView;
+        if (self.autoFindNearestScrollView) {
+            
+        }
+    } else if ([self.anchorView isKindOfClass:[UIView class]]) {
+        if (self.autoFindNearestScrollView) {
+            UIScrollView *scrollView = [self findNearestAnchorSuperScrollView];
+            if ([scrollView isKindOfClass:[UIScrollView class]]) finalSuperView = scrollView;
         } else if (self.contextStyle == BRCPopUpContextStyleViewController) {
             UIViewController *anchorVC = [self findViewControllerForView:self.anchorView];
-            if ([anchorVC isKindOfClass:[UIViewController class]])  contextView = anchorVC.view;
+            if ([anchorVC isKindOfClass:[UIViewController class]])  finalSuperView = anchorVC.view;
         } else if (self.contextStyle == BRCPopUpContextStyleSuperView){
-            if ([self.anchorView.superview isKindOfClass:[UIView class]]) contextView = self.anchorView.superview;
+            if ([self.anchorView.superview isKindOfClass:[UIView class]]) finalSuperView = self.anchorView.superview;
         } else if (self.contextStyle == BRCPopUpContextStyleWindow) {
-            contextView = self.contextWindow;
+            finalSuperView = self.contextWindow;
         }
     }
-    // 如果都没有找到的话 那么就给一个兜底的取Window
-    if (![contextView isKindOfClass:[UIView class]]) contextView = self.contextWindow;
-    return contextView;
+    if (![finalSuperView isKindOfClass:[UIView class]]) finalSuperView = self.contextWindow;
+    return finalSuperView;
 }
 
 #pragma mark - animations

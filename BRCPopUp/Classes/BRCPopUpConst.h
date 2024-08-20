@@ -47,7 +47,7 @@ typedef NS_ENUM(NSInteger, BRCPopUpContextStyle) {
     BRCPopUpContextStyleViewController = 0,        // Context as view controller
     BRCPopUpContextStyleWindow,           // Context as window
     BRCPopUpContextStyleSuperView,            // Context as superview
-    BRCPopUpContextStyleAutoFind    // Will Find The Nearest ScrollView
+    BRCPopUpContextStyleCustom,      // Custom ContextView
 };
 
 typedef NS_ENUM(NSInteger, BRCPopUpDismissMode) {

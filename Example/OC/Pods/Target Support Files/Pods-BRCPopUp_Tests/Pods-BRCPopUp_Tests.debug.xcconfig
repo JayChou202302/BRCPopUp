@@ -2,7 +2,7 @@ CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
 FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/BRCFastTest" "${PODS_CONFIGURATION_BUILD_DIR}/BRCPopUp" "${PODS_CONFIGURATION_BUILD_DIR}/FLEX"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/BRCFastTest/BRCFastTest.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/BRCPopUp/BRCPopUp.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/FLEX/FLEX.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -l"stdc++" -framework "BRCFastTest" -framework "BRCPopUp" -framework "CoreGraphics" -framework "FLEX" -framework "Foundation" -framework "ImageIO" -framework "QuartzCore" -framework "SceneKit" -framework "Security" -framework "UIKit" -framework "WebKit"
+OTHER_LDFLAGS = $(inherited) -l"stdc++" -framework "BRCFastTest" -framework "BRCPopUp" -framework "CoreGraphics" -framework "FLEX" -framework "Foundation" -framework "ImageIO" -framework "QuartzCore" -framework "SceneKit" -framework "Security" -framework "SwiftUI" -framework "UIKit" -framework "WebKit"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

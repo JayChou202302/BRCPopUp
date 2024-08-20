@@ -3,8 +3,8 @@ use_frameworks!
 platform :ios, '13.0'
 
 target 'BRCPopUp_Example' do
-  pod 'BRCPopUp',:path =>'../../../BRCPopUp'
-  pod 'BRCFastTest',:path =>'../../../BRCFastTest'
+  pod 'BRCPopUp','~>1.2.0'
+  pod 'BRCFastTest'
 
   target 'BRCPopUp_Tests' do
     inherit! :search_paths
