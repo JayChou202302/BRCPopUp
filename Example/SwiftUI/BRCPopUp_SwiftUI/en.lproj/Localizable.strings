@@ -10,7 +10,8 @@
 "key.tag.api.ios.available" = "Available on iOS 13.0 and above";
 "key.test.label.01" = "1. Display a text message";
 "key.test.label.02" = "2. Display a text message - scrollable with the anchor view";
-"key.test.label.03" = "3. Display a custom view - with event callback";
+"key.test.label.03" = "3. Display a menu - with event callback";
+"key.test.label.04" = "4. Display a custom view";
 "key.test.menu.01" = "Scan";
 "key.test.menu.02" = "Add Friend";
 "key.test.menu.03" = "Payment";

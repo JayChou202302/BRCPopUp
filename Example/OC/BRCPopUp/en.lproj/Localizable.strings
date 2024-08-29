@@ -42,3 +42,11 @@
 "key.popup.test.button.title4.style" = "Example 4";
 "key.popup.gesture.button.title" = "Follow Finger";
 "key.dropdown.input.placeholder" = "Enter something........";
+"key.main.test.cancel.button.width" = "Width of the popup box close button";
+"key.main.test.cancel.button.height" = "Height of the pop-up box close button";
+"key.main.test.cancel.button.relative.x" = "Pop-up box close button relative position-X";
+"key.main.test.cancel.button.relative.y" = "Pop-up box close button relative position-Y";
+"key.main.test.cancel.button.absoulute.x" = "Pop-up box close button absolute position-X";
+"key.main.test.cancel.button.absoulute.y" = "Pop-up box close button absolute position-Y";
+"key.main.test.auto.find" = "Whether to automatically find the nearest sliding parent view";
+"key.main.test.show.cancel" = "Whether to display the close button";

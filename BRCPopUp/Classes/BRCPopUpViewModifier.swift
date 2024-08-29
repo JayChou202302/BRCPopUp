@@ -161,7 +161,7 @@ internal struct BRCFindTopUIViewModifier : ViewModifier {
 }
 
 internal extension View {
-    func frameGetter(_ frame: Binding<CGRect>) -> some View {
+    func brc_frameGetter(_ frame: Binding<CGRect>) -> some View {
         modifier(BRCFrameGetter(frame: frame))
     }
     
@@ -172,12 +172,12 @@ internal extension View {
 }
 
 internal extension UIView {
-    func findFirstSubview<T: UIView>(ofType viewType: T.Type) -> T? {
+    func brc_findFirstSubview<T: UIView>(ofType viewType: T.Type) -> T? {
         if self.isKind(of: viewType) {
             return self as? T
         }
         for subview in self.subviews {
-            if let matchingSubview = subview.findFirstSubview(ofType: viewType) {
+            if let matchingSubview = subview.brc_findFirstSubview(ofType: viewType) {
                 return matchingSubview
             }
         }

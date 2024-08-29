@@ -33,7 +33,7 @@
 </table>
 
 ## Features
-- **Multi Framework Support**: Supports SwiftUI and UIKit frameworks, as well as OC and Swift languages
+- **Multi Framework Support**: Supports `SwiftUI` and `UIKit` frameworks, as well as `OC` and `Swift` languages
 - **Highly Customizable**: Supports custom content views, background colors, shadow effects, rounded corners, etc.
 - **Rich Animation Effects**: Built-in multiple animation effects and supports custom animations.
 - **Diverse Content Support**: Supports both text and image content, providing convenient methods for setting them.

@@ -19,7 +19,6 @@
 		0357CFEBB66142BB760D96E99D8D3EF4 /* FLEXIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E59A37F01B35428A5CEB5F6A0E29090 /* FLEXIvar.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		0427CA9B485F4A473C27C3B21D45D6D8 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DD70AE05B1D60B866DC80B5D0292BF43 /* MBProgressHUD.m */; };
 		0497FEA3771CFAADB7BEF57B67CA1211 /* FHSRangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C52A3DA60B80BC8EF18EF5C1FB57A94 /* FHSRangeSlider.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
-		04B1A156E65DBD6A25BB0CCD85DBD0D3 /* BRCPopUpViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25BF7677C3A5A20A20870E491D08EE /* BRCPopUpViewModifier.swift */; };
 		04EBF6727CF1379FDF3F165CAEA54263 /* SDImageAssetManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B90284C06AFD6E330D49C87A0E07AFF7 /* SDImageAssetManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0504E59D7580AA46B092AD7B0F3DF620 /* SDCallbackQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A1F7CFDC3F08493C79613AA785516EE /* SDCallbackQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		051A80D95A51B49982BA0854BE889FB7 /* FLEXProtocolBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 637B79906747C6CEEE83CE5F193AF0A2 /* FLEXProtocolBuilder.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
@@ -108,13 +107,16 @@
 		2D3D1A03807DA620E5546978C92729F8 /* NSLayoutConstraint+MASDebugAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = BE1D329F387BE5F9A6FC5A0B6FFC1BA4 /* NSLayoutConstraint+MASDebugAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2DE6C12E96E7E0189C7C54500E3251C7 /* FLEXArgumentInputSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB5D8572329B81F68CF0209EB810AD8 /* FLEXArgumentInputSwitchView.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		2DF03791FB2F36037AC9F543C494D871 /* FLEXArgumentInputNotSupportedView.h in Headers */ = {isa = PBXBuildFile; fileRef = E432F9CFAE1F2C58CB1B198F173F7F1B /* FLEXArgumentInputNotSupportedView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2E5CA1480C852C89E5B8B55C1B1C0CC5 /* BRCPopUpMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = 72AAC19860D7E3363BF613E080AD06D1 /* BRCPopUpMenu.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2EF2DB3081C4F414EFA410A84E6C5A03 /* SDWebImageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B11FC1CE076C6A113E82787EAE240EE7 /* SDWebImageManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2F34B53606733478EC44E376FA69CB03 /* UITableView+YYAdd.h in Headers */ = {isa = PBXBuildFile; fileRef = A2391A7424CB83BA7D8DE40B10BBDB31 /* UITableView+YYAdd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2F580568F45D86115C3042E44A3132E7 /* SDImageLoadersManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 69D53536B8B2DDB90AD72D438836E6DB /* SDImageLoadersManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2F8BD68CC48757CAD18662FC54D15733 /* NSString+YYAdd.h in Headers */ = {isa = PBXBuildFile; fileRef = B3CF065E50845A0363DC8BF6CDC21C3B /* NSString+YYAdd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		302AC48D23C198C5C6765B1322AEBEB5 /* SDmetamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 8289708EC801B1E877D5EE9C8C6F2CF1 /* SDmetamacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30F1CD2469FC12DEF3A7DBC04A3A003B /* UIGestureRecognizer+YYAdd.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6D69063258B3CC5F92863553F05538 /* UIGestureRecognizer+YYAdd.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		31127B88942464C3D9B3CE6D86E53D14 /* BRCPopUpMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C6827333100B8281E66EA24B429649 /* BRCPopUpMenu.m */; };
 		313F198BD701CAEB7E5A78CB6B1E6660 /* FLEXViewShortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = D625A5BD97056089EDD484D5AED4D3FA /* FLEXViewShortcuts.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
+		313FE2EB41476FDC299A4F88DAACA2BA /* BRCPopUper.h in Headers */ = {isa = PBXBuildFile; fileRef = 46EAB4E7402880AF3A14D1535505260F /* BRCPopUper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		31AEC6E93171B88AC84E85792F0AEB67 /* FLEXBookmarkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 8421C504F6E1EA0C03F7A9581B1DF4D1 /* FLEXBookmarkManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		3206ED77374AF0ABA6BD69A070780EA5 /* NSObject+FLEX_Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 46680A2E9103FFD5F02E1BAD97EFBA7F /* NSObject+FLEX_Reflection.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		329494DD67291C765F3BF7342A2A362E /* FLEXKeyValueTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = ECCD6F8CE6D0B4A2BA110C56B6F16769 /* FLEXKeyValueTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -129,7 +131,6 @@
 		360D4A66BA54EC1C57BAF384284B62C9 /* FLEXTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = B0875B4594044D7CFE4B5D8FC9CB7CC7 /* FLEXTableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3620CD776257B7F73E46F33BE13FFE5B /* FLEXManager+Networking.m in Sources */ = {isa = PBXBuildFile; fileRef = D850965501B0597AA80BB5432B68C70F /* FLEXManager+Networking.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		3625EB4A71722F8D4DBB88103EE5ACC4 /* FLEXTableViewSection.h in Headers */ = {isa = PBXBuildFile; fileRef = 638780DA223BBBB135D8F8878A45A2B7 /* FLEXTableViewSection.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3639A5285FBCA34BBB160742F865E807 /* BRCPopUpConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E735315F400AF38C15588C9911B3D38 /* BRCPopUpConst.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		36B216C441943CA228F5CED611302FA4 /* SDImageAPNGCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 952BDF853D30DF2ADDC9FAF851A536ED /* SDImageAPNGCoder.m */; };
 		3714271C098466501DE715BBBC817EAF /* SDImageTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 787A58D1B8D17E1DFD9154096F1EF0BC /* SDImageTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37A21C79086ED0DFF2AE878833CA112D /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDABDC2C3160B92C803B86552B1C904 /* NSArray+MASAdditions.m */; };
@@ -218,7 +219,6 @@
 		534A5543D5C3180758EBFEF41A706FE5 /* FLEXArgumentInputView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B7C89CAB209CC1CD9BF2A967A96DDB7 /* FLEXArgumentInputView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		5360D6EE9465F01E8F83BF2A6E13674B /* UIControl+YYAdd.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A674BF78D11DB2244A1D131FC5AB0E9 /* UIControl+YYAdd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53D36FDE905C919AA85ABD7F24FA8A45 /* FLEXObjectRef.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCA1E0C6E146EF2889DCB1268E1E80A /* FLEXObjectRef.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
-		543C6D34B0ED4745FFD1FBB6CC32F7C3 /* BRCPopUpWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0770E165FD3128979570A40558688BB /* BRCPopUpWrapper.swift */; };
 		546E664D4D328D5586D7951024EB8C76 /* FLEXLogController.h in Headers */ = {isa = PBXBuildFile; fileRef = 28C23B6DE99097B811D5B5213769C60D /* FLEXLogController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		552606C5147AAFBF6336E3E366311599 /* NSTimer+FLEX.h in Headers */ = {isa = PBXBuildFile; fileRef = E29B527846C17A8A7D6B3268DBA58132 /* NSTimer+FLEX.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		55C492ED4FCF4ACD0A1D925895F684A3 /* FLEXRuntimeKeyPath.m in Sources */ = {isa = PBXBuildFile; fileRef = CA45FB130DD04F9DA3B42E32598B14EC /* FLEXRuntimeKeyPath.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
@@ -270,7 +270,6 @@
 		68D5ADF24CAD2D107D80CD612F7ED9B8 /* FLEXIvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 58C3D34C689B47DCA1284E6FA10CFB93 /* FLEXIvar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A51BD615BF6B2C7E58EFE06D167A886 /* FLEXOSLogController.h in Headers */ = {isa = PBXBuildFile; fileRef = 84875193881C57C3C5B818DA5EFE7727 /* FLEXOSLogController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		6B605B7BC1CA32C08F5CB0189E5A934C /* YYCGUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B1BAEC855C293AE4E992A4BDB72480E /* YYCGUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BB6849AD3C45E75048BDAC4FB1DF72C /* BRCPopUper.h in Headers */ = {isa = PBXBuildFile; fileRef = A0689D0FA3995A5CEB1B6BFAD71C8033 /* BRCPopUper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6C3C62D257A9D85CFD4A2CDFC6EAC25A /* NSArray+FLEX.h in Headers */ = {isa = PBXBuildFile; fileRef = BA548075751FC06844754D073967FA4D /* NSArray+FLEX.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6C50AF1D8E82E8FDA61D8B593C903920 /* FLEXLiveObjectsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6562B178B3C08B922CA2A46E6263ED33 /* FLEXLiveObjectsController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		6D14F5B7BB93110745E9D518E75274F8 /* BRCDebugCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A2DE9BA7D55608EA11E4C0F94E227B /* BRCDebugCenter.m */; };
@@ -304,6 +303,7 @@
 		75A49438F88D59123FFAE1593478D19F /* FLEXOSLogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 688FD5FD6E3CF15E5F8105130111D136 /* FLEXOSLogController.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		76167678BCF345F3B090DBD4C446A65D /* FLEXArgumentInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 564130AAF3DC4B6393F6F1622CCBAD90 /* FLEXArgumentInputTextView.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		7680F4F2E8DA543D001D74DE27906DAB /* FLEX-Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A760C4F641FF264E3C6D69A5A5F005C /* FLEX-Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		76C74C60AADF667899E2CB184019409B /* BRCPopUpWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C5618159323430165F1312141FE10 /* BRCPopUpWrapper.swift */; };
 		773446B60E77996913D33E2C525433F1 /* FLEXClassShortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = 5791CF1D56EF4CC140A252D60CA2121C /* FLEXClassShortcuts.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		7776CE9D07074A3507DA2CA3CA401383 /* NSMapTable+FLEX_Subscripting.h in Headers */ = {isa = PBXBuildFile; fileRef = FECFDFC1F35E991FDAEB7453AA933CC1 /* NSMapTable+FLEX_Subscripting.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7845D3CEBED4F7034F524B8A3E635CBC /* FLEXKBToolbarButton.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE47A105AAC8D405900166E852E5D0C /* FLEXKBToolbarButton.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -339,7 +339,6 @@
 		87790C2CA4F0DF076032BA6417C33D4B /* MASCompositeConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 5750D94DA00755037D0203297F4E0894 /* MASCompositeConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		877E4AD223A450F7FD285582F70F006B /* SDAnimatedImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F08CFCAB7FCF6145F0409B8370149BE /* SDAnimatedImageView+WebCache.m */; };
 		87CE59C133CAE96AD742259D2AB8D87B /* UIButton+WebCache.h in Headers */ = {isa = PBXBuildFile; fileRef = ED36DF84514FE48FA9133435C9CABEC8 /* UIButton+WebCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		87D4B38EEB577B73B5638C9FC637AA01 /* UIView+BRCPopUp.m in Sources */ = {isa = PBXBuildFile; fileRef = AEC503CCE93EFF4F223A882DA90CF349 /* UIView+BRCPopUp.m */; };
 		87DF224397CFEB9BE97C3F179A923FFD /* BRCFastTest-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C97D8B15F1FA132D425C71FEEFCF2A3 /* BRCFastTest-dummy.m */; };
 		882234DE7E92968BCA48938B119D5593 /* FLEXDefaultEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0131DFC5E2B53F5B643CF3B6C5A030 /* FLEXDefaultEditorViewController.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		8940621874FAA528C50AE17461DC7C0A /* UIFont+YYAdd.h in Headers */ = {isa = PBXBuildFile; fileRef = CE1C58A903662C3F7463FFD9162A5234 /* UIFont+YYAdd.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -349,6 +348,7 @@
 		8B2356D57F22B601472587316D64E695 /* UIFont+FLEX.h in Headers */ = {isa = PBXBuildFile; fileRef = 1353AA5666BE19FF02EC60D4E0B1B3E8 /* UIFont+FLEX.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8CE80729BE9F840466E2440EFCD6A2EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2C2816208D8870E06ED5E69B02EE6E2 /* Foundation.framework */; };
 		8CE9FEDD1A3A190F5CA11F5201BE2B55 /* SDWebImageDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 5768CE529864EE752AD5D7CAF4E5246C /* SDWebImageDownloader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8D16A83651B3C5C1623BFFDD984F6606 /* BRCPopUpViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235FD02C4ED211CBAA8978A2A436BDD6 /* BRCPopUpViewModifier.swift */; };
 		8D1EFB281377A22796ECEBC2B2D75DBA /* FLEXSearchToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D6825F38D1D4270AA8092622A80546 /* FLEXSearchToken.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		8EA7BD87D417F542C7BA6634A5C109FC /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = DF27FB5756CB2C2F3582DD9C3DAD748D /* MASViewConstraint.m */; };
 		8ED5ACACFD4FD281DBD58D28ED04530C /* UIImage+GIF.h in Headers */ = {isa = PBXBuildFile; fileRef = 24456BBEB2E4B3DC321EF419D5A4DAF0 /* UIImage+GIF.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -367,13 +367,13 @@
 		9319BE508871E27AC6467F6CBE20DD80 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B36D26618EC27675D1A925BB20C4F5D6 /* UIKit.framework */; };
 		93C36125A825D051D072455BDBFA098F /* FLEXUIAppShortcuts.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E7198078C87A10577AF6508270F6EE3 /* FLEXUIAppShortcuts.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		940536967DE20C448E6C4CF65C0BFC7B /* FLEXArgumentInputTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 26471B92F1972DBCD4144CFEB678ACF5 /* FLEXArgumentInputTextView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9408D3F5E20653E2DAE2DE427F8472B5 /* BRCBubbleLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = F812FE02FB6B21B1B3FA917302744F70 /* BRCBubbleLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94349BA169F50273345671AA3F95EED8 /* FLEXTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = D50AF906F895BA156E1A31334A974715 /* FLEXTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9466BB2B35222B2AD4FEC0851E820764 /* FLEXTableContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A4C7BE4D9D2C8328B70B54C663D907 /* FLEXTableContentViewController.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		950A60454EF6ADA80EA4EC4B58BB26BE /* NSTimer+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D1EB945868FC5CF82BF7491B332E43 /* NSTimer+YYAdd.m */; };
 		966E2F22AD20FB41652676849F13E457 /* FLEXNetworkSettingsController.h in Headers */ = {isa = PBXBuildFile; fileRef = B7081B20E913394445EA19EED7A6E71C /* FLEXNetworkSettingsController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9688438AE1FBB8F2745D8F21DB062CBF /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 72246F015118904F488FC1EB37F82DB9 /* ViewController+MASAdditions.m */; };
 		96AA20537E4CD17B6E2DE466AEF1EE37 /* UIGestureRecognizer+Blocks.h in Headers */ = {isa = PBXBuildFile; fileRef = 9190C9EB7F13BBAC2463C6F5CD607119 /* UIGestureRecognizer+Blocks.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96CD67D0ECD379A7F027C8BEA519695A /* BRCPopUp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D56A38AE80B92B55359FCC5456439 /* BRCPopUp-dummy.m */; };
 		96F60723A8B08067D9EF8AF64BEFFF12 /* SDAnimatedImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = CCAB7FA4C4A04FC1F7FCF6D062908843 /* SDAnimatedImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9742D08F44F6EC1377BE986ADA1FE827 /* FLEXArgumentInputNotSupportedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 727D437C80D17A9F77850547995DB61C /* FLEXArgumentInputNotSupportedView.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		979E76F90E15241321664CC6734AD2E0 /* FLEXSQLiteDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2EAB565364B676CE3A1239BBC409323 /* FLEXSQLiteDatabaseManager.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
@@ -390,7 +390,6 @@
 		9C3D7EA02294B31070242E426A86ACD2 /* SDWebImageCacheSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 715829A2F3F5927EF50A16790D00D6F7 /* SDWebImageCacheSerializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9C750B9D9026897F56569C1DD0FBAEBE /* FLEXRuntimeClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 032107217FB10A94D78146474DD2CD38 /* FLEXRuntimeClient.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9CD4A46DAE98BAC1EB86496D62F1F3A2 /* FLEXNetworkTransactionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FDE796829616888F51E6E0FFCF1467 /* FLEXNetworkTransactionCell.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
-		9D05F4FEBA3B3C9804D59852FA639F3C /* BRCPopUper.m in Sources */ = {isa = PBXBuildFile; fileRef = E954D089A4FE838808B4460B5641DEAF /* BRCPopUper.m */; };
 		9DF9AAE9A679CD9774FB49AE7FB4BA18 /* FLEXAPNSViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 824429B21C2D58091F40AB487862729A /* FLEXAPNSViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9E9DBAB27A7660FF0D42AAEA66FFEFB2 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCEB8C26B7CC76CBD766A0C858082F0 /* MASCompositeConstraint.m */; };
 		9F6A9A35DDFDF8D6FBD49A24BBF402BE /* FHSSnapshotNodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 16004C18E5A901FF7A37874267C51DBE /* FHSSnapshotNodes.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
@@ -403,10 +402,10 @@
 		A0FBC698F07E41B87FE400BE73C98859 /* FLEXObjectRef.h in Headers */ = {isa = PBXBuildFile; fileRef = AF51EF5E81A5B703D936F498D21824DE /* FLEXObjectRef.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A1C57283DE3E32B723E2B548FE48B364 /* FLEXHeapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 858C856ADA15AF8E4E4BCAF4033CFEF2 /* FLEXHeapEnumerator.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		A3381DED718F0B0906C81B23FDFAC44F /* FLEXTabsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCC568F96E286AFCCDAC8F1A96D9CB /* FLEXTabsViewController.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
-		A40AFF5A519984B55D9231FAA4AEA624 /* UIView+BRCPopUp.h in Headers */ = {isa = PBXBuildFile; fileRef = 84E58ABBDC2131DFB8A314FC83CEE285 /* UIView+BRCPopUp.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A42C6835AACF1E64899200563CC7B965 /* FLEXActivityViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 86B001A4BF1E30EEB3D7C3511BC13146 /* FLEXActivityViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A445A8DBCE7C88227AEDC448156703B2 /* SDImageCachesManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 63CC3D722AD9AB28F3264ACD45B6C5F6 /* SDImageCachesManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A465666A4332ECB8F570AB71F553E9B0 /* SDImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0967974F86080E964C1C6CB1A5258792 /* SDImageCoder.m */; };
+		A48FB7D538DAB330C1D4E43CEFA8B64A /* UIView+BRCPopUp.h in Headers */ = {isa = PBXBuildFile; fileRef = 7264F570CFE2E6F7D30C7DCEBAC26C9E /* UIView+BRCPopUp.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A4DCABC9BDAD773412416336BF00BC60 /* FLEXNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86C228AD5DA27A480118CB3FC6E02D1 /* FLEXNavigationController.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		A63D939F7F8D65F172C6D2E15A905AA5 /* Pods-BRCPopUp_SwiftUI-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D507B084CA77DAAA3254681AC0E989D /* Pods-BRCPopUp_SwiftUI-dummy.m */; };
 		A6B11660C65C7C51D0F6DE24BD0DCB84 /* FLEXNetworkMITMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EDF6220B4714E3BBB8D617B2D79D08 /* FLEXNetworkMITMViewController.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
@@ -434,7 +433,6 @@
 		AEECA22025623E7899B8278ABBFB7B23 /* FLEXRealmDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = A4A78F5EEF3205950ED370B70F398991 /* FLEXRealmDefines.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		AF41723BD75969D406249B4370C0C7B8 /* FLEXTableRowDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB593B225E0743A3F9B67F2FF56F0B40 /* FLEXTableRowDataViewController.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		AF6E851E45301EA180B4AA7E7DC4C881 /* SDImageCacheDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8A4D3DA1826A4341C8197F7B876076 /* SDImageCacheDefine.m */; };
-		AF7D6A1D459046C985B68843C807855D /* BRCPopUp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CCD2E3CD8A928BC9BDE773C2071D7ECA /* BRCPopUp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AFD0AEB155A592D54989EB40222B6D9B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312F84BED208173FD20853C2F8805585 /* WebKit.framework */; };
 		B0AEEA777E3BA4069F820F6EBFBF96BF /* NSUserDefaults+FLEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC91B1341A9E3C8304CCDC6EE38F06D /* NSUserDefaults+FLEX.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		B0D840ADB698792CACA2B3710790585E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2C2816208D8870E06ED5E69B02EE6E2 /* Foundation.framework */; };
@@ -461,8 +459,8 @@
 		B808820EB918690D820ACEA10AE066A7 /* FLEXArgumentInputNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB5C0E6BF259213D36653B62C8BAC3A /* FLEXArgumentInputNumberView.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		B831F68E86DE2DCEBF597FC4137728E5 /* FLEXTableLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E4DFFAAE6002346070F7D881F5223F /* FLEXTableLeftCell.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		B84F485702974E3455E5D3878B56225A /* FLEXKeyboardShortcutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D135A56D6E82F55645F551A1BDFE1E /* FLEXKeyboardShortcutManager.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
+		B89BC0AA9B7558E4C7905AE1098A9AE8 /* BRCPopUp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A9D092FFC7D7E8B9EEBE6B7243D92C4F /* BRCPopUp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B92F15784CBF997E60460BA5E129DCC9 /* SDAsyncBlockOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 34501C02499173F57926A2768C2DEA5E /* SDAsyncBlockOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B987E33B53B2392F0D3CDEA821D6215D /* BRCPopUp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C148B80A3DE7FF42F3FE3F9322892C6 /* BRCPopUp-dummy.m */; };
 		B99DD6BB0D36C1846C97D29C11531C08 /* FLEXArgumentInputFontView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B0A83F8C74B95E0288C09039D9EBF2 /* FLEXArgumentInputFontView.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		B9AB19891EDE3A81D94D85A5E84188FA /* SDWebImageOptionsProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = C33278589DEE75E885E8D6EE71E2BD70 /* SDWebImageOptionsProcessor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BA0CBAF93E01765A7FED0B27C190721B /* FLEXRuntime+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BC500A05568FCC85D132F7C23FA6FE3 /* FLEXRuntime+Compare.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -472,6 +470,7 @@
 		BAFC1D3EFE05DB7C3E3F38119D97E959 /* FLEXWindowManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36F71542E8507F404DF5272643580FB /* FLEXWindowManagerController.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		BB117EC46E49F15BF05CD483E1795354 /* UIColor+SDHexString.h in Headers */ = {isa = PBXBuildFile; fileRef = 97E0E8D16C6B40F90018D300EDD68B6A /* UIColor+SDHexString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BC26B3790455DD211824B92C9A094B8F /* FLEX.h in Headers */ = {isa = PBXBuildFile; fileRef = E89E0D7826CFD0598A1EB8B82FCAF53C /* FLEX.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC5B45B8C00BBD3A4DA7C12B27693ECD /* UIView+BRCPopUp.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1A818439FD6B508D43F2B8EAB04BFD /* UIView+BRCPopUp.m */; };
 		BC66B25DEDA80D96EE594FFD473E0C26 /* FLEXLiveObjectsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A36C90C8AC6B0FD7C43C38E2CEFB628 /* FLEXLiveObjectsController.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		BC6F86B51ED58514FCFF1E701AF1A48D /* FLEXVariableEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6EC74ADC8E6E1F344FF4B0555C9020 /* FLEXVariableEditorViewController.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		BD2F14ED3E4B7A087D52500970F314B3 /* FLEXManager+Extensibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2014CFEF02472C64BB549B178F7E1D38 /* FLEXManager+Extensibility.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -533,12 +532,12 @@
 		CF6E7AE70CED7533782820907760F8FF /* FLEXBookmarksViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 18449ECAA21A64CEC93D09F7F7396C2D /* FLEXBookmarksViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		CFD754BE7D3BAF017C5C96AC0E79A775 /* FLEXObjectListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 35CC8D905E077DEB96540D849F1FFBFB /* FLEXObjectListViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D06F77E7D719B719EAE6EC449317102F /* SDMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FAC6806BF51550F67B6EC23C790FDE /* SDMemoryCache.m */; };
+		D10FBD78376B4D6FAE2EEA015651B5DE /* BRCPopUper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF655F420968E5E4F1045F2C5CF8624 /* BRCPopUper.m */; };
 		D1C3F096EB409A22D481404A17B53F10 /* FLEXASLLogController.h in Headers */ = {isa = PBXBuildFile; fileRef = CE3199C08A0688644B57C673C3FBC67F /* FLEXASLLogController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D1E590D9A4096B5D27C91D39D4869173 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B9D80F2267C3E0DD4F44F27B00A9336 /* ImageIO.framework */; };
 		D1F0D1133439A81914FC887EBB8370C5 /* FLEXUIAppShortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C2C02D159BBAE0D864412830CCDFEA /* FLEXUIAppShortcuts.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		D2256E2A8ECB4FEEB2A4E6B625DB9596 /* FLEX-Categories.h in Headers */ = {isa = PBXBuildFile; fileRef = E6C4DA7868B105770967DE5DBA9B471C /* FLEX-Categories.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D25AB1EA8E06CEA8A6404DD63BECA72E /* NSNotificationCenter+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9F729380579E1A418CFD778CB95296 /* NSNotificationCenter+YYAdd.m */; };
-		D2923CF43A513BC5E2C704CF026E8018 /* BRCBubbleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F142D09F567F475BC90D3795B4375CD4 /* BRCBubbleLayer.m */; };
 		D32B0D545766DA6A7CAAAE3662866148 /* SDWebImageCacheKeyFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = CA97F7100A46B054F37B29CA264AC925 /* SDWebImageCacheKeyFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331DE403B954A897E11478FFCBBBE5B /* NSDateFormatter+FLEX.h in Headers */ = {isa = PBXBuildFile; fileRef = 886ACED6AA204946B7F14E8EAA78AD29 /* NSDateFormatter+FLEX.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D388B627609E8FAD57873566F187C4BB /* SDImageIOAnimatedCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C3CF70C4543EB15AEBB13A85817B56B1 /* SDImageIOAnimatedCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -652,6 +651,7 @@
 		FD8D5FF27458C1A5E6A8FCAA191E10D2 /* NSBundle+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6061A71894A573A91D00B8B5EFA1075F /* NSBundle+YYAdd.m */; };
 		FDD119D3045B7BEF7D07674AA0E59A92 /* SDWebImageOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = A2682FB3C7AF5228C1277EBE54D7A9AC /* SDWebImageOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FE1423B0E7D0B3E4EBD1F6CECC04D4D0 /* FLEXTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3291AFADF0D6C0E6F737A3F399947C3 /* FLEXTableViewController.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
+		FE21BE50DCB3804DC89958533B91CF4B /* BRCPopUpConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 777CEDFE0B1C310738F22B6D9E650946 /* BRCPopUpConst.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FED6FEE7EF059477E4BEF5BD96E5D95D /* FLEXArgumentInputDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FDB4797CC984C6205668BFAB51FB9B /* FLEXArgumentInputDateView.m */; settings = {COMPILER_FLAGS = "-Wno-unsupported-availability-guard -Wno-deprecated-declarations"; }; };
 		FF6DC4F846B7BDFE223191E16ED29DE7 /* FLEXAlert.h in Headers */ = {isa = PBXBuildFile; fileRef = 18AA8C513E98F65975C271B45A1AA890 /* FLEXAlert.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -692,7 +692,6 @@
 		01A82FCA9E9E42CF494F44556C99DBAD /* SDWebImageCacheKeyFilter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCacheKeyFilter.m; path = BRCFastTest/Classes/SDWebImage/Core/SDWebImageCacheKeyFilter.m; sourceTree = "<group>"; };
 		01F356BB885AECC9052382FD8496B3CD /* FLEXArgumentInputColorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputColorView.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputColorView.h; sourceTree = "<group>"; };
 		0244D5DD1B612D6E2A169912DD43279F /* UIColor+SDHexString.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+SDHexString.m"; path = "BRCFastTest/Classes/SDWebImage/Private/UIColor+SDHexString.m"; sourceTree = "<group>"; };
-		028551B5D654434A736B38EA99C4F83C /* BRCPopUp-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "BRCPopUp-Info.plist"; sourceTree = "<group>"; };
 		02B069F9EA613EBF8BEEEF9608892173 /* Pods-BRCPopUp_SwiftUI-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BRCPopUp_SwiftUI-Info.plist"; sourceTree = "<group>"; };
 		02D20C8CB59CB8902334A079BE8C8CBD /* FLEXWindowShortcuts.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXWindowShortcuts.h; path = Classes/ObjectExplorers/Sections/Shortcuts/FLEXWindowShortcuts.h; sourceTree = "<group>"; };
 		02E9A0BAA98CEAB392A3E0DDFC76275F /* FLEXNetworkCurlLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXNetworkCurlLogger.h; path = Classes/Network/FLEXNetworkCurlLogger.h; sourceTree = "<group>"; };
@@ -728,7 +727,6 @@
 		102466D099A8D78470C9E19C971A0D25 /* FLEXNetworkRecorder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXNetworkRecorder.h; path = Classes/Network/FLEXNetworkRecorder.h; sourceTree = "<group>"; };
 		11048E3F545530456BBCBB5082A0388C /* FLEXClassBuilder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXClassBuilder.h; path = Classes/Utility/Runtime/Objc/Reflection/FLEXClassBuilder.h; sourceTree = "<group>"; };
 		113535B6415BD28312753D0D12C6BB1D /* BRCTestAppDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRCTestAppDelegate.h; path = BRCFastTest/Classes/BRCTestAppDelegate.h; sourceTree = "<group>"; };
-		1180EBA6410126B399F6A16C032675B3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		11817FAF11B3BDC092D7F159543C10BA /* NSDictionary+YYAdd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+YYAdd.h"; path = "BRCFastTest/Classes/YYExtension/NSDictionary+YYAdd.h"; sourceTree = "<group>"; };
 		123FDCDC6239C2A9C37172B401557B34 /* UIButton+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+WebCache.m"; path = "BRCFastTest/Classes/SDWebImage/Core/UIButton+WebCache.m"; sourceTree = "<group>"; };
 		12603FF84763F278B160C5F43DB94EFE /* FLEXDBQueryRowCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXDBQueryRowCell.m; path = Classes/GlobalStateExplorers/DatabaseBrowser/FLEXDBQueryRowCell.m; sourceTree = "<group>"; };
@@ -744,7 +742,6 @@
 		152A06E0D46CC42ED49360C9D1FFC2E3 /* SDWebImageDownloaderDecryptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageDownloaderDecryptor.m; path = BRCFastTest/Classes/SDWebImage/Core/SDWebImageDownloaderDecryptor.m; sourceTree = "<group>"; };
 		15AA5C9BBF26543A37F2A93980870D25 /* UIControl+YYAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIControl+YYAdd.m"; path = "BRCFastTest/Classes/YYExtension/UIControl+YYAdd.m"; sourceTree = "<group>"; };
 		16004C18E5A901FF7A37874267C51DBE /* FHSSnapshotNodes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FHSSnapshotNodes.m; path = Classes/ViewHierarchy/SnapshotExplorer/Scene/FHSSnapshotNodes.m; sourceTree = "<group>"; };
-		1605BAD57FD5575937E9243636385D0C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		16659EEC43E3ECDB2A338B4407DF9A2C /* FLEXColor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXColor.h; path = Classes/Utility/FLEXColor.h; sourceTree = "<group>"; };
 		16B303B3D2B410F17119134813E2FBC9 /* NSString+BRCTestLocalizable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+BRCTestLocalizable.m"; path = "BRCFastTest/Classes/NSString+BRCTestLocalizable.m"; sourceTree = "<group>"; };
 		16B9919AE7C884C144A0A00CBED5F26E /* NSArray+YYAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+YYAdd.m"; path = "BRCFastTest/Classes/YYExtension/NSArray+YYAdd.m"; sourceTree = "<group>"; };
@@ -761,7 +758,6 @@
 		1CD5C2338A2BE60FCC069E5DD04E39B9 /* MASConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASConstraint.h; path = BRCFastTest/Classes/Masonry/MASConstraint.h; sourceTree = "<group>"; };
 		1D387EB8980276FFF832DDCE27EA269E /* FLEXMutableListSection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXMutableListSection.m; path = Classes/ObjectExplorers/Sections/FLEXMutableListSection.m; sourceTree = "<group>"; };
 		1E3F52783B75970D0A1CB3EB396AE6FE /* Pods-BRCPopUp_SwiftUI.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-BRCPopUp_SwiftUI.modulemap"; sourceTree = "<group>"; };
-		1E6E2945B3F033B01551D6A12903CF2A /* BRCPopUp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BRCPopUp.debug.xcconfig; sourceTree = "<group>"; };
 		1F2946CA0613D2F3751C75166C11266E /* UIView+FLEX_Layout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+FLEX_Layout.m"; path = "Classes/Utility/Categories/Private/UIView+FLEX_Layout.m"; sourceTree = "<group>"; };
 		2010B290A58E874653D4210BD7864031 /* flex_fishhook.c */ = {isa = PBXFileReference; includeInIndex = 1; name = flex_fishhook.c; path = Classes/Utility/Runtime/flex_fishhook.c; sourceTree = "<group>"; };
 		2014CFEF02472C64BB549B178F7E1D38 /* FLEXManager+Extensibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FLEXManager+Extensibility.h"; path = "Classes/Manager/FLEXManager+Extensibility.h"; sourceTree = "<group>"; };
@@ -772,6 +768,7 @@
 		2159AE552ABD0139F354D47C6D59B28E /* FLEXMethod.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXMethod.m; path = Classes/Utility/Runtime/Objc/Reflection/FLEXMethod.m; sourceTree = "<group>"; };
 		21A4710C4767790CB989C3BCC383C3FE /* FLEXHTTPTransactionDetailController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXHTTPTransactionDetailController.m; path = Classes/Network/FLEXHTTPTransactionDetailController.m; sourceTree = "<group>"; };
 		227E1F28B2F0EFA7AA8987F9BCCC5279 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		235FD02C4ED211CBAA8978A2A436BDD6 /* BRCPopUpViewModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BRCPopUpViewModifier.swift; path = BRCPopUp/Classes/BRCPopUpViewModifier.swift; sourceTree = "<group>"; };
 		2397F5DF5C598E05DDDFF2F0A8CDC0B0 /* SceneKit+Snapshot.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "SceneKit+Snapshot.m"; path = "Classes/ViewHierarchy/SnapshotExplorer/Scene/SceneKit+Snapshot.m"; sourceTree = "<group>"; };
 		2416001D2EA036F4DFF716D2365DD4CC /* SDFileAttributeHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDFileAttributeHelper.h; path = BRCFastTest/Classes/SDWebImage/Private/SDFileAttributeHelper.h; sourceTree = "<group>"; };
 		24456BBEB2E4B3DC321EF419D5A4DAF0 /* UIImage+GIF.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+GIF.h"; path = "BRCFastTest/Classes/SDWebImage/Core/UIImage+GIF.h"; sourceTree = "<group>"; };
@@ -804,7 +801,6 @@
 		2BB740D7838DBC2576715ECF3D95C072 /* NSData+YYAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+YYAdd.m"; path = "BRCFastTest/Classes/YYExtension/NSData+YYAdd.m"; sourceTree = "<group>"; };
 		2C54BFE76783C2AEA0399EE04C8D1AD0 /* FLEXArgumentInputObjectView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputObjectView.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputObjectView.h; sourceTree = "<group>"; };
 		2E1CC2822B40998DDB5C308C046BBCCF /* CALayer+FLEX.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CALayer+FLEX.m"; path = "Classes/Utility/Categories/CALayer+FLEX.m"; sourceTree = "<group>"; };
-		2E735315F400AF38C15588C9911B3D38 /* BRCPopUpConst.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRCPopUpConst.h; path = BRCPopUp/Classes/BRCPopUpConst.h; sourceTree = "<group>"; };
 		2E763CAAE460A4F1D00E42B1A8539F66 /* UIView+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+WebCache.h"; path = "BRCFastTest/Classes/SDWebImage/Core/UIView+WebCache.h"; sourceTree = "<group>"; };
 		2F8A4D3DA1826A4341C8197F7B876076 /* SDImageCacheDefine.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageCacheDefine.m; path = BRCFastTest/Classes/SDWebImage/Core/SDImageCacheDefine.m; sourceTree = "<group>"; };
 		2F8F5369E327D384A4607E5D586B652F /* SDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageDownloaderOperation.m; path = BRCFastTest/Classes/SDWebImage/Core/SDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
@@ -826,7 +822,6 @@
 		379AD16BE2B75EF5601785D9A8819039 /* FLEXCodeFontCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXCodeFontCell.m; path = Classes/Core/Views/Cells/FLEXCodeFontCell.m; sourceTree = "<group>"; };
 		38692AAEC280AB12DE22777A5A87BD2A /* UIGestureRecognizer+Blocks.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIGestureRecognizer+Blocks.m"; path = "Classes/Utility/Categories/UIGestureRecognizer+Blocks.m"; sourceTree = "<group>"; };
 		3A3A6A792B03DF31B98FF78963A6D6F7 /* Pods-BRCPopUp_SwiftUI */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-BRCPopUp_SwiftUI"; path = Pods_BRCPopUp_SwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3AACD25384CAEC21F8CB0E2FE80A2911 /* BRCPopUp.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = BRCPopUp.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3B04E6A4FFEF1B1888A4CB0E30345EDB /* NSObject+YYAddForKVO.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+YYAddForKVO.m"; path = "BRCFastTest/Classes/YYExtension/NSObject+YYAddForKVO.m"; sourceTree = "<group>"; };
 		3B48216573A67316DE12D0D1FD79DBA4 /* FLEXRuntimeUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXRuntimeUtility.m; path = Classes/Utility/Runtime/FLEXRuntimeUtility.m; sourceTree = "<group>"; };
 		3B840E0D525ACDB0396458C2F96ABA6F /* SDImageCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCache.h; path = BRCFastTest/Classes/SDWebImage/Core/SDImageCache.h; sourceTree = "<group>"; };
@@ -856,11 +851,13 @@
 		4608702E81B3DCDAAC54B51F5BCB9087 /* FLEXHierarchyViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXHierarchyViewController.m; path = Classes/ViewHierarchy/FLEXHierarchyViewController.m; sourceTree = "<group>"; };
 		4628761437CD9942738A4A0F5B34B538 /* SDImageAPNGCoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageAPNGCoder.h; path = BRCFastTest/Classes/SDWebImage/Core/SDImageAPNGCoder.h; sourceTree = "<group>"; };
 		46680A2E9103FFD5F02E1BAD97EFBA7F /* NSObject+FLEX_Reflection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+FLEX_Reflection.m"; path = "Classes/Utility/Categories/NSObject+FLEX_Reflection.m"; sourceTree = "<group>"; };
+		46EAB4E7402880AF3A14D1535505260F /* BRCPopUper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRCPopUper.h; path = BRCPopUp/Classes/BRCPopUper.h; sourceTree = "<group>"; };
 		48531EB67D0015412C077F5EAC719F4E /* SDWebImageDownloaderRequestModifier.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageDownloaderRequestModifier.m; path = BRCFastTest/Classes/SDWebImage/Core/SDWebImageDownloaderRequestModifier.m; sourceTree = "<group>"; };
 		48EACD38EC5AEC379C44EE337DBBAAE2 /* FLEXRuntime+UIKitHelpers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FLEXRuntime+UIKitHelpers.h"; path = "Classes/Utility/Categories/FLEXRuntime+UIKitHelpers.h"; sourceTree = "<group>"; };
 		4992DB2F74ABF0EA856694BF101BDBA1 /* UIColor+YYAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+YYAdd.m"; path = "BRCFastTest/Classes/YYExtension/UIColor+YYAdd.m"; sourceTree = "<group>"; };
 		4A674BF78D11DB2244A1D131FC5AB0E9 /* UIControl+YYAdd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIControl+YYAdd.h"; path = "BRCFastTest/Classes/YYExtension/UIControl+YYAdd.h"; sourceTree = "<group>"; };
 		4A6B50576BC74CA4BAA530A4C3B3F53B /* SDDiskCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDDiskCache.h; path = BRCFastTest/Classes/SDWebImage/Core/SDDiskCache.h; sourceTree = "<group>"; };
+		4A6C5618159323430165F1312141FE10 /* BRCPopUpWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BRCPopUpWrapper.swift; path = BRCPopUp/Classes/BRCPopUpWrapper.swift; sourceTree = "<group>"; };
 		4AC7180564FE35A293CD0DD977EE56A8 /* FLEX */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FLEX; path = FLEX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B14BE196D5589B4CDD3E4AEDB685996 /* SDDeviceHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDDeviceHelper.m; path = BRCFastTest/Classes/SDWebImage/Private/SDDeviceHelper.m; sourceTree = "<group>"; };
 		4B99C40E447BB362DFD81097D3EDE688 /* FLEXObjectExplorerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXObjectExplorerViewController.h; path = Classes/ObjectExplorers/FLEXObjectExplorerViewController.h; sourceTree = "<group>"; };
@@ -877,6 +874,7 @@
 		4FFDDC1A21A561E540F675335D02E537 /* FLEXProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXProtocol.h; path = Classes/Utility/Runtime/Objc/Reflection/FLEXProtocol.h; sourceTree = "<group>"; };
 		502014E3A9CD79F78D541703DE8DEA39 /* YYKitMacro.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYKitMacro.m; path = BRCFastTest/Classes/YYExtension/YYKitMacro.m; sourceTree = "<group>"; };
 		512AC8D1F067E3E990E07A288E09FE8A /* FLEXViewControllerShortcuts.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXViewControllerShortcuts.m; path = Classes/ObjectExplorers/Sections/Shortcuts/FLEXViewControllerShortcuts.m; sourceTree = "<group>"; };
+		51433C9C1B90EE4F89D55A93A2C970D2 /* BRCPopUp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = BRCPopUp.modulemap; sourceTree = "<group>"; };
 		51E456186A2F20F09EF8603358086F92 /* FLEXNetworkObserver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXNetworkObserver.m; path = Classes/Network/PonyDebugger/FLEXNetworkObserver.m; sourceTree = "<group>"; };
 		52E53B1FF63C2E7291DA4862A4C3A5E8 /* FLEXNetworkSettingsController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXNetworkSettingsController.m; path = Classes/Network/FLEXNetworkSettingsController.m; sourceTree = "<group>"; };
 		54D8DCE83A5D952204B8928AFE46C4DA /* FLEXShortcutsSection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXShortcutsSection.h; path = Classes/ObjectExplorers/Sections/Shortcuts/FLEXShortcutsSection.h; sourceTree = "<group>"; };
@@ -893,6 +891,7 @@
 		5791CF1D56EF4CC140A252D60CA2121C /* FLEXClassShortcuts.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXClassShortcuts.m; path = Classes/ObjectExplorers/Sections/Shortcuts/FLEXClassShortcuts.m; sourceTree = "<group>"; };
 		5826C92AB4AC145F5EB43F137CB02DB7 /* BRCTestRootTabBarViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRCTestRootTabBarViewController.h; path = BRCFastTest/Classes/BRCTestRootTabBarViewController.h; sourceTree = "<group>"; };
 		582E831E3AAFA2C9319D5F27E842DFB6 /* NSImage+Compatibility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSImage+Compatibility.m"; path = "BRCFastTest/Classes/SDWebImage/Core/NSImage+Compatibility.m"; sourceTree = "<group>"; };
+		5846655F4049DC92DF31C36D207545C1 /* BRCPopUp-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "BRCPopUp-Info.plist"; sourceTree = "<group>"; };
 		5859862B32E9488F3882ACEA4639A833 /* Pods-BRCPopUp_SwiftUI-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BRCPopUp_SwiftUI-acknowledgements.markdown"; sourceTree = "<group>"; };
 		5863B31BB604317248A27C6A1D4F8837 /* FLEXRealmDatabaseManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXRealmDatabaseManager.h; path = Classes/GlobalStateExplorers/DatabaseBrowser/FLEXRealmDatabaseManager.h; sourceTree = "<group>"; };
 		58C3D34C689B47DCA1284E6FA10CFB93 /* FLEXIvar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXIvar.h; path = Classes/Utility/Runtime/Objc/Reflection/FLEXIvar.h; sourceTree = "<group>"; };
@@ -903,7 +902,6 @@
 		5A36C90C8AC6B0FD7C43C38E2CEFB628 /* FLEXLiveObjectsController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXLiveObjectsController.m; path = Classes/GlobalStateExplorers/FLEXLiveObjectsController.m; sourceTree = "<group>"; };
 		5A7DC8B0918113F88D7538AA86C68D7A /* UIImageView+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+WebCache.h"; path = "BRCFastTest/Classes/SDWebImage/Core/UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		5B1BAEC855C293AE4E992A4BDB72480E /* YYCGUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYCGUtilities.h; path = BRCFastTest/Classes/YYExtension/Quartz/YYCGUtilities.h; sourceTree = "<group>"; };
-		5B3593CC939E3E55FC290E6548C580E8 /* BRCPopUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BRCPopUp.release.xcconfig; sourceTree = "<group>"; };
 		5B9F171C54EFAF83FFF0A8C3A4339F57 /* FLEXProtocolBuilder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXProtocolBuilder.h; path = Classes/Utility/Runtime/Objc/Reflection/FLEXProtocolBuilder.h; sourceTree = "<group>"; };
 		5C0CFA1F8DEB8020BE2FDDEE55889697 /* SDDeviceHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDDeviceHelper.h; path = BRCFastTest/Classes/SDWebImage/Private/SDDeviceHelper.h; sourceTree = "<group>"; };
 		5D0131DFC5E2B53F5B643CF3B6C5A030 /* FLEXDefaultEditorViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXDefaultEditorViewController.m; path = Classes/Editing/FLEXDefaultEditorViewController.m; sourceTree = "<group>"; };
@@ -913,11 +911,11 @@
 		5E6C32586F2870D6733FB5BF9BA4A3FB /* UITextField+YYAdd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITextField+YYAdd.h"; path = "BRCFastTest/Classes/YYExtension/UITextField+YYAdd.h"; sourceTree = "<group>"; };
 		5EDB515BDB7979F5528CF9076CAEF220 /* FLEXViewControllersViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXViewControllersViewController.m; path = Classes/ExplorerInterface/FLEXViewControllersViewController.m; sourceTree = "<group>"; };
 		5EFC773C28E50F870A360FC7B99FEDC5 /* UIView+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+WebCache.m"; path = "BRCFastTest/Classes/SDWebImage/Core/UIView+WebCache.m"; sourceTree = "<group>"; };
+		5F2AD0091002E642FCBD83AFB8EE7491 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		5F429DC306F416F25BEC654F324370F1 /* NSString+BRCTestLocalizable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+BRCTestLocalizable.h"; path = "BRCFastTest/Classes/NSString+BRCTestLocalizable.h"; sourceTree = "<group>"; };
 		5FC439E0788827D9A3A6B4A55C0D57F5 /* SDImageCacheConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCacheConfig.h; path = BRCFastTest/Classes/SDWebImage/Core/SDImageCacheConfig.h; sourceTree = "<group>"; };
 		5FE65643998030BE2C3054336EFF0B05 /* FLEXFilteringTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXFilteringTableViewController.m; path = Classes/Core/Controllers/FLEXFilteringTableViewController.m; sourceTree = "<group>"; };
 		6061A71894A573A91D00B8B5EFA1075F /* NSBundle+YYAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+YYAdd.m"; path = "BRCFastTest/Classes/YYExtension/NSBundle+YYAdd.m"; sourceTree = "<group>"; };
-		60895EC51346F898676CD7097331E553 /* BRCPopUp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = BRCPopUp.modulemap; sourceTree = "<group>"; };
 		6117F187BEDDC70D61393EDA6FFC3BA3 /* UIColor+BRCFastTest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+BRCFastTest.m"; path = "BRCFastTest/Classes/UIColor+BRCFastTest.m"; sourceTree = "<group>"; };
 		6169DB6B77CC8EA21BAF76A1C06F94B3 /* Pods-BRCPopUp_SwiftUI-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BRCPopUp_SwiftUI-umbrella.h"; sourceTree = "<group>"; };
 		619CC448956431BAA4FAE9F5BB150A5C /* FHSSnapshotView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FHSSnapshotView.m; path = Classes/ViewHierarchy/SnapshotExplorer/FHSSnapshotView.m; sourceTree = "<group>"; };
@@ -937,6 +935,7 @@
 		6686069039180AD4E7E7C7AC81228175 /* SDInternalMacros.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDInternalMacros.m; path = BRCFastTest/Classes/SDWebImage/Private/SDInternalMacros.m; sourceTree = "<group>"; };
 		66AE2CBC1651674F07E5BCF5C7032F9F /* FLEXArgumentInputFontsPickerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputFontsPickerView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputFontsPickerView.m; sourceTree = "<group>"; };
 		677752DE6FEA188ADACF6263D40B25DA /* FLEX-Runtime.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FLEX-Runtime.h"; path = "Classes/FLEX-Runtime.h"; sourceTree = "<group>"; };
+		6790667A806CDD6775CF3A33BC355C7C /* BRCPopUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BRCPopUp.release.xcconfig; sourceTree = "<group>"; };
 		6826639B34951E88ADD04601D1FD67D9 /* FLEXNetworkTransaction.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXNetworkTransaction.h; path = Classes/Network/FLEXNetworkTransaction.h; sourceTree = "<group>"; };
 		68334D89AB1F741FF1AC8AB8E5A78A53 /* BRCTestSwitConst.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BRCTestSwitConst.swift; path = BRCFastTest/Classes/Swfit/BRCTestSwitConst.swift; sourceTree = "<group>"; };
 		6852B794F80E65D20E919A15622E2A79 /* FHSSnapshotView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FHSSnapshotView.h; path = Classes/ViewHierarchy/SnapshotExplorer/FHSSnapshotView.h; sourceTree = "<group>"; };
@@ -953,7 +952,6 @@
 		6BBD9D1B86E86F4DDB4F99E8D11FFBC4 /* SDImageGraphics.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageGraphics.m; path = BRCFastTest/Classes/SDWebImage/Core/SDImageGraphics.m; sourceTree = "<group>"; };
 		6BC813F1D99F6F2ADACF85CB20B4BA36 /* BRCFastTest */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = BRCFastTest; path = BRCFastTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BFF0EC863C82F4E404B38F5E83208FC /* UIDevice+YYAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+YYAdd.m"; path = "BRCFastTest/Classes/YYExtension/UIDevice+YYAdd.m"; sourceTree = "<group>"; };
-		6C148B80A3DE7FF42F3FE3F9322892C6 /* BRCPopUp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BRCPopUp-dummy.m"; sourceTree = "<group>"; };
 		6C518AC80B04F6EB1D8567561347F526 /* Masonry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Masonry.h; path = BRCFastTest/Classes/Masonry/Masonry.h; sourceTree = "<group>"; };
 		6C5D2CAAA97B200DAFFDE2887B70D367 /* SDImageAWebPCoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageAWebPCoder.m; path = BRCFastTest/Classes/SDWebImage/Core/SDImageAWebPCoder.m; sourceTree = "<group>"; };
 		6C9F0773C7EBAFBD97BFD6AC1CE4E348 /* FLEXMutableListSection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXMutableListSection.h; path = Classes/ObjectExplorers/Sections/FLEXMutableListSection.h; sourceTree = "<group>"; };
@@ -975,8 +973,10 @@
 		70E9A40D3B12D694950070120371C860 /* UIApplication+YYAdd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+YYAdd.h"; path = "BRCFastTest/Classes/YYExtension/UIApplication+YYAdd.h"; sourceTree = "<group>"; };
 		715829A2F3F5927EF50A16790D00D6F7 /* SDWebImageCacheSerializer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageCacheSerializer.h; path = BRCFastTest/Classes/SDWebImage/Core/SDWebImageCacheSerializer.h; sourceTree = "<group>"; };
 		72246F015118904F488FC1EB37F82DB9 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "ViewController+MASAdditions.m"; path = "BRCFastTest/Classes/Masonry/ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		7264F570CFE2E6F7D30C7DCEBAC26C9E /* UIView+BRCPopUp.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+BRCPopUp.h"; path = "BRCPopUp/Classes/UIView+BRCPopUp.h"; sourceTree = "<group>"; };
 		727D437C80D17A9F77850547995DB61C /* FLEXArgumentInputNotSupportedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputNotSupportedView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputNotSupportedView.m; sourceTree = "<group>"; };
 		729D623C1982E1F3BBF377727D555BEB /* SDImageIOCoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageIOCoder.h; path = BRCFastTest/Classes/SDWebImage/Core/SDImageIOCoder.h; sourceTree = "<group>"; };
+		72AAC19860D7E3363BF613E080AD06D1 /* BRCPopUpMenu.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRCPopUpMenu.h; path = BRCPopUp/Classes/BRCPopUpMenu.h; sourceTree = "<group>"; };
 		72F5FC267CE946EF7EB9C7A4B056AB4C /* FLEXRuntimeKeyPathTokenizer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXRuntimeKeyPathTokenizer.h; path = Classes/GlobalStateExplorers/RuntimeBrowser/FLEXRuntimeKeyPathTokenizer.h; sourceTree = "<group>"; };
 		73575C1DDAB0847D069CE62C4891E24B /* FLEXFileBrowserSearchOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXFileBrowserSearchOperation.m; path = Classes/GlobalStateExplorers/FileBrowser/FLEXFileBrowserSearchOperation.m; sourceTree = "<group>"; };
 		7359A4DEC1CAA7DCEAB43B9133E621B8 /* FLEXArgumentInputFontsPickerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputFontsPickerView.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputFontsPickerView.h; sourceTree = "<group>"; };
@@ -993,7 +993,9 @@
 		7621A0A3984C962EB919C9B3E9FD80AE /* FLEXRuntimeController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXRuntimeController.h; path = Classes/GlobalStateExplorers/RuntimeBrowser/DataSources/FLEXRuntimeController.h; sourceTree = "<group>"; };
 		76E43137A443CFBACF8F0F3DF373CB39 /* SDImageCachesManagerOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCachesManagerOperation.h; path = BRCFastTest/Classes/SDWebImage/Private/SDImageCachesManagerOperation.h; sourceTree = "<group>"; };
 		7748DCBDB68F5E6DB6524EADA1E42FA9 /* UIView+YYAdd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+YYAdd.h"; path = "BRCFastTest/Classes/YYExtension/UIView+YYAdd.h"; sourceTree = "<group>"; };
+		777CEDFE0B1C310738F22B6D9E650946 /* BRCPopUpConst.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRCPopUpConst.h; path = BRCPopUp/Classes/BRCPopUpConst.h; sourceTree = "<group>"; };
 		77B69848ACF1B6E0F7F466FC7BCBBAA9 /* YYCGUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYCGUtilities.m; path = BRCFastTest/Classes/YYExtension/Quartz/YYCGUtilities.m; sourceTree = "<group>"; };
+		77C6827333100B8281E66EA24B429649 /* BRCPopUpMenu.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BRCPopUpMenu.m; path = BRCPopUp/Classes/BRCPopUpMenu.m; sourceTree = "<group>"; };
 		77D255DD590BD72F0FB24A855C00C883 /* Firestore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Firestore.h; path = Classes/Network/Firestore.h; sourceTree = "<group>"; };
 		784A2313F70921D37CCEDD32DC3E77F9 /* SDWebImageDownloaderResponseModifier.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloaderResponseModifier.h; path = BRCFastTest/Classes/SDWebImage/Core/SDWebImageDownloaderResponseModifier.h; sourceTree = "<group>"; };
 		787A58D1B8D17E1DFD9154096F1EF0BC /* SDImageTransformer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageTransformer.h; path = BRCFastTest/Classes/SDWebImage/Core/SDImageTransformer.h; sourceTree = "<group>"; };
@@ -1008,7 +1010,6 @@
 		7CC2CD32A1714A0A823A056D8E939C5A /* SDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloaderOperation.h; path = BRCFastTest/Classes/SDWebImage/Core/SDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
 		7D014858FB28B073F86D2C712A5D1E85 /* FLEXManager+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FLEXManager+Private.h"; path = "Classes/Manager/Private/FLEXManager+Private.h"; sourceTree = "<group>"; };
 		7D15047C77AE88D8A0F2D62302DB1E0C /* FLEXRuntimeSafety.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXRuntimeSafety.h; path = Classes/Utility/Runtime/Objc/FLEXRuntimeSafety.h; sourceTree = "<group>"; };
-		7D25BF7677C3A5A20A20870E491D08EE /* BRCPopUpViewModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BRCPopUpViewModifier.swift; path = BRCPopUp/Classes/BRCPopUpViewModifier.swift; sourceTree = "<group>"; };
 		7D2B6F91D82F1B5061A8191F7C2D77B9 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/SceneKit.framework; sourceTree = DEVELOPER_DIR; };
 		7DF751868499DFB24CDA4E4B0395F6B5 /* FLEXHierarchyViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXHierarchyViewController.h; path = Classes/ViewHierarchy/FLEXHierarchyViewController.h; sourceTree = "<group>"; };
 		7E24888985DAB56676A239200C3E4CB2 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSLayoutConstraint+MASDebugAdditions.m"; path = "BRCFastTest/Classes/Masonry/NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
@@ -1021,6 +1022,7 @@
 		7F6F2522B809C33F18E481FF9ADE2772 /* NSMapTable+FLEX_Subscripting.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMapTable+FLEX_Subscripting.m"; path = "Classes/Utility/Categories/Private/NSMapTable+FLEX_Subscripting.m"; sourceTree = "<group>"; };
 		7F7E62AEB973EAB7F36F32B1881DEF8D /* FLEXRuntimeKeyPathTokenizer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXRuntimeKeyPathTokenizer.m; path = Classes/GlobalStateExplorers/RuntimeBrowser/FLEXRuntimeKeyPathTokenizer.m; sourceTree = "<group>"; };
 		7FEA981B87090AF63D11E22F58BA610F /* UIGestureRecognizer+YYAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIGestureRecognizer+YYAdd.m"; path = "BRCFastTest/Classes/YYExtension/UIGestureRecognizer+YYAdd.m"; sourceTree = "<group>"; };
+		7FF655F420968E5E4F1045F2C5CF8624 /* BRCPopUper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BRCPopUper.m; path = BRCPopUp/Classes/BRCPopUper.m; sourceTree = "<group>"; };
 		800F255F01DE79AD9700FACAF7D6D2D9 /* FLEXTabList.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXTabList.h; path = Classes/ExplorerInterface/Tabs/FLEXTabList.h; sourceTree = "<group>"; };
 		806C4436A6E83F16E62E713352113155 /* FLEXAPNSViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXAPNSViewController.m; path = Classes/GlobalStateExplorers/FLEXAPNSViewController.m; sourceTree = "<group>"; };
 		80AA393A638508C07B3497AB00BD947C /* UIImage+Transform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Transform.h"; path = "BRCFastTest/Classes/SDWebImage/Core/UIImage+Transform.h"; sourceTree = "<group>"; };
@@ -1039,7 +1041,6 @@
 		8471303EB7C181BBBF95C9E8D8F4EF30 /* MASConstraintMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraintMaker.m; path = BRCFastTest/Classes/Masonry/MASConstraintMaker.m; sourceTree = "<group>"; };
 		84875193881C57C3C5B818DA5EFE7727 /* FLEXOSLogController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXOSLogController.h; path = Classes/GlobalStateExplorers/SystemLog/FLEXOSLogController.h; sourceTree = "<group>"; };
 		84891150C63DD392C461A28A91E67425 /* UITextField+YYAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITextField+YYAdd.m"; path = "BRCFastTest/Classes/YYExtension/UITextField+YYAdd.m"; sourceTree = "<group>"; };
-		84E58ABBDC2131DFB8A314FC83CEE285 /* UIView+BRCPopUp.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+BRCPopUp.h"; path = "BRCPopUp/Classes/UIView+BRCPopUp.h"; sourceTree = "<group>"; };
 		85179D5ACA08F6BA8B9E2783BB30E8E6 /* FLEXShortcutsFactory+Defaults.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FLEXShortcutsFactory+Defaults.h"; path = "Classes/ObjectExplorers/Sections/Shortcuts/FLEXShortcutsFactory+Defaults.h"; sourceTree = "<group>"; };
 		858C856ADA15AF8E4E4BCAF4033CFEF2 /* FLEXHeapEnumerator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXHeapEnumerator.m; path = Classes/Utility/FLEXHeapEnumerator.m; sourceTree = "<group>"; };
 		860C5500973963DDA15729B964729554 /* NSBundle+YYAdd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSBundle+YYAdd.h"; path = "BRCFastTest/Classes/YYExtension/NSBundle+YYAdd.h"; sourceTree = "<group>"; };
@@ -1072,7 +1073,6 @@
 		8F08EE884B584082850B9CF06B657A6A /* FLEXFileBrowserController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXFileBrowserController.h; path = Classes/GlobalStateExplorers/FileBrowser/FLEXFileBrowserController.h; sourceTree = "<group>"; };
 		8F0BCA01FB31907E2D774576632BB783 /* SDImageGraphics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageGraphics.h; path = BRCFastTest/Classes/SDWebImage/Core/SDImageGraphics.h; sourceTree = "<group>"; };
 		8F8743D159F048605060622D444AED10 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
-		8FA2C437231DA32902A870AFC0FA5032 /* BRCPopUp-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BRCPopUp-prefix.pch"; sourceTree = "<group>"; };
 		8FE0625AA48931489DD0D857A9294302 /* FLEXHierarchyTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXHierarchyTableViewCell.h; path = Classes/ViewHierarchy/TreeExplorer/FLEXHierarchyTableViewCell.h; sourceTree = "<group>"; };
 		91314E5140EE872753724AE37D1F0225 /* FLEXColor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXColor.m; path = Classes/Utility/FLEXColor.m; sourceTree = "<group>"; };
 		9146C35B29AB3277C4BEC5D236500069 /* SDGraphicsImageRenderer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDGraphicsImageRenderer.h; path = BRCFastTest/Classes/SDWebImage/Core/SDGraphicsImageRenderer.h; sourceTree = "<group>"; };
@@ -1119,7 +1119,6 @@
 		9E25E37A3FF58531C93EE1D3E7118B22 /* NSString+ObjcRuntime.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+ObjcRuntime.h"; path = "Classes/Utility/Categories/Private/NSString+ObjcRuntime.h"; sourceTree = "<group>"; };
 		9E396B60B7D19F3D8FFB33C0A573AF11 /* FLEXWindowShortcuts.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXWindowShortcuts.m; path = Classes/ObjectExplorers/Sections/Shortcuts/FLEXWindowShortcuts.m; sourceTree = "<group>"; };
 		9FE25ABD72E9460FC19E472007EA97F5 /* FLEXBlockShortcuts.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXBlockShortcuts.m; path = Classes/ObjectExplorers/Sections/Shortcuts/FLEXBlockShortcuts.m; sourceTree = "<group>"; };
-		A0689D0FA3995A5CEB1B6BFAD71C8033 /* BRCPopUper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRCPopUper.h; path = BRCPopUp/Classes/BRCPopUper.h; sourceTree = "<group>"; };
 		A0D0B599CB62D57B13A90707E28C3F1B /* FLEXAlert.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXAlert.m; path = Classes/Utility/FLEXAlert.m; sourceTree = "<group>"; };
 		A0D1EB945868FC5CF82BF7491B332E43 /* NSTimer+YYAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSTimer+YYAdd.m"; path = "BRCFastTest/Classes/YYExtension/NSTimer+YYAdd.m"; sourceTree = "<group>"; };
 		A0E17EE36C1A47634E19808A20B3AC35 /* SDFileAttributeHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDFileAttributeHelper.m; path = BRCFastTest/Classes/SDWebImage/Private/SDFileAttributeHelper.m; sourceTree = "<group>"; };
@@ -1144,19 +1143,20 @@
 		A88B5584E7F93C2462384E7B5E616DB5 /* FLEXWebViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXWebViewController.m; path = Classes/GlobalStateExplorers/FLEXWebViewController.m; sourceTree = "<group>"; };
 		A90C874E68F3973C9DC6D3D7C6AB3336 /* FLEXKeychain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXKeychain.h; path = Classes/GlobalStateExplorers/Keychain/FLEXKeychain.h; sourceTree = "<group>"; };
 		A910D965F8FF4E25D2220C0BD195084F /* FLEXNavigationController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXNavigationController.h; path = Classes/Core/Controllers/FLEXNavigationController.h; sourceTree = "<group>"; };
+		A9D092FFC7D7E8B9EEBE6B7243D92C4F /* BRCPopUp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BRCPopUp-umbrella.h"; sourceTree = "<group>"; };
 		AA5309118949BBD02FC47C299EC0A6D7 /* NSImage+Compatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSImage+Compatibility.h"; path = "BRCFastTest/Classes/SDWebImage/Core/NSImage+Compatibility.h"; sourceTree = "<group>"; };
 		AAA03508E2FCC0A871B5A03CEDCBCC2A /* FLEXObjectExplorerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXObjectExplorerViewController.m; path = Classes/ObjectExplorers/FLEXObjectExplorerViewController.m; sourceTree = "<group>"; };
 		AB0A063F4EAB511589E00FE29D90E6BC /* FLEXExplorerToolbar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXExplorerToolbar.m; path = Classes/Toolbar/FLEXExplorerToolbar.m; sourceTree = "<group>"; };
 		AB6E36EA4112BE70409217A566D73C3F /* FLEXSubtitleTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXSubtitleTableViewCell.h; path = Classes/Core/Views/Cells/FLEXSubtitleTableViewCell.h; sourceTree = "<group>"; };
 		AB750612F2B68D46DE7C13F22D05BF9E /* FLEXSQLResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXSQLResult.h; path = Classes/GlobalStateExplorers/DatabaseBrowser/FLEXSQLResult.h; sourceTree = "<group>"; };
 		ABAAD21653F206342B5FAF8707070512 /* FLEXArgumentInputView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputView.m; sourceTree = "<group>"; };
+		AC317F06AD0F0551B746E30D512E91AA /* BRCPopUp.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = BRCPopUp.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		ACBEAA5216DE61ADA25EABC342C06F0B /* FLEXObjectExplorer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXObjectExplorer.h; path = Classes/ObjectExplorers/FLEXObjectExplorer.h; sourceTree = "<group>"; };
 		ADE1221BD3546BA92E38BCC99BFDEF1C /* BRCDebugWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRCDebugWindow.h; path = BRCFastTest/Classes/BRCDebugWindow.h; sourceTree = "<group>"; };
 		ADF4DBD0D54CBAC6D30BE8247CB8F1EB /* SDImageTransformer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageTransformer.m; path = BRCFastTest/Classes/SDWebImage/Core/SDImageTransformer.m; sourceTree = "<group>"; };
 		AE062E84F54718011B417E644E7367A8 /* SDMemoryCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDMemoryCache.h; path = BRCFastTest/Classes/SDWebImage/Core/SDMemoryCache.h; sourceTree = "<group>"; };
 		AE8AC9423815FA3779B9CB4DF477A714 /* FLEXWindowManagerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXWindowManagerController.h; path = Classes/ExplorerInterface/FLEXWindowManagerController.h; sourceTree = "<group>"; };
 		AEB49F7D511D52FF9AF110023E245143 /* NSData+ImageContentType.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+ImageContentType.m"; path = "BRCFastTest/Classes/SDWebImage/Core/NSData+ImageContentType.m"; sourceTree = "<group>"; };
-		AEC503CCE93EFF4F223A882DA90CF349 /* UIView+BRCPopUp.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+BRCPopUp.m"; path = "BRCPopUp/Classes/UIView+BRCPopUp.m"; sourceTree = "<group>"; };
 		AF0BF345EF0AEDD596D081CFE5DEC0E9 /* UIColor+YYAdd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+YYAdd.h"; path = "BRCFastTest/Classes/YYExtension/UIColor+YYAdd.h"; sourceTree = "<group>"; };
 		AF51EF5E81A5B703D936F498D21824DE /* FLEXObjectRef.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXObjectRef.h; path = Classes/GlobalStateExplorers/FLEXObjectRef.h; sourceTree = "<group>"; };
 		B02165A494736173DEAF1A4E1112DDC9 /* FLEXManager+Extensibility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FLEXManager+Extensibility.m"; path = "Classes/Manager/FLEXManager+Extensibility.m"; sourceTree = "<group>"; };
@@ -1192,6 +1192,7 @@
 		B8912A2C262AEB8E08CD9B16E81D585E /* FLEXRuntimeBrowserToolbar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXRuntimeBrowserToolbar.h; path = Classes/GlobalStateExplorers/RuntimeBrowser/FLEXRuntimeBrowserToolbar.h; sourceTree = "<group>"; };
 		B8D5E6EE4D381B6B718ED5F9A9660B26 /* SDImageFramePool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageFramePool.m; path = BRCFastTest/Classes/SDWebImage/Private/SDImageFramePool.m; sourceTree = "<group>"; };
 		B90284C06AFD6E330D49C87A0E07AFF7 /* SDImageAssetManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageAssetManager.h; path = BRCFastTest/Classes/SDWebImage/Private/SDImageAssetManager.h; sourceTree = "<group>"; };
+		B95D56A38AE80B92B55359FCC5456439 /* BRCPopUp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BRCPopUp-dummy.m"; sourceTree = "<group>"; };
 		B9CB781D124FB62F6AF7EE383B016BEE /* NSDictionary+ObjcRuntime.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+ObjcRuntime.h"; path = "Classes/Utility/Categories/Private/NSDictionary+ObjcRuntime.h"; sourceTree = "<group>"; };
 		B9F1C64C46ABAFF0E40EEE0E323B7850 /* FLEXSingleRowSection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXSingleRowSection.m; path = Classes/Core/FLEXSingleRowSection.m; sourceTree = "<group>"; };
 		B9F37B40719A2814C449C9D22095249B /* FLEXBlockDescription.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXBlockDescription.h; path = Classes/Utility/Runtime/Objc/Reflection/FLEXBlockDescription.h; sourceTree = "<group>"; };
@@ -1225,6 +1226,7 @@
 		C36F71542E8507F404DF5272643580FB /* FLEXWindowManagerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXWindowManagerController.m; path = Classes/ExplorerInterface/FLEXWindowManagerController.m; sourceTree = "<group>"; };
 		C3CF70C4543EB15AEBB13A85817B56B1 /* SDImageIOAnimatedCoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageIOAnimatedCoder.h; path = BRCFastTest/Classes/SDWebImage/Core/SDImageIOAnimatedCoder.h; sourceTree = "<group>"; };
 		C3D135A56D6E82F55645F551A1BDFE1E /* FLEXKeyboardShortcutManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXKeyboardShortcutManager.m; path = Classes/Utility/Keyboard/FLEXKeyboardShortcutManager.m; sourceTree = "<group>"; };
+		C44FCBE0383A0928B4BB90C0605ED36A /* BRCPopUp-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BRCPopUp-prefix.pch"; sourceTree = "<group>"; };
 		C4AACB501099F10829E4D4DD170F1DDF /* SceneKit+Snapshot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "SceneKit+Snapshot.h"; path = "Classes/ViewHierarchy/SnapshotExplorer/Scene/SceneKit+Snapshot.h"; sourceTree = "<group>"; };
 		C6AEE1015FB91A92C6C558E75E3888A8 /* SDAnimatedImagePlayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDAnimatedImagePlayer.h; path = BRCFastTest/Classes/SDWebImage/Core/SDAnimatedImagePlayer.h; sourceTree = "<group>"; };
 		C6BD449F6B360F3B479B7AA83DD35B4B /* SDAnimatedImageRep.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDAnimatedImageRep.h; path = BRCFastTest/Classes/SDWebImage/Core/SDAnimatedImageRep.h; sourceTree = "<group>"; };
@@ -1241,7 +1243,6 @@
 		CC5F65EAB67DF0021DB19D13A07E590C /* FLEXFirebaseTransaction.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = FLEXFirebaseTransaction.mm; path = Classes/Network/FLEXFirebaseTransaction.mm; sourceTree = "<group>"; };
 		CC9CF39DEC74EF83CA262FD2A197A2E9 /* FLEXSwiftInternal.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = FLEXSwiftInternal.mm; path = Classes/Utility/Runtime/Objc/FLEXSwiftInternal.mm; sourceTree = "<group>"; };
 		CCAB7FA4C4A04FC1F7FCF6D062908843 /* SDAnimatedImageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDAnimatedImageView.h; path = BRCFastTest/Classes/SDWebImage/Core/SDAnimatedImageView.h; sourceTree = "<group>"; };
-		CCD2E3CD8A928BC9BDE773C2071D7ECA /* BRCPopUp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BRCPopUp-umbrella.h"; sourceTree = "<group>"; };
 		CDC35A442596F5BC3A7A11E9749539BD /* SDImageAssetManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageAssetManager.m; path = BRCFastTest/Classes/SDWebImage/Private/SDImageAssetManager.m; sourceTree = "<group>"; };
 		CDD2FB063C239AEAF12AEB7D7E5172BE /* FLEXGlobalsEntry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXGlobalsEntry.h; path = Classes/GlobalStateExplorers/Globals/FLEXGlobalsEntry.h; sourceTree = "<group>"; };
 		CE0BA512B5F6677BC451D4F2A933217B /* SDImageCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageCache.m; path = BRCFastTest/Classes/SDWebImage/Core/SDImageCache.m; sourceTree = "<group>"; };
@@ -1285,7 +1286,6 @@
 		DF6E21196E7316AD3C31BEF4FE8909F3 /* NSKeyedUnarchiver+YYAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSKeyedUnarchiver+YYAdd.m"; path = "BRCFastTest/Classes/YYExtension/NSKeyedUnarchiver+YYAdd.m"; sourceTree = "<group>"; };
 		DFA0444F26191999CD67F3D9D7886D00 /* SDInternalMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDInternalMacros.h; path = BRCFastTest/Classes/SDWebImage/Private/SDInternalMacros.h; sourceTree = "<group>"; };
 		E01267DEE1CBFB186D55A63E7DF5D160 /* Cocoa+FLEXShortcuts.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Cocoa+FLEXShortcuts.h"; path = "Classes/Utility/Categories/Private/Cocoa+FLEXShortcuts.h"; sourceTree = "<group>"; };
-		E0770E165FD3128979570A40558688BB /* BRCPopUpWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BRCPopUpWrapper.swift; path = BRCPopUp/Classes/BRCPopUpWrapper.swift; sourceTree = "<group>"; };
 		E18388C2FC0834EE80860513C9F409FF /* FLEXProtocol.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXProtocol.m; path = Classes/Utility/Runtime/Objc/Reflection/FLEXProtocol.m; sourceTree = "<group>"; };
 		E1CEAF8BF98F18AB81EB1562D4067D0D /* FLEXExplorerToolbarItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXExplorerToolbarItem.h; path = Classes/Toolbar/FLEXExplorerToolbarItem.h; sourceTree = "<group>"; };
 		E1EA3A6D7DF77A8AC019BC97A3C73DCD /* NSNumber+YYAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNumber+YYAdd.m"; path = "BRCFastTest/Classes/YYExtension/NSNumber+YYAdd.m"; sourceTree = "<group>"; };
@@ -1301,6 +1301,7 @@
 		E6C4DA7868B105770967DE5DBA9B471C /* FLEX-Categories.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FLEX-Categories.h"; path = "Classes/FLEX-Categories.h"; sourceTree = "<group>"; };
 		E7A4C7BE4D9D2C8328B70B54C663D907 /* FLEXTableContentViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXTableContentViewController.m; path = Classes/GlobalStateExplorers/DatabaseBrowser/FLEXTableContentViewController.m; sourceTree = "<group>"; };
 		E7AAE78CFFF49DCE386D9F7E3398971D /* FLEX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FLEX.release.xcconfig; sourceTree = "<group>"; };
+		E81F9D301D2F6272157BBF6A1C818455 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		E833AF4E4F0CD1BBC810FBB4D08485BD /* FLEXTypeEncodingParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXTypeEncodingParser.m; path = Classes/Utility/Runtime/Objc/FLEXTypeEncodingParser.m; sourceTree = "<group>"; };
 		E87E20A72CDE407C83066607D5A6FC46 /* FLEXKeychainQuery.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXKeychainQuery.m; path = Classes/GlobalStateExplorers/Keychain/FLEXKeychainQuery.m; sourceTree = "<group>"; };
 		E89E0D7826CFD0598A1EB8B82FCAF53C /* FLEX.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEX.h; path = Classes/FLEX.h; sourceTree = "<group>"; };
@@ -1308,10 +1309,10 @@
 		E8F599A921210A1701ED2DBB7AC8B64E /* UIPasteboard+FLEX.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIPasteboard+FLEX.m"; path = "Classes/Utility/Categories/UIPasteboard+FLEX.m"; sourceTree = "<group>"; };
 		E90B64FF4F4645EB78C8E66EB16771C7 /* CALayer+YYAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CALayer+YYAdd.m"; path = "BRCFastTest/Classes/YYExtension/Quartz/CALayer+YYAdd.m"; sourceTree = "<group>"; };
 		E935FEB575FBA4B61C502AA6E772A880 /* FHSViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FHSViewController.m; path = Classes/ViewHierarchy/SnapshotExplorer/FHSViewController.m; sourceTree = "<group>"; };
-		E954D089A4FE838808B4460B5641DEAF /* BRCPopUper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BRCPopUper.m; path = BRCPopUp/Classes/BRCPopUper.m; sourceTree = "<group>"; };
 		E98293C1E4F7E896ACB38D636651C4F1 /* UIBezierPath+YYAdd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIBezierPath+YYAdd.h"; path = "BRCFastTest/Classes/YYExtension/UIBezierPath+YYAdd.h"; sourceTree = "<group>"; };
 		E9866E513D8C0BC80B41F257FBA0946F /* BRCDebugWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BRCDebugWindow.m; path = BRCFastTest/Classes/BRCDebugWindow.m; sourceTree = "<group>"; };
 		E9F66214BC9164C61DB241B1E29AFEEA /* FLEXHierarchyTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXHierarchyTableViewController.h; path = Classes/ViewHierarchy/TreeExplorer/FLEXHierarchyTableViewController.h; sourceTree = "<group>"; };
+		EA01F1783986697B5F2AED2DAE8B1C55 /* BRCPopUp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BRCPopUp.debug.xcconfig; sourceTree = "<group>"; };
 		EAC85BB6369021A1057B6B8E57B15C3E /* FLEXProperty.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXProperty.m; path = Classes/Utility/Runtime/Objc/Reflection/FLEXProperty.m; sourceTree = "<group>"; };
 		EB218D2ED4BAF2B4EEA1DDE2F4CBEDF2 /* SDDiskCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDDiskCache.m; path = BRCFastTest/Classes/SDWebImage/Core/SDDiskCache.m; sourceTree = "<group>"; };
 		EB5FE9DEE96B57F6FB4E80F1345E38FD /* FLEXArgumentInputDateView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputDateView.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputDateView.h; sourceTree = "<group>"; };
@@ -1324,7 +1325,6 @@
 		EE9F729380579E1A418CFD778CB95296 /* NSNotificationCenter+YYAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNotificationCenter+YYAdd.m"; path = "BRCFastTest/Classes/YYExtension/NSNotificationCenter+YYAdd.m"; sourceTree = "<group>"; };
 		EEF52A51D40ABAB25FE0633B31EEC6AD /* FLEXNetworkObserver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXNetworkObserver.h; path = Classes/Network/PonyDebugger/FLEXNetworkObserver.h; sourceTree = "<group>"; };
 		EF3E94BD1398C0332F5B2CB2C3A1E137 /* UIBarButtonItem+YYAdd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIBarButtonItem+YYAdd.h"; path = "BRCFastTest/Classes/YYExtension/UIBarButtonItem+YYAdd.h"; sourceTree = "<group>"; };
-		F142D09F567F475BC90D3795B4375CD4 /* BRCBubbleLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BRCBubbleLayer.m; path = BRCPopUp/Classes/BRCBubbleLayer.m; sourceTree = "<group>"; };
 		F159E8E88DE07C704A410F111D26CAB7 /* FLEXShortcut.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXShortcut.h; path = Classes/ObjectExplorers/Sections/Shortcuts/FLEXShortcut.h; sourceTree = "<group>"; };
 		F310BFBA6FB25FA718A6D0A2FF5E1FEA /* FLEXTableViewSection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXTableViewSection.m; path = Classes/Core/FLEXTableViewSection.m; sourceTree = "<group>"; };
 		F4068982EF0534F7E548B3D5C477B116 /* NSDateFormatter+FLEX.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDateFormatter+FLEX.m"; path = "Classes/Utility/Categories/NSDateFormatter+FLEX.m"; sourceTree = "<group>"; };
@@ -1338,7 +1338,6 @@
 		F5F92E1DCF22B74D69DEC974992453BA /* NSDictionary+YYAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+YYAdd.m"; path = "BRCFastTest/Classes/YYExtension/NSDictionary+YYAdd.m"; sourceTree = "<group>"; };
 		F6C2C02D159BBAE0D864412830CCDFEA /* FLEXUIAppShortcuts.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXUIAppShortcuts.m; path = Classes/ObjectExplorers/Sections/Shortcuts/FLEXUIAppShortcuts.m; sourceTree = "<group>"; };
 		F6F52DAD3FB60259F6BA08B49C0AFCD4 /* FHSViewSnapshot.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FHSViewSnapshot.m; path = Classes/ViewHierarchy/SnapshotExplorer/FHSViewSnapshot.m; sourceTree = "<group>"; };
-		F812FE02FB6B21B1B3FA917302744F70 /* BRCBubbleLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRCBubbleLayer.h; path = BRCPopUp/Classes/BRCBubbleLayer.h; sourceTree = "<group>"; };
 		F8368F94EC15B7300A3B26BCBC29E525 /* SDAnimatedImageView+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "SDAnimatedImageView+WebCache.h"; path = "BRCFastTest/Classes/SDWebImage/Core/SDAnimatedImageView+WebCache.h"; sourceTree = "<group>"; };
 		F8F6F2545F1D53D57CE10CCAC5FFB000 /* FLEXRuntimeClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXRuntimeClient.m; path = Classes/GlobalStateExplorers/RuntimeBrowser/DataSources/FLEXRuntimeClient.m; sourceTree = "<group>"; };
 		F90EEFA0618E64C1DFC8F3D8793B32F5 /* UIImage+MemoryCacheCost.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+MemoryCacheCost.h"; path = "BRCFastTest/Classes/SDWebImage/Core/UIImage+MemoryCacheCost.h"; sourceTree = "<group>"; };
@@ -1351,6 +1350,7 @@
 		FB593B225E0743A3F9B67F2FF56F0B40 /* FLEXTableRowDataViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXTableRowDataViewController.m; path = Classes/GlobalStateExplorers/DatabaseBrowser/FLEXTableRowDataViewController.m; sourceTree = "<group>"; };
 		FB9D8ABA9D86725C3A56844C1C1B17E2 /* FLEXExplorerToolbar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXExplorerToolbar.h; path = Classes/Toolbar/FLEXExplorerToolbar.h; sourceTree = "<group>"; };
 		FBCABFA0D2B0A1EFC4B5306D4D964958 /* FLEXBundleShortcuts.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXBundleShortcuts.m; path = Classes/ObjectExplorers/Sections/Shortcuts/FLEXBundleShortcuts.m; sourceTree = "<group>"; };
+		FC1A818439FD6B508D43F2B8EAB04BFD /* UIView+BRCPopUp.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+BRCPopUp.m"; path = "BRCPopUp/Classes/UIView+BRCPopUp.m"; sourceTree = "<group>"; };
 		FCA93247351EA35B2E0023FBC780AFBE /* NSKeyedUnarchiver+YYAdd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSKeyedUnarchiver+YYAdd.h"; path = "BRCFastTest/Classes/YYExtension/NSKeyedUnarchiver+YYAdd.h"; sourceTree = "<group>"; };
 		FD86921AE5FC2E9536C20F8891691D6B /* FLEXRuntimeUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXRuntimeUtility.h; path = Classes/Utility/Runtime/FLEXRuntimeUtility.h; sourceTree = "<group>"; };
 		FD8D39D622327A8BE2BFE17C44044818 /* FLEXViewControllersViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXViewControllersViewController.h; path = Classes/ExplorerInterface/FLEXViewControllersViewController.h; sourceTree = "<group>"; };
@@ -1409,46 +1409,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0BB72B150BC3E2EFC776783DE1B70B2D /* Support Files */ = {
+		1F9A5E5E3FB7B6E871ADC96D9D7DF2EA /* BRCPopUp */ = {
 			isa = PBXGroup;
 			children = (
-				60895EC51346F898676CD7097331E553 /* BRCPopUp.modulemap */,
-				6C148B80A3DE7FF42F3FE3F9322892C6 /* BRCPopUp-dummy.m */,
-				028551B5D654434A736B38EA99C4F83C /* BRCPopUp-Info.plist */,
-				8FA2C437231DA32902A870AFC0FA5032 /* BRCPopUp-prefix.pch */,
-				CCD2E3CD8A928BC9BDE773C2071D7ECA /* BRCPopUp-umbrella.h */,
-				1E6E2945B3F033B01551D6A12903CF2A /* BRCPopUp.debug.xcconfig */,
-				5B3593CC939E3E55FC290E6548C580E8 /* BRCPopUp.release.xcconfig */,
+				777CEDFE0B1C310738F22B6D9E650946 /* BRCPopUpConst.h */,
+				46EAB4E7402880AF3A14D1535505260F /* BRCPopUper.h */,
+				7FF655F420968E5E4F1045F2C5CF8624 /* BRCPopUper.m */,
+				72AAC19860D7E3363BF613E080AD06D1 /* BRCPopUpMenu.h */,
+				77C6827333100B8281E66EA24B429649 /* BRCPopUpMenu.m */,
+				235FD02C4ED211CBAA8978A2A436BDD6 /* BRCPopUpViewModifier.swift */,
+				4A6C5618159323430165F1312141FE10 /* BRCPopUpWrapper.swift */,
+				7264F570CFE2E6F7D30C7DCEBAC26C9E /* UIView+BRCPopUp.h */,
+				FC1A818439FD6B508D43F2B8EAB04BFD /* UIView+BRCPopUp.m */,
+				B98FA43FA67BF8E63E310BEDF2F6BF0A /* Pod */,
+				ED6745150579BF1EB523DBFFBE48FF51 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "Example/SwiftUI/Pods/Target Support Files/BRCPopUp";
+			name = BRCPopUp;
+			path = ../../..;
 			sourceTree = "<group>";
 		};
 		1FF5EC46BA220B194923F7B5810E933F /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2B842D3E3013A193055E7169E58A47A8 /* BRCPopUp */,
+				1F9A5E5E3FB7B6E871ADC96D9D7DF2EA /* BRCPopUp */,
 			);
 			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		2B842D3E3013A193055E7169E58A47A8 /* BRCPopUp */ = {
-			isa = PBXGroup;
-			children = (
-				F812FE02FB6B21B1B3FA917302744F70 /* BRCBubbleLayer.h */,
-				F142D09F567F475BC90D3795B4375CD4 /* BRCBubbleLayer.m */,
-				2E735315F400AF38C15588C9911B3D38 /* BRCPopUpConst.h */,
-				A0689D0FA3995A5CEB1B6BFAD71C8033 /* BRCPopUper.h */,
-				E954D089A4FE838808B4460B5641DEAF /* BRCPopUper.m */,
-				7D25BF7677C3A5A20A20870E491D08EE /* BRCPopUpViewModifier.swift */,
-				E0770E165FD3128979570A40558688BB /* BRCPopUpWrapper.swift */,
-				84E58ABBDC2131DFB8A314FC83CEE285 /* UIView+BRCPopUp.h */,
-				AEC503CCE93EFF4F223A882DA90CF349 /* UIView+BRCPopUp.m */,
-				7C84B09221EC71A91D936B8B286CC2A0 /* Pod */,
-				0BB72B150BC3E2EFC776783DE1B70B2D /* Support Files */,
-			);
-			name = BRCPopUp;
-			path = ../../..;
 			sourceTree = "<group>";
 		};
 		2FE445AD883B9ABD3E0241A05A5B79FD /* Frameworks */ = {
@@ -1744,16 +1729,6 @@
 			);
 			name = BRCFastTest;
 			path = BRCFastTest;
-			sourceTree = "<group>";
-		};
-		7C84B09221EC71A91D936B8B286CC2A0 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				3AACD25384CAEC21F8CB0E2FE80A2911 /* BRCPopUp.podspec */,
-				1605BAD57FD5575937E9243636385D0C /* LICENSE */,
-				1180EBA6410126B399F6A16C032675B3 /* README.md */,
-			);
-			name = Pod;
 			sourceTree = "<group>";
 		};
 		911A1628139A5BA89545033E000A6BDA /* FLEX */ = {
@@ -2150,6 +2125,16 @@
 			path = "../Target Support Files/BRCFastTest";
 			sourceTree = "<group>";
 		};
+		B98FA43FA67BF8E63E310BEDF2F6BF0A /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				AC317F06AD0F0551B746E30D512E91AA /* BRCPopUp.podspec */,
+				E81F9D301D2F6272157BBF6A1C818455 /* LICENSE */,
+				5F2AD0091002E642FCBD83AFB8EE7491 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
@@ -2171,6 +2156,21 @@
 				3A3A6A792B03DF31B98FF78963A6D6F7 /* Pods-BRCPopUp_SwiftUI */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		ED6745150579BF1EB523DBFFBE48FF51 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				51433C9C1B90EE4F89D55A93A2C970D2 /* BRCPopUp.modulemap */,
+				B95D56A38AE80B92B55359FCC5456439 /* BRCPopUp-dummy.m */,
+				5846655F4049DC92DF31C36D207545C1 /* BRCPopUp-Info.plist */,
+				C44FCBE0383A0928B4BB90C0605ED36A /* BRCPopUp-prefix.pch */,
+				A9D092FFC7D7E8B9EEBE6B7243D92C4F /* BRCPopUp-umbrella.h */,
+				EA01F1783986697B5F2AED2DAE8B1C55 /* BRCPopUp.debug.xcconfig */,
+				6790667A806CDD6775CF3A33BC355C7C /* BRCPopUp.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/SwiftUI/Pods/Target Support Files/BRCPopUp";
 			sourceTree = "<group>";
 		};
 		F4780B2CD9C49074D7E71F6FAADA11C6 /* iOS */ = {
@@ -2213,18 +2213,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D19C4AC22792573B3D664B88671F8F7 /* Pods-BRCPopUp_SwiftUI-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		85A10B9ECE749F1E9BEEA82509686076 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9408D3F5E20653E2DAE2DE427F8472B5 /* BRCBubbleLayer.h in Headers */,
-				AF7D6A1D459046C985B68843C807855D /* BRCPopUp-umbrella.h in Headers */,
-				3639A5285FBCA34BBB160742F865E807 /* BRCPopUpConst.h in Headers */,
-				6BB6849AD3C45E75048BDAC4FB1DF72C /* BRCPopUper.h in Headers */,
-				A40AFF5A519984B55D9231FAA4AEA624 /* UIView+BRCPopUp.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2559,6 +2547,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C900C33DFAF4553641DB6A234E53DC1F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B89BC0AA9B7558E4C7905AE1098A9AE8 /* BRCPopUp-umbrella.h in Headers */,
+				FE21BE50DCB3804DC89958533B91CF4B /* BRCPopUpConst.h in Headers */,
+				313FE2EB41476FDC299A4F88DAACA2BA /* BRCPopUper.h in Headers */,
+				2E5CA1480C852C89E5B8B55C1B1C0CC5 /* BRCPopUpMenu.h in Headers */,
+				A48FB7D538DAB330C1D4E43CEFA8B64A /* UIView+BRCPopUp.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -2566,8 +2566,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A0AAAA8564612F72F80528B4F85294B7 /* Build configuration list for PBXNativeTarget "BRCPopUp" */;
 			buildPhases = (
-				85A10B9ECE749F1E9BEEA82509686076 /* Headers */,
-				07B6DD80096C64F12790A33CC0CD7C65 /* Sources */,
+				C900C33DFAF4553641DB6A234E53DC1F /* Headers */,
+				E36DF947A904AB09570D48F2371C7C95 /* Sources */,
 				9BDBB98FBE250BE6546ED36AA8778E9A /* Frameworks */,
 				148FC70876CCE47EE529DDDF9ECB124E /* Resources */,
 			);
@@ -2700,19 +2700,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		07B6DD80096C64F12790A33CC0CD7C65 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2923CF43A513BC5E2C704CF026E8018 /* BRCBubbleLayer.m in Sources */,
-				B987E33B53B2392F0D3CDEA821D6215D /* BRCPopUp-dummy.m in Sources */,
-				9D05F4FEBA3B3C9804D59852FA639F3C /* BRCPopUper.m in Sources */,
-				04B1A156E65DBD6A25BB0CCD85DBD0D3 /* BRCPopUpViewModifier.swift in Sources */,
-				543C6D34B0ED4745FFD1FBB6CC32F7C3 /* BRCPopUpWrapper.swift in Sources */,
-				87D4B38EEB577B73B5638C9FC637AA01 /* UIView+BRCPopUp.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8767EC9E7DA9A24ED62A994EA7E61966 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3036,6 +3023,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E36DF947A904AB09570D48F2371C7C95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96CD67D0ECD379A7F027C8BEA519695A /* BRCPopUp-dummy.m in Sources */,
+				D10FBD78376B4D6FAE2EEA015651B5DE /* BRCPopUper.m in Sources */,
+				31127B88942464C3D9B3CE6D86E53D14 /* BRCPopUpMenu.m in Sources */,
+				8D16A83651B3C5C1623BFFDD984F6606 /* BRCPopUpViewModifier.swift in Sources */,
+				76C74C60AADF667899E2CB184019409B /* BRCPopUpWrapper.swift in Sources */,
+				BC5B45B8C00BBD3A4DA7C12B27693ECD /* UIView+BRCPopUp.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -3100,6 +3100,42 @@
 			};
 			name = Debug;
 		};
+		33C40DF856EC47C55C82BACE437B9E3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6790667A806CDD6775CF3A33BC355C7C /* BRCPopUp.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/BRCPopUp/BRCPopUp-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BRCPopUp/BRCPopUp-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/BRCPopUp/BRCPopUp.modulemap";
+				PRODUCT_MODULE_NAME = BRCPopUp;
+				PRODUCT_NAME = BRCPopUp;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		3AD729A8474FE4550BA51B1B7FF14959 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E7AAE78CFFF49DCE386D9F7E3398971D /* FLEX.release.xcconfig */;
@@ -3134,41 +3170,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		5BB84232580B85014FB5A4789EEF71F9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E6E2945B3F033B01551D6A12903CF2A /* BRCPopUp.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/BRCPopUp/BRCPopUp-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/BRCPopUp/BRCPopUp-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/BRCPopUp/BRCPopUp.modulemap";
-				PRODUCT_MODULE_NAME = BRCPopUp;
-				PRODUCT_NAME = BRCPopUp;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		5EBCD448172833F9DF06AD55EE8B4FB5 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -3206,42 +3207,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		757C9C7BB66F152587FE4A0F03ACB667 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B3593CC939E3E55FC290E6548C580E8 /* BRCPopUp.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/BRCPopUp/BRCPopUp-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/BRCPopUp/BRCPopUp-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/BRCPopUp/BRCPopUp.modulemap";
-				PRODUCT_MODULE_NAME = BRCPopUp;
-				PRODUCT_NAME = BRCPopUp;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		8DE5143C03248BB6CD542DE3963D6F3A /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -3480,6 +3445,41 @@
 			};
 			name = Debug;
 		};
+		C9E6074F02DFCEDDF3B94DEE15E1ECA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA01F1783986697B5F2AED2DAE8B1C55 /* BRCPopUp.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/BRCPopUp/BRCPopUp-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BRCPopUp/BRCPopUp-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/BRCPopUp/BRCPopUp.modulemap";
+				PRODUCT_MODULE_NAME = BRCPopUp;
+				PRODUCT_NAME = BRCPopUp;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -3522,8 +3522,8 @@
 		A0AAAA8564612F72F80528B4F85294B7 /* Build configuration list for PBXNativeTarget "BRCPopUp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5BB84232580B85014FB5A4789EEF71F9 /* Debug */,
-				757C9C7BB66F152587FE4A0F03ACB667 /* Release */,
+				C9E6074F02DFCEDDF3B94DEE15E1ECA7 /* Debug */,
+				33C40DF856EC47C55C82BACE437B9E3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

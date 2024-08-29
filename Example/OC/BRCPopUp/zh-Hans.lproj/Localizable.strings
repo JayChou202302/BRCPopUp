@@ -41,3 +41,11 @@
 "key.popup.test.button.title4.style" = "示例4";
 "key.popup.gesture.button.title" = "跟随手指";
 "key.dropdown.input.placeholder" = "输入一些........";
+"key.main.test.cancel.button.width" = "弹出框关闭按钮的宽度";
+"key.main.test.cancel.button.height" = "弹出框关闭按钮的高度";
+"key.main.test.cancel.button.relative.x" = "弹出框关闭按钮相对位置-X";
+"key.main.test.cancel.button.relative.y" = "弹出框关闭按钮相对位置-Y";
+"key.main.test.cancel.button.absoulute.x" = "弹出框关闭按钮绝对位置-X";
+"key.main.test.cancel.button.absoulute.y" = "弹出框关闭按钮绝对位置-Y";
+"key.main.test.auto.find" = "是否自寻找最近的可滑动父视图";
+"key.main.test.show.cancel" = "是否展示关闭按钮";

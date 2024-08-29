@@ -29,16 +29,23 @@
 @property (nonatomic, assign) BOOL     autoCutoffRelief;
 @property (nonatomic, assign) BOOL     autoFitContainerSize;
 @property (nonatomic, assign) BOOL     arrowCenterAlignToContainer;
+@property (nonatomic, assign) BOOL  showCancelButton;
 @property (nonatomic, assign) CGFloat  offsetToAnchorView;
 @property (nonatomic, assign) CGFloat  marginToAnchorView;
 @property (nonatomic, assign) CGFloat  cornerRadius;
 @property (nonatomic, assign) CGFloat  arrowRadius;
 @property (nonatomic, assign) CGFloat  arrowWidth;
 @property (nonatomic, assign) CGFloat  arrowHeight;
+@property (nonatomic, assign) CGFloat  buttonWidth;
+@property (nonatomic, assign) CGFloat  buttonHeight;
 @property (nonatomic, assign) CGFloat  containerWidth;
 @property (nonatomic, assign) CGFloat  containerHeight;
 @property (nonatomic, assign) CGFloat  arrowRelativePosition;
 @property (nonatomic, assign) CGFloat  arrowAbsolutePosition;
+@property (nonatomic, assign) CGFloat cancelButtonRelative_X;
+@property (nonatomic, assign) CGFloat cancelButtonRelative_Y;
+@property (nonatomic, assign) CGFloat cancelButtonAbsoultePosition_X;
+@property (nonatomic, assign) CGFloat cancelButtonAbsoultePosition_Y;
 
 @end
 
@@ -62,6 +69,12 @@
     self.containerHeight = 100;
     self.arrowAbsolutePosition = 12;
     self.arrowRelativePosition = -1;
+    self.buttonWidth = 15;
+    self.buttonHeight = 15;
+    self.cancelButtonRelative_X = 0;
+    self.cancelButtonRelative_Y = 0;
+    self.cancelButtonAbsoultePosition_X = 1;
+    self.cancelButtonAbsoultePosition_Y = 1;
 }
 
 - (void)setUpViews {
@@ -92,6 +105,11 @@
                 break;
         }
     }];
+    
+    [self addBoolControlWithTitle:@"key.main.test.show.cancel" chageBlock:^(BOOL newValue) {
+        strongify(self)
+        self.showCancelButton = newValue;
+    } defaultValue:NO];
 
     [self addEnumControlWithItems:@[
         @"None",
@@ -118,7 +136,7 @@
         @"ViewController",
         @"Window",
         @"View",
-        @"Auto"
+        @"SuperScrollView"
     ] withTitle:@"key.main.test.section.title.context" chageBlock:^(UISegmentedControl *control) {
         strongify(self)
         self.contextStyle = control.selectedSegmentIndex;
@@ -186,6 +204,36 @@
         self.arrowHeight = control.value;
     }];
     
+    [self addSliderControlWithTitle:@"buttonWidth" desc:@"key.main.test.cancel.button.width" valueArray:@[@10,@20] chageBlock:^(UISlider * _Nonnull control) {
+        strongify(self)
+        self.buttonWidth = control.value;
+    }];
+    
+    [self addSliderControlWithTitle:@"buttonHeight" desc:@"key.main.test.cancel.button.height" valueArray:@[@10,@20] chageBlock:^(UISlider * _Nonnull control) {
+        strongify(self)
+        self.buttonHeight = control.value;
+    }];
+    
+    [self addSliderControlWithTitle:@"cancelButtonRelative_X" desc:@"key.main.test.cancel.button.relative.x" valueArray:@[@0,@1] chageBlock:^(UISlider * _Nonnull control) {
+        strongify(self)
+        self.cancelButtonRelative_X = control.value;
+    }];
+    
+    [self addSliderControlWithTitle:@"cancelButtonRelative_Y" desc:@"key.main.test.cancel.button.relative.y" valueArray:@[@0,@1] chageBlock:^(UISlider * _Nonnull control) {
+        strongify(self)
+        self.cancelButtonRelative_Y = control.value;
+    }];
+    
+    [self addSliderControlWithTitle:@"cancelButtonAbsoultePosition_X" desc:@"key.main.test.cancel.button.absoulute.x" valueArray:@[@0,@20] chageBlock:^(UISlider * _Nonnull control) {
+        strongify(self)
+        self.cancelButtonAbsoultePosition_X = control.value;
+    }];
+    
+    [self addSliderControlWithTitle:@"cancelButtonAbsoultePosition_Y" desc:@"key.main.test.cancel.button.absoulute.y" valueArray:@[@0,@20] chageBlock:^(UISlider * _Nonnull control) {
+        strongify(self)
+        self.cancelButtonAbsoultePosition_Y = control.value;
+    }];
+    
     [self addSliderControlWithTitle:@"containerWidth" desc:@"key.main.test.section.title.containerW" valueArray:@[@0,@(kBRCScreenWidth)] chageBlock:^(UISlider *control) {
         strongify(self)
         self.containerWidth = control.value;
@@ -242,8 +290,13 @@
         buttonpopUp.popUpAnimationType = self.animationStyle;
         buttonpopUp.contextStyle = self.contextStyle;
         buttonpopUp.contentAlignment = self.alignmentStyle;
+        buttonpopUp.showCancelButton = self.showCancelButton;
+        buttonpopUp.cancelButtonSize = CGSizeMake(self.buttonWidth, self.buttonHeight);
+        buttonpopUp.cancelButtonRelativePosition = CGPointMake(self.cancelButtonRelative_X, self.cancelButtonRelative_Y);
+        buttonpopUp.cancelButtonAbsoultePosition = CGPointMake(self.cancelButtonAbsoultePosition_X, self.cancelButtonAbsoultePosition_Y);
         [buttonpopUp toggleDisplay];
     }];
+
     [self addTestView:button withTitle:buttonText height:50 width:kBRCScreenWidth/2 space:20];
 }
 

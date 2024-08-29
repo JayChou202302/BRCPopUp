@@ -9,9 +9,10 @@
 "key.tag.api.useful" = "API丰富";
 "key.tag.api.easy.use" = "简单易用";
 "key.tag.api.ios.available" = "iOS 13.0 以上";
-"key.test.label.01" = "1.弹出一段文本";
-"key.test.label.02" = "2.弹出一段文本-可跟随锚定视图滑动";
-"key.test.label.03" = "3.弹出自定义视图-带事件回调";
+"key.test.label.01" = "1.弹出文本";
+"key.test.label.02" = "2.弹出文本-可跟随锚定视图滑动";
+"key.test.label.03" = "3.弹出菜单-带事件回调";
+"key.test.label.04" = "4.弹出自定义视图";
 "key.test.menu.01" = "扫一扫";
 "key.test.menu.02" = "添加朋友";
 "key.test.menu.03" = "付款";

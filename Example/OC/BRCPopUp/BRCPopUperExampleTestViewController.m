@@ -43,7 +43,7 @@ UIScrollViewDelegate
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.navigationItem.titleView brc_popUpTip:[NSString brctest_localizableWithKey:@"key.popup.test.center.title.popup"] withDirection:BRCPopUpDirectionBottom hideAfterDuration:3.0];
+        [self.navigationItem.titleView brc_popUpTip:[NSString brctest_localizableWithKey:@"key.popup.test.center.title.popup"] withDirection:BRCPopUpDirectionBottom hideAfter:3.0];
     });
 }
 
@@ -111,14 +111,18 @@ UIScrollViewDelegate
     label.textColor = [UIColor brtest_black];
     label.font = [UIFont boldSystemFontOfSize:18.0];
     self.navigationItem.titleView = label;
-    
+    NSMutableArray *actions = [NSMutableArray array];
+    [[self topViewList] enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [actions addObject:[BRCPopUpMenuAction actionWithTitle:obj[@"text"] image:obj[@"image"] handler:^(BRCPopUpMenuAction * _Nonnull action) {
+            
+        }]];
+    }];
     UIBarButtonItem *rightItem2 = [self setRightNavigationBarItem2WithImageName:@"swift"
                                        dropStyle:^(BRCPopUper *buttonpopUp)  {
-        buttonpopUp.contentStyle = BRCPopUpContentStyleText;
-        [buttonpopUp.contentLabel setNumberOfLines:0];
-        [buttonpopUp.contentLabel setFont:[UIFont systemFontOfSize:14.0 weight:UIFontWeightMedium]];
-        [buttonpopUp setContentText:@"Swift is a powerful and intuitive programming language for all Apple platforms. It’s easy to get started using Swift, with a concise-yet-expressive syntax and modern features you’ll love. Swift code is safe by design and produces software that runs lightning-fast."];
-    } dropSize:CGSizeMake(200, 200)];
+        BRCPopUpMenu *menu = [BRCPopUpMenu menuWithActions:actions];
+        menu.foregroundColor = [UIColor brtest_black];
+        buttonpopUp.contentView = menu;
+    } dropSize:CGSizeMake(130, 200)];
     
     [self.navigationItem setRightBarButtonItems:@[rightItem2] animated:YES];
     
@@ -331,14 +335,12 @@ UIScrollViewDelegate
     button.layer.cornerCurve = kCACornerCurveContinuous;
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button setTitle:[NSString brctest_localizableWithKey:@"key.popup.test.button.title2.style"] forState:UIControlStateNormal];
-    BRCPopUper *popUp = [[BRCPopUper alloc] initWithContentStyle:BRCPopUpContentStyleCustom];
-    
+    BRCPopUper *popUp = [[BRCPopUper alloc] initWithContentView:[self test2ContentView]];
     popUp.contentAlignment = BRCPopUpContentAlignmentRight;
     popUp.popUpDirection = BRCPopUpDirectionTop;
     popUp.popUpAnimationType = BRCPopUpAnimationTypeFadeBounce;
     popUp.anchorView = button;
     popUp.containerSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * 3 / 4, 120);
-    [popUp setContentView:[self test2ContentView]];
     [self.popUpArray addObject:popUp];
     [button addAction:[UIAction actionWithHandler:^(__kindof UIAction * _Nonnull action) {
         [popUp toggleDisplay];

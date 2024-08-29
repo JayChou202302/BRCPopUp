@@ -33,7 +33,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSMutableArray *array = [NSMutableArray array];
     self.popUpArray = [NSMutableArray array];
     [self.tabBar.items enumerateObjectsUsingBlock:^(UITabBarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIView *targetView = (UIView *)[obj performSelector:@selector(view)];
@@ -55,7 +54,7 @@
     NSInteger index = self.selectedIndex;
     [self.popUpArray enumerateObjectsUsingBlock:^(BRCPopUper * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (idx == index) {
-            [obj showAndHideAfterDelay:1.5];
+            [obj showAndHideAfter:1.5];
         } else {
             [obj hide];
         }

@@ -47,6 +47,7 @@ typedef NS_ENUM(NSInteger, BRCPopUpContextStyle) {
     BRCPopUpContextStyleViewController = 0,        // Context as view controller
     BRCPopUpContextStyleWindow,           // Context as window
     BRCPopUpContextStyleSuperView,            // Context as superview
+    BRCPopUpContextStyleSuperScrollView, // Context as super-scrollview
     BRCPopUpContextStyleCustom,      // Custom ContextView
 };
 
@@ -72,6 +73,8 @@ typedef NS_ENUM(NSInteger, BRCPopUpArrowStyle) {
 - (void)willHidePopUper:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView NS_SWIFT_NAME(willHidePopUper(popUper:anchorView:));
 - (void)didHidePopUper:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView NS_SWIFT_NAME(didHidePopUper(popUper:anchorView:));
 - (void)didUserDismissPopUper:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView NS_SWIFT_NAME(didUserDismissPopUper(popUper:anchorView:));
+- (void)didClickCloseButton:(BRCPopUper *)popUper withAchorView:(UIView *)anchorView
+    NS_SWIFT_NAME(didClickCloseButton(popUper:anchorView:));
 
 @end
 

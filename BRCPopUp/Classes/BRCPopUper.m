@@ -5,8 +5,333 @@
 
 
 #import "BRCPopUper.h"
-#import "BRCBubbleLayer.h"
 #import <objc/message.h>
+
+@interface BRCBubbleLayer : CALayer <BRCBubbleStyle>
+- (void)updateLayer;
+@end
+
+@implementation BRCBubbleLayer
+
+@synthesize arrowSize = _arrowSize;
+@synthesize arrowAbsolutePosition = _arrowAbsolutePosition;
+@synthesize arrowDirection = _arrowDirection;
+@synthesize arrowRelativePosition = _arrowRelativePosition;
+@synthesize arrowRadius = _arrowRadius;
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.cornerRadius = 4;
+        _arrowSize = CGSizeMake(16, 8);
+        _arrowAbsolutePosition = 12;
+        _arrowRelativePosition = -1;
+        _arrowRadius = 2;
+        _arrowDirection = BRCPopUpDirectionTop;
+    }
+    return self;
+}
+
+#pragma mark - public
+
+- (void)updateLayer { [self setMask:nil]; }
+
+- (CGFloat)getArrowTopPointPosition:(CGSize)size{
+    CGFloat arrowRelativePosition = [self getArrowRelativePositionWithSize:size];
+    if (self.arrowDirection == BRCPopUpDirectionRight ||
+        self.arrowDirection == BRCPopUpDirectionLeft) {
+        return size.height * arrowRelativePosition;
+    }
+    return size.width * arrowRelativePosition;
+}
+
+#pragma mark - drawBubble
+
+- (NSMutableArray *)bubblePointsWithSize:(CGSize)size {
+    NSMutableArray *points = [NSMutableArray array];
+    CGPoint beginPoint, topPoint, endPoint;
+    CGFloat x = 0, y = 0;
+    CGFloat width = size.width, height = size.height;
+    CGFloat arrowHeight = self.arrowSize.height;
+    CGFloat arrowWidth = self.arrowSize.width;
+    CGFloat topPointPoisition = [self getArrowTopPointPosition:size];
+    
+    if (self.arrowDirection == BRCPopUpDirectionRight) {
+        topPoint = CGPointMake(size.width , topPointPoisition);
+        beginPoint = CGPointMake(topPoint.x - arrowHeight, topPoint.y - arrowWidth/2);
+        endPoint = CGPointMake(beginPoint.x, beginPoint.y + arrowWidth);
+    } else if (self.arrowDirection == BRCPopUpDirectionLeft) {
+        topPoint = CGPointMake(0, topPointPoisition);
+        beginPoint = CGPointMake(topPoint.x + arrowHeight, topPoint.y + arrowWidth/2);
+        endPoint = CGPointMake(beginPoint.x, beginPoint.y - arrowWidth);
+        x = arrowHeight;
+    } else if (self.arrowDirection == BRCPopUpDirectionBottom) {
+        topPoint = CGPointMake(topPointPoisition, size.height);
+        beginPoint = CGPointMake(topPoint.x + arrowWidth/2, topPoint.y - arrowHeight);
+        endPoint = CGPointMake(beginPoint.x - arrowWidth, beginPoint.y);
+    } else {
+        topPoint = CGPointMake(topPointPoisition, 0);
+        beginPoint = CGPointMake(topPoint.x - arrowWidth/2, topPoint.y + arrowHeight);
+        endPoint = CGPointMake(beginPoint.x + arrowWidth, beginPoint.y);
+        y = arrowHeight;
+    }
+    
+    if (self.arrowDirection == BRCPopUpDirectionRight ||
+        self.arrowDirection == BRCPopUpDirectionLeft) {
+        width -= arrowHeight;
+    } else {
+        height -= arrowHeight;
+    }
+    
+    points = @[
+        [NSValue valueWithCGPoint:beginPoint],
+        [NSValue valueWithCGPoint:topPoint],
+        [NSValue valueWithCGPoint:endPoint]
+    ].mutableCopy;
+    
+    NSMutableArray *rectPoints = @[
+        [NSValue valueWithCGPoint:CGPointMake(x + width, y + height)],
+        [NSValue valueWithCGPoint:CGPointMake(x, y + height)],
+        [NSValue valueWithCGPoint:CGPointMake(x, y)],
+        [NSValue valueWithCGPoint:CGPointMake(x + width, y)]
+    ].mutableCopy;
+    
+    int rectPointIndex = (int)self.arrowDirection;
+    for(NSInteger i = 0; i < 4; i++) {
+        [points addObject:[rectPoints objectAtIndex:rectPointIndex]];
+        rectPointIndex = (rectPointIndex+1) % 4;
+    }
+    return points;
+}
+
+- (CGPathRef)bubblePathWithSize:(CGSize)size {
+    if (size.width == 0 || size.height == 0) return nil;
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    NSMutableArray *points = [self bubblePointsWithSize:size];
+    CGPoint currentPoint = [[points objectAtIndex:6] CGPointValue];
+    CGContextMoveToPoint(context, currentPoint.x, currentPoint.y);
+    CGPoint pointA, pointB;
+    CGFloat radius;
+    int count = 0;
+    while(count < 7) {
+        radius = count < 3 ?  self.arrowRadius : self.cornerRadius;
+        pointA = [[points objectAtIndex:count] CGPointValue];
+        pointB = [[points objectAtIndex:(count+1) % 7] CGPointValue];
+        CGContextAddArcToPoint(context, pointA.x, pointA.y, pointB.x, pointB.y, radius);
+        count = count + 1;
+    }
+    CGContextClosePath(context);
+    CGPathRef path = CGContextCopyPath(context);
+    UIGraphicsEndImageContext();
+    return path;
+}
+
+#pragma mark - setter
+
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    if (!CGRectEqualToRect(frame, CGRectZero)) [self setMask:nil];
+}
+
+- (void)setMask:(__kindof CALayer *)mask {
+    CAShapeLayer *bubbleLayer = [CAShapeLayer layer];
+    bubbleLayer.path = [self bubblePathWithSize:self.bounds.size];
+    [super setMask:bubbleLayer];
+}
+
+#pragma mark - getter
+
+- (CGFloat)arrowRelativePosition {
+    return [self getArrowRelativePositionWithSize:self.bounds.size];
+}
+
+- (CGFloat)getArrowRelativePositionWithSize:(CGSize)size {
+    if (_arrowRelativePosition > 0) return _arrowRelativePosition;
+    CGFloat boundSize = 0;
+    if (self.arrowDirection == BRCPopUpDirectionTop ||
+        self.arrowDirection == BRCPopUpDirectionBottom) {
+        boundSize = size.width;
+    } else {
+        boundSize = size.height;
+    }
+    if (_arrowAbsolutePosition > 0) return _arrowAbsolutePosition / boundSize;
+    return (boundSize + _arrowAbsolutePosition) / boundSize;
+}
+
+@end
+
+@interface BRCBubbleContainerView : UIView <CAAnimationDelegate>
+
+@property (nonatomic, assign, readonly) BOOL isAnimating;
+@property (nonatomic, strong, readonly) BRCBubbleLayer *bubbleLayer;
+@property (nonatomic, strong) UIColor *shadowColor;
+- (void)setAnchorPointWithAnimationType:(BRCPopUpAnimationType)type;
+
+#pragma mark - display
+
+- (void)show;
+- (void)showWithAnimation:(nullable CAAnimation *)animation
+          completionBlock:(void (^__nullable)(BOOL))completionBlock;
+
+- (void)hide;
+- (void)hideWithAnimation:(nullable CAAnimation *)animation
+          completionBlock:(void (^__nullable)(BOOL))completionBlock;
+
+@end
+
+@interface BRCBubbleContainerView ()
+
+@property (nonatomic, strong) UIImageView    *cancelButton;
+@property (nonatomic, strong) UIColor        *backgroundBubbleColor;
+@property (nonatomic, strong) BRCBubbleLayer *bubbleLayer;
+@property (nonatomic, assign) BOOL            isAnimating;
+@property (nonatomic, copy) void(^ __nullable animationFinishBlock)(BOOL);
+@property (nonatomic, copy) void(^ __nullable onClickCancelButton)(void);
+
+
+@end
+
+@implementation BRCBubbleContainerView
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        _isAnimating = NO;
+        [self.layer addSublayer:self.bubbleLayer];
+        [self addSubview:self.cancelButton];
+    }
+    return self;
+}
+
+#pragma mark - display
+
+- (void)show {
+    self.bubbleLayer.frame = self.bounds;
+    self.isAnimating = NO;
+    self.hidden = NO;
+}
+
+- (void)hide {
+    self.isAnimating = NO;
+    self.hidden = YES;
+}
+
+- (void)showWithAnimation:(CAAnimation *)animation
+          completionBlock:(void (^)(BOOL))completionBlock {
+    [self startAnimation:animation isShow:YES completion:completionBlock];
+}
+
+- (void)hideWithAnimation:(CAAnimation *)animation
+          completionBlock:(void (^)(BOOL))completionBlock {
+    [self startAnimation:animation isShow:NO completion:completionBlock];
+}
+
+- (void)startAnimation:(CAAnimation *)animation
+                isShow:(BOOL)isShow
+            completion:(void (^)(BOOL))completion {
+    self.bubbleLayer.frame = self.bounds;
+    if ([animation isKindOfClass:[CAAnimation class]]) {
+        if (self.isAnimating) return;
+        self.animationFinishBlock = completion;
+        [self.layer removeAllAnimations];
+        animation.delegate = self;
+        [self.layer addAnimation:animation forKey:@"animations"];
+    } else {
+        if (isShow) [self show];
+        else [self hide];
+        if (completion) completion(YES);
+    }
+}
+
+- (void)setAnchorPointWithAnimationType:(BRCPopUpAnimationType)type {
+    CGPoint anchorPoint = CGPointMake(0.5, 0.5);
+    CGFloat arrowPosition = [self.bubbleLayer getArrowTopPointPosition:self.bounds.size];
+    if (type == BRCPopUpAnimationTypeScale ||
+        type == BRCPopUpAnimationTypeFadeScale ||
+        type == BRCPopUpAnimationTypeFadeBounce ||
+        type == BRCPopUpAnimationTypeBounce) {
+        if (self.bubbleLayer.arrowDirection == BRCPopUpDirectionBottom) {
+            anchorPoint = CGPointMake((arrowPosition / self.frame.size.width), 1);
+        } else if (self.bubbleLayer.arrowDirection == BRCPopUpDirectionTop) {
+            anchorPoint = CGPointMake((arrowPosition / self.frame.size.width), 0);
+        } else if (self.bubbleLayer.arrowDirection == BRCPopUpDirectionLeft) {
+            anchorPoint = CGPointMake(0, (arrowPosition / self.frame.size.height));
+        } else if (self.bubbleLayer.arrowDirection == BRCPopUpDirectionRight) {
+            anchorPoint = CGPointMake(1, (arrowPosition / self.frame.size.height));
+        }
+    } else if (type == BRCPopUpAnimationTypeHeightExpansion ||
+               type == BRCPopUpAnimationTypeFadeHeightExpansion){
+        anchorPoint = CGPointMake(0.5, 0);
+    }
+    if (anchorPoint.x >= 0 && anchorPoint.x <= 1 &&
+        anchorPoint.y >= 0 && anchorPoint.y <= 1) {
+        [self setLayerAnchorPoint:anchorPoint];
+    }
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+    [super setBackgroundColor:[UIColor clearColor]];
+    self.backgroundBubbleColor = backgroundColor;
+    self.bubbleLayer.backgroundColor = self.backgroundBubbleColor.CGColor;
+}
+
+- (void)handleClickCancelButton { if (self.onClickCancelButton) self.onClickCancelButton(); }
+
+#pragma mark - CAAnimationDelegate
+
+- (void)animationDidStart:(CAAnimation *)anim {
+    self.isAnimating = YES;
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    self.isAnimating = NO;
+    if (self.animationFinishBlock) self.animationFinishBlock(flag);
+    self.animationFinishBlock = nil;
+}
+
+#pragma mark - theme
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    self.bubbleLayer.backgroundColor = self.backgroundBubbleColor.CGColor;
+    self.bubbleLayer.shadowColor = self.shadowColor.CGColor;
+}
+
+#pragma mark - props
+
+- (void)setShadowColor:(UIColor *)shadowColor {
+    _shadowColor = shadowColor;
+    self.layer.shadowColor = shadowColor.CGColor;
+}
+
+- (void)setLayerAnchorPoint:(CGPoint)anchorPoint {
+    CGRect oldFrame = self.frame;
+    [self.layer setAnchorPoint:anchorPoint];
+    self.frame = oldFrame;
+}
+
+- (BRCBubbleLayer *)bubbleLayer {
+    if (!_bubbleLayer) { _bubbleLayer = [[BRCBubbleLayer alloc] init]; }
+    return _bubbleLayer;
+}
+
+- (UIImageView *)cancelButton {
+    if (!_cancelButton) {
+        _cancelButton = [[UIImageView alloc] init];
+        _cancelButton.image = [UIImage systemImageNamed:@"xmark"];
+        _cancelButton.tintColor = [UIColor blackColor];
+        _cancelButton.userInteractionEnabled = YES;
+        _cancelButton.hidden = YES;
+        _cancelButton.layer.zPosition = HUGE;
+        [_cancelButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleClickCancelButton)]];
+    }
+    return _cancelButton;
+}
+
+@end
+
 
 @interface BRCPopUper ()
 
@@ -18,6 +343,7 @@
 @property (nonatomic, assign, readonly) BOOL            isDirectionHorizontal;
 @property (nonatomic, assign, readonly) CGFloat         sildeAnchorViewSize;
 @property (nonatomic, assign, readonly) CGFloat         sildeContainerViewSize;
+@property (nonatomic, assign, readonly) UIEdgeInsets    bubbleContentInsets;
 
 @end
 
@@ -34,9 +360,7 @@
 - (instancetype)init
 {
     self = [super init];
-    if (self) {
-        [self commonInit];
-    }
+    if (self) { [self commonInit]; }
     return self;
 }
 
@@ -77,8 +401,6 @@
     _contentAlignment = BRCPopUpContentAlignmentCenter;
     
     _autoFitContainerSize = YES;
-    _autoFindNearestScrollView = YES;
-    _autoCutoffRelief = NO;
     _arrowCenterAlignToAnchor = YES;
     
     _backgroundColor = [UIColor systemGray6Color];
@@ -87,7 +409,10 @@
     _containerSize = CGSizeZero;
     _shadowOffset = CGSizeZero;
     _shadowRadius = 0;
-    
+
+    _cancelButtonRelativePosition = CGPointZero;
+    _cancelButtonAbsoultePosition = CGPointZero;
+    _cancelButtonFrame = CGRectZero;
     _arrowSize = CGSizeMake(16, 8);
     _arrowAbsolutePosition = 12;
     _arrowRelativePosition = -1;
@@ -100,19 +425,13 @@
 
 #pragma mark - view monitoring
 
-- (void)dealloc {
-    [self stopMonitoring];
-}
+- (void)dealloc { [self stopMonitoring]; }
+
+- (void)stopMonitoring { self.displayLink.paused = YES; }
 
 - (void)startMonitoring {
     if ([self.popUpSuperView isKindOfClass:[UIScrollView class]]) return;
-    if (self.dismissMode != BRCPopUpDismissModeInteractive) {
-        self.displayLink.paused = NO;
-    }
-}
-
-- (void)stopMonitoring {
-    self.displayLink.paused = YES;
+    if (self.dismissMode != BRCPopUpDismissModeInteractive) self.displayLink.paused = NO;
 }
 
 - (void)checkFrame {
@@ -125,80 +444,80 @@
 #pragma mark - show
 
 - (void)show {
-    [self showAndHideAfterDelay:-1];
+    [self showAndHideAfter:-1];
 }
 
-- (void)showAndHideAfterDelay:(NSTimeInterval)delay {
-    [self showWithAnimationType:self.popUpAnimationType hideAfterDelay:delay];
+- (void)showAndHideAfter:(NSTimeInterval)duration {
+    [self showWithAnimationType:self.popUpAnimationType hideAfter:duration];
 }
 
 - (void)showWithAnimationType:(BRCPopUpAnimationType)animationType {
-    [self showWithAnimationType:animationType hideAfterDelay:-1];
+    [self showWithAnimationType:animationType hideAfter:-1];
 }
 
-- (void)showWithAnimationType:(BRCPopUpAnimationType)animationType hideAfterDelay:(NSTimeInterval)delay {
+- (void)showWithAnimationType:(BRCPopUpAnimationType)animationType hideAfter:(NSTimeInterval)duration {
     self.popUpAnimationType = animationType;
-    [self showWithAnimation:[self animationWithIsShow:YES] hideAfterDelay:delay];
+    [self showWithAnimation:[self animationWithIsShow:YES] hideAfter:duration];
 }
 
 - (void)showWithAnimation:(CAAnimation *)animation {
-    [self showWithAnimation:animation hideAfterDelay:-1];
+    [self showWithAnimation:animation hideAfter:-1];
 }
 
 - (void)showWithAnchorView:(UIView *)anchorView {
-    [self showWithAnchorView:anchorView hideAfterDelay:-1];
+    [self showWithAnchorView:anchorView hideAfter:-1];
 }
 
-- (void)showWithAnchorView:(UIView *)anchorView hideAfterDelay:(NSTimeInterval)delay {
-    [self showWithAnchorView:anchorView withAnimationType:self.popUpAnimationType hideAfterDelay:delay];
+- (void)showWithAnchorView:(UIView *)anchorView hideAfter:(NSTimeInterval)duration {
+    [self showWithAnchorView:anchorView withAnimationType:self.popUpAnimationType hideAfter:duration];
 }
 
 - (void)showWithAnchorView:(UIView *)anchorView withAnimationType:(BRCPopUpAnimationType)animationType {
-    [self showWithAnchorView:anchorView withAnimationType:animationType hideAfterDelay:-1];
+    [self showWithAnchorView:anchorView withAnimationType:animationType hideAfter:-1];
 }
 
-- (void)showWithAnchorView:(UIView *)anchorView withAnimationType:(BRCPopUpAnimationType)animationType hideAfterDelay:(NSTimeInterval)delay {
+- (void)showWithAnchorView:(UIView *)anchorView withAnimationType:(BRCPopUpAnimationType)animationType hideAfter:(NSTimeInterval)duration {
     self.popUpAnimationType = animationType;
-    [self showWithAnchorView:anchorView withAnimation:[self animationWithIsShow:YES] hideAfterDelay:delay];
+    [self showWithAnchorView:anchorView withAnimation:[self animationWithIsShow:YES] hideAfter:duration];
 }
 
 - (void)showWithAnchorView:(UIView *)anchorView withAnimation:(CAAnimation *)animation {
-    [self showWithAnchorView:anchorView withAnimation:animation hideAfterDelay:-1];
+    [self showWithAnchorView:anchorView withAnimation:animation hideAfter:-1];
 }
 
-- (void)showWithAnchorView:(UIView *)anchorView withAnimation:(CAAnimation *)animation hideAfterDelay:(NSTimeInterval)delay {
+- (void)showWithAnchorView:(UIView *)anchorView withAnimation:(CAAnimation *)animation hideAfter:(NSTimeInterval)duration {
     self.anchorView = anchorView;
-    [self showWithAnimation:animation hideAfterDelay:delay];
+    [self showWithAnimation:animation hideAfter:duration];
 }
 
 - (void)showWithAnchorFrame:(CGRect)anchorFrame {
-    [self showWithAnchorFrame:anchorFrame hideAfterDelay:-1];
+    [self showWithAnchorFrame:anchorFrame hideAfter:-1];
 }
 
-- (void)showWithAnchorFrame:(CGRect)anchorFrame hideAfterDelay:(NSTimeInterval)delay {
-    [self showWithAnchorFrame:anchorFrame withAnimationType:self.popUpAnimationType hideAfterDelay:delay];
+- (void)showWithAnchorFrame:(CGRect)anchorFrame hideAfter:(NSTimeInterval)duration {
+    [self showWithAnchorFrame:anchorFrame withAnimationType:self.popUpAnimationType hideAfter:duration];
 }
 
 - (void)showWithAnchorFrame:(CGRect)anchorFrame withAnimationType:(BRCPopUpAnimationType)animationType {
-    [self showWithAnchorFrame:anchorFrame withAnimationType:animationType hideAfterDelay:-1];
+    [self showWithAnchorFrame:anchorFrame withAnimationType:animationType hideAfter:-1];
 }
 
-- (void)showWithAnchorFrame:(CGRect)anchorFrame withAnimationType:(BRCPopUpAnimationType)animationType hideAfterDelay:(NSTimeInterval)delay {
+- (void)showWithAnchorFrame:(CGRect)anchorFrame withAnimationType:(BRCPopUpAnimationType)animationType hideAfter:(NSTimeInterval)duration {
     self.popUpAnimationType = animationType;
-    [self showWithAnchorFrame:anchorFrame withAnimation:[self animationWithIsShow:YES] hideAfterDelay:delay];
+    [self showWithAnchorFrame:anchorFrame withAnimation:[self animationWithIsShow:YES] hideAfter:duration];
 }
 
 - (void)showWithAnchorFrame:(CGRect)anchorFrame withAnimation:(CAAnimation *)animation {
-    [self showWithAnchorFrame:anchorFrame withAnimation:animation hideAfterDelay:-1];
+    [self showWithAnchorFrame:anchorFrame withAnimation:animation hideAfter:-1];
 }
 
-- (void)showWithAnchorFrame:(CGRect)anchorFrame withAnimation:(CAAnimation *)animation hideAfterDelay:(NSTimeInterval)delay {
+- (void)showWithAnchorFrame:(CGRect)anchorFrame withAnimation:(CAAnimation *)animation hideAfter:(NSTimeInterval)duration {
     self.anchorFrame = anchorFrame;
-    [self showWithAnimation:animation hideAfterDelay:delay];
+    [self showWithAnimation:animation hideAfter:duration];
 }
 
 /// `CoreMethod`
-- (void)showWithAnimation:(CAAnimation *)animation hideAfterDelay:(NSTimeInterval)delay {
+- (void)showWithAnimation:(CAAnimation *)animation hideAfter:(NSTimeInterval)duration {
     if ((![self.anchorView isKindOfClass:[UIView class]]) ||
         self.display) {
         return;
@@ -206,8 +525,8 @@
     [self startMonitoring];
     CAAnimation *popUpAnimation = [animation isKindOfClass:[CAAnimation class]] ? animation : self.popUpAnimation;
     [self showContainerViewWithAnimation:popUpAnimation];
-    if (delay > 0 || self.hideAfterDelayDuration > 0) {
-        CGFloat hideDelay = delay > 0 ? delay : self.hideAfterDelayDuration;
+    if (duration > 0 || self.hideAfterDelayDuration > 0) {
+        CGFloat hideDelay = duration > 0 ? duration : self.hideAfterDelayDuration;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(hideDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self hide];
         });
@@ -216,9 +535,7 @@
 
 #pragma mark - hide
 
-- (void)hide {
-    [self hideWithAnimated:YES];
-}
+- (void)hide { [self hideWithAnimated:YES]; }
 
 - (void)hideWithAnimated:(BOOL)isAnimated {
     if ((![self.anchorView isKindOfClass:[UIView class]]) ||
@@ -229,15 +546,11 @@
     [self dimissContainerView:isAnimated];
 }
 
-
 #pragma mark - toggle
 
 - (void)toggleDisplay {
-    if (self.display) {
-        [self hide];
-    } else {
-        [self show];
-    }
+    if (self.display) [self hide];
+    else [self show];
 }
 
 #pragma mark - fit
@@ -260,17 +573,21 @@
         [self updateContainerViewWithPopupFrame];
         UIView *superView = self.popUpSuperView;
         if (self.dismissMode == BRCPopUpDismissModeInteractive) {
-            [self.popUpSuperView addSubview:self.backgroundDismissView];
-            [self addEdgeConstraintsFromView:self.popUpSuperView toView:self.backgroundDismissView needEdgeInsets:NO];
-            superView = self.backgroundDismissView;
+            UIView *fullScreenView = [self findNearestFullScreenView];
+            if ([self canAddSubView:self.backgroundDismissView toView:fullScreenView]) {
+                [fullScreenView insertSubview:self.backgroundDismissView aboveSubview:self.popUpSuperView];
+                superView = self.backgroundDismissView;
+            }
         }
         [superView addSubview:self.containerView];
-        CGRect containerFrame = [self containerFrame];
-        self.containerView.frame = containerFrame;
-        if (![self.containerView.subviews containsObject:self.contentView] &&
-            [self.contentView isKindOfClass:[UIView class]]) {
+        self.containerView.frame = [self containerFrame];
+        [self updateCancelButtonFrame];
+        if ([self canAddSubView:self.contentView toView:self.containerView]) {
             [self.containerView addSubview:self.contentView];
             [self addEdgeConstraintsFromView:self.containerView toView:self.contentView needEdgeInsets:YES];
+        }
+        if ([self.contentMenu isKindOfClass:[BRCPopUpMenu class]]) {
+            [self.contentMenu reloadView];
         }
         [self updateStyleBeforeShow];
         [self.containerView showWithAnimation:animation completionBlock:^(BOOL finished) {
@@ -330,6 +647,33 @@
     [self.containerView.bubbleLayer updateLayer];
 }
 
+- (void)updateCancelButtonFrame {
+    if (!self.showCancelButton) return;
+    if (!CGRectEqualToRect(self.cancelButtonFrame, CGRectZero)) {
+        self.containerView.cancelButton.frame = self.cancelButtonFrame;
+        return;
+    }
+    UIEdgeInsets bubbleContentInsets = self.bubbleContentInsets;
+    CGFloat min_x = bubbleContentInsets.left,min_y = bubbleContentInsets.top,button_x = min_x,button_y = min_y,button_w = self.cancelButtonSize.width,button_h = self.cancelButtonSize.height;
+    CGFloat max_width = self.containerView.frame.size.width - bubbleContentInsets.left - bubbleContentInsets.right ,max_height = self.containerView.frame.size.height - bubbleContentInsets.top - bubbleContentInsets.bottom;
+    if (!CGPointEqualToPoint(self.cancelButtonAbsoultePosition, CGPointZero)) {
+        CGFloat absoultePosition_x = self.cancelButtonAbsoultePosition.x;
+        CGFloat absoultePosition_y = self.cancelButtonAbsoultePosition.y;
+        if (absoultePosition_x < 0) { absoultePosition_x =  max_width + absoultePosition_x; button_x -= button_w; }
+        if (absoultePosition_y < 0) { absoultePosition_y =  max_height + absoultePosition_y; button_y -= button_h; }
+        button_x += absoultePosition_x;
+        button_y += absoultePosition_y;
+    } else {
+        CGFloat relativePosition_x = self.cancelButtonRelativePosition.x;
+        CGFloat relativePosition_y = self.cancelButtonRelativePosition.y;
+        if (relativePosition_x < 0) { relativePosition_x = 1 + relativePosition_x; button_x -= (button_w); } else { button_x -= (button_w) / 2;  }
+        if (relativePosition_y < 0) { relativePosition_y = 1 + relativePosition_y; button_y -= (button_h); } else { button_y -= (button_h / 2);  }
+        button_x += relativePosition_x * max_width;
+        button_y += relativePosition_y * max_height;
+    }
+    self.containerView.cancelButton.frame = CGRectMake(button_x, button_y, button_w, button_h);
+}
+
 - (void)_sizeThatFits:(CGSize)size isFromInside:(BOOL)isFromInside{
     if ([self.contentLabel isKindOfClass:[UILabel class]]) {
         CGSize labelFitSize = [self.contentLabel sizeThatFits:size];
@@ -345,6 +689,8 @@
         } else {
             self.containerSize = CGSizeMake(containerWidth, containerHeight);
         }
+    } else if ([self.contentView respondsToSelector:@selector(sizeThatFits:)]) {
+        [self.contentView sizeThatFits:size];
     }
 }
 
@@ -461,7 +807,30 @@
 
 #pragma mark - setter
 
+- (void)setWebImageLoadBlock:(void (^)(UIImageView * _Nonnull, NSURL * _Nonnull))webImageLoadBlock {
+    _webImageLoadBlock = webImageLoadBlock;
+    if ([self.contentMenu isKindOfClass:[BRCPopUpMenu class]]) {
+        self.contentMenu.webImageLoadBlock = webImageLoadBlock;
+    }
+}
+
+- (void)setCancelImage:(UIImage *)cancelImage {
+    _cancelImage = cancelImage;
+    self.containerView.cancelButton.image = cancelImage;
+}
+
+- (void)setCancelTintColor:(UIColor *)cancelTintColor {
+    _cancelTintColor = cancelTintColor;
+    self.containerView.cancelButton.tintColor = cancelTintColor;
+}
+
+- (void)setShowCancelButton:(BOOL)isShowCancelImage {
+    _showCancelButton = isShowCancelImage;
+    self.containerView.cancelButton.hidden = !isShowCancelImage;
+}
+
 - (void)setContainerSize:(CGSize)containerSize {
+    _containerSize = containerSize;
     self.containerHeight = containerSize.height;
     self.containerWidth = containerSize.width;
     if (!CGSizeEqualToSize(containerSize, CGSizeZero)) {
@@ -493,6 +862,11 @@
 
 #pragma mark - getter
 
+- (BRCPopUpMenu *)contentMenu {
+    if ([self.contentView isKindOfClass:[BRCPopUpMenu class]]) return (BRCPopUpMenu *)self.contentView;
+    return nil;
+}
+
 - (CGFloat)containerHeight { return _containerSize.height; }
 
 - (CGFloat)containerWidth { return _containerSize.width; }
@@ -514,12 +888,16 @@
     }
 }
 
-- (UIEdgeInsets)contentInsets {
+- (UIEdgeInsets)bubbleContentInsets {
     CGFloat top = self.arrowDirection == BRCPopUpDirectionTop ? self.arrowSize.height : 0,
             left = self.arrowDirection == BRCPopUpDirectionRight ? self.arrowSize.width : 0,
             bottom = self.arrowDirection == BRCPopUpDirectionBottom ? self.arrowSize.height : 0,
             right = self.arrowDirection == BRCPopUpDirectionLeft ? self.arrowSize.width : 0;
-    return UIEdgeInsetsMake(_contentInsets.top + top, _contentInsets.left + left, _contentInsets.bottom + bottom,_contentInsets.right + right);
+    return UIEdgeInsetsMake(top, left, bottom, right);
+}
+
+- (UIEdgeInsets)contentInsets {
+    return UIEdgeInsetsMake(_contentInsets.top + self.bubbleContentInsets.top, _contentInsets.left + self.bubbleContentInsets.left, _contentInsets.bottom + self.bubbleContentInsets.bottom,_contentInsets.right + self.bubbleContentInsets.right);
 }
 
 - (UIImageView *)contentImageView {
@@ -573,7 +951,7 @@
 
 - (CGFloat)anchorViewCenterY { return CGRectGetMidY(self.anchorViewFrame);}
 
-- (CGRect)anchorViewFrame { return [self getFrameForView:self.anchorView inView:self.popUpSuperView];}
+- (CGRect)anchorViewFrame { return [self getFrameForView:self.anchorView inView:self.dismissMode == BRCPopUpDismissModeNone ? self.popUpSuperView : self.backgroundDismissView];}
 
 - (CGRect)popUpContextViewFrame {
     UIView *popUpContextView = self.popUpSuperView;
@@ -638,11 +1016,8 @@
     UIView *finalSuperView = nil;
     if (self.contextStyle == BRCPopUpContextStyleCustom) {
         finalSuperView = self.superView;
-        if (self.autoFindNearestScrollView) {
-            
-        }
     } else if ([self.anchorView isKindOfClass:[UIView class]]) {
-        if (self.autoFindNearestScrollView) {
+        if (self.contextStyle == BRCPopUpContextStyleSuperScrollView) {
             UIScrollView *scrollView = [self findNearestAnchorSuperScrollView];
             if ([scrollView isKindOfClass:[UIScrollView class]]) finalSuperView = scrollView;
         } else if (self.contextStyle == BRCPopUpContextStyleViewController) {
@@ -724,6 +1099,22 @@
     return [view convertRect:view.bounds toView:inView];
 }
 
+- (BOOL)canAddSubView:(UIView *)subView toView:(UIView *)superView {
+    if ([subView isKindOfClass:[UIView class]] &&
+        [superView isKindOfClass:[UIView class]] &&
+        ![superView.subviews containsObject:subView]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (UIView *)findNearestFullScreenView {
+    for (UIView *view = self.popUpSuperView.superview; view; view = view.superview) {
+        if (CGSizeEqualToSize(view.frame.size, UIScreen.mainScreen.bounds.size))  return view;
+    }
+    return self.popUpSuperView;
+}
+
 - (UIScrollView *)findNearestAnchorSuperScrollView {
     for (UIView *view = self.anchorView.superview; view; view = view.superview) {
         if ([view isKindOfClass:[UIScrollView class]]) return (UIScrollView *)view;
@@ -775,6 +1166,12 @@
         _containerView =  [[BRCBubbleContainerView alloc] init];
         _containerView.backgroundColor = self.backgroundColor;
         _containerView.layer.zPosition = FLT_MAX;
+        __weak typeof(self) weakSelf = self;
+        _containerView.onClickCancelButton = ^{
+            __strong typeof(self) strongSelf = weakSelf;
+            [strongSelf hide];
+            [strongSelf sendDelegateEventWithSEL:@selector(didClickCloseButton:withAchorView:)];
+        };
     }
     return _containerView;
 }
@@ -784,6 +1181,7 @@
         _backgroundDismissView = [[UIControl alloc] init];
         _backgroundDismissView.backgroundColor = [UIColor clearColor];
         _backgroundDismissView.userInteractionEnabled = YES;
+        _backgroundDismissView.frame = CGRectMake(0, 0, kBRCScreenWidth, kBRCScreenHeight);
         [_backgroundDismissView addTarget:self action:@selector(dismissView) forControlEvents:UIControlEventTouchUpInside];
     }
     return _backgroundDismissView;

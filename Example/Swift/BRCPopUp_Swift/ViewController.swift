@@ -31,7 +31,7 @@ class ViewController : UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-            self.navigationItem.titleView?.brc_popUpTip("你好,我是一个功能完善,高度定制化的DropDown/PopUp组件,很高兴认识你!", with: .bottom,hideAfterDuration: 1.0);
+            self.navigationItem.titleView?.brc_popUpTip("你好,我是一个功能完善,高度定制化的DropDown/PopUp组件,很高兴认识你!", direction: .bottom,hideAfter: 2.0);
         };
     }
     
@@ -45,7 +45,7 @@ class ViewController : UIViewController {
     
     func addTest1Button() {
         let button = createTestButton("测试1") { button in
-            button.brc_popUpTip("你好呀", with: .bottom);
+            button.brc_popUpTip("你好呀", direction: .bottom);
         };
         addTestView(button, "示例1", kBRCScreenWidth - 40, 10);
     }
