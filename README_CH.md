@@ -18,6 +18,29 @@
 - **灵活的弹出和消失方式**：支持锚定视图和锚点位置弹出，支持自动消失和手动控制消失。
 - **完善的代理回调**：提供多种代理回调方法，方便监听弹出框的各种事件。
 
+<table>
+    <thead>
+        <tr>
+            <th>MainTest</th>
+            <th>PopUpTest</th>
+            <th>DropDownTest</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <img src="https://jaychou202302.github.io/media/BRCPopUp/main.png"/>
+            </td>
+            <td>
+                <img src="https://jaychou202302.github.io/media/BRCPopUp/popup.png"/>
+            </td>
+                 <td>
+                <img src="https://jaychou202302.github.io/media/BRCPopUp/dropdown.png"/>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
 
 ## 快速使用
 
@@ -345,6 +368,7 @@ popUper.showWithAnimation(view:anchorView, hideAfterDelay: 3.0);
 }
 
 ```
+
 
 ## 使用
 
