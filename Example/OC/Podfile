@@ -3,7 +3,7 @@ use_frameworks!
 platform :ios, '13.0'
 
 target 'BRCPopUp_Example' do
-  pod 'BRCPopUp',:path => '../../../BRCPopUp'
+  pod 'BRCPopUp','~> 1.4.0'
   pod 'BRCFastTest'
 
   target 'BRCPopUp_Tests' do

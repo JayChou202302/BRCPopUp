@@ -197,7 +197,7 @@ struct PopUpView : View {
 2) **Advanced properties**: <p>
 `arrowCenterAlignToAnchor` makes the arrow always point to the center of the anchored view (except in a few cases, the offset set is too large to point), it is recommended to turn on <p>
 
------
+<br>
 
 **Q:** I want to customize the external layout of the pop-up box. How to set the parameters? <p>
 **A:**<p>
@@ -250,8 +250,6 @@ struct PopUpView : View {
 
  `autoCutoffRelief`: Whether to cut off the part beyond the pop-up box's parent view. After you set the anchor view and pop-up box container size, the component will internally calculate the `Frame` of the pop-up box view based on the pop-up direction. When the calculated pop-up box is calculated, the `Frame` of the pop-up box view will be calculated. If the position of the box exceeds the scope of its parent view, the width and height will be adaptively cropped.
 
------
-
 **Q:** I want to customize the parent view of the pop-up box. How should I set the parameters? <p>
 **A:**<p>
 1) **Basic parameters**:<p>
@@ -267,7 +265,7 @@ struct PopUpView : View {
 `contextWindow`: When you set `contextStyle` to `Window`, you can customize the pop-up box that pops up
 Which Window is the parent view? The default is App's `KeyWindow`
 
------
+<br>
 
 **Q:** I want to customize the pop-up style of the pop-up box. How should I set the parameters? <p>
 **A:**<p>
@@ -277,7 +275,7 @@ View time<p>
 2) **Advanced parameters**: <p>
 `dismissMode`: This parameter determines the dismissal mode of the pop-up box. It supports the user to touch the pop-up box background view to automatically dismiss the pop-up box. You can get the callback of this event in `delegate`<p>
 
------
+<br>
 
 **Q:** I want to customize the animation style of the pop-up box. How should I set the parameters? <p>
 **A:**<p>
