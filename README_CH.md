@@ -175,15 +175,17 @@ struct PopUpView : View {
 2）**高级属性**：<p>
 `arrowCenterAlignToAnchor` 让箭头始终指向锚定视图的中心（除了少数情况下，设置的偏移过大，无法指向），建议打开<p>
 
+<br>
+
 **Q:** 我想要自定义弹出框的外部布局，如何设置参数呢？<p>
 **A:**<p>
 1）**基础属性**：`containerSize`,`containerHeight`,`containerWidth`，这些属性你可以配合下面的高级属性来自定义其外部布局。<p>
 2）**高级属性**： <p>
 `marginToAnchorView`:弹出框视图到锚定视图的外部间距<p>
 
-<div style="display: flex; justify-content: center; align-items: center; height: 500px;background-color:clear;border-radius:4px;">
+<p align="center">
  <img style="width:400px" src="https://jaychou202302.github.io/media/BRCPopUp/md1.png"/>
-</div>
+</p>
 
 <br>
 
@@ -215,10 +217,9 @@ struct PopUpView : View {
 
 
 `offsetToAnchorView`:弹出框视图和锚定视图之间的相对偏移，设置此参数前，你需要注意设置 `contentAlignment` 参数，因为该偏移是基于对齐之后的进行偏移的。
-
-<center>
+<p align="center">
      <img style="width:320px" src="https://jaychou202302.github.io/media/BRCPopUp/md5.png"/>
-</center>
+</p>
 
 `autoFitContainerSize`:根据锚定视图自适应调整弹出框容器大小，需要注意的是，当你主动设置了 `containerSize`之后，该属性将不会再生效。 
  > [!Note]
@@ -242,6 +243,8 @@ struct PopUpView : View {
 `contextWindow`:当你设置 `contextStyle` 为 `Window` 的时候，你可以自定义弹出框弹出的
 父视图具体为哪个Window，默认是App的`KeyWindow`
 
+<br>
+
 **Q:** 我想要自定义弹出框的弹出样式，应该如何设置参数？<p>
 **A:**<p>
 1）**基础参数**：<p>
@@ -249,6 +252,8 @@ struct PopUpView : View {
 视图的时间<p>
 2）**高级参数**：<p>
 `dismissMode`:该参数决定弹出框的解散模式，支持用户触碰弹出框背景视图，自动解散弹出框。你可以在 `delegate` 中获取到该事件的回调<p>
+
+<br>
 
 **Q:** 我想要自定义弹出框的动画样式，应该如何设置参数？<p>
 **A:**<p>
