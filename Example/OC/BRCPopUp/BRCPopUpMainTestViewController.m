@@ -336,6 +336,18 @@
     return 15;
 }
 
+- (NSArray *)componentTags {
+    return @[
+        @"key.main.tag.01",
+        @"key.main.tag.02",
+        @"key.main.tag.03",
+        @"key.main.tag.06",
+        @"key.main.tag.07",
+        @"key.main.tag.04",
+        @"key.main.tag.05"
+    ];
+}
+
 @end
 
 

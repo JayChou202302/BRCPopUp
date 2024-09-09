@@ -364,12 +364,14 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BRCPopUp_Example/Pods-BRCPopUp_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BRCFastTest/BRCFastTest.framework",
+				"${BUILT_PRODUCTS_DIR}/BRCFlexTagBox/BRCFlexTagBox.framework",
 				"${BUILT_PRODUCTS_DIR}/BRCPopUp/BRCPopUp.framework",
 				"${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BRCFastTest.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BRCFlexTagBox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BRCPopUp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLEX.framework",
 			);

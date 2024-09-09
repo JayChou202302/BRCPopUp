@@ -40,6 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong,class,readonly) UIColor *brtest_secondaryContentWhite;
 @property (nonatomic,strong,class,readonly) UIColor *brtest_pink;
 
++ (UIColor *)colorWithHexString:(NSString *)hexString;
+
 @end
 
 NS_ASSUME_NONNULL_END

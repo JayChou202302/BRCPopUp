@@ -9,6 +9,13 @@
 "key.main.tab.test" = "Test";
 "key.main.tab.popup" = "Popup";
 "key.main.tab.down" = "Dropdown";
+"key.main.tag.01" = "iOS";
+"key.main.tag.02" = "Objective-C";
+"key.main.tag.03" = "SwiftUI";
+"key.main.tag.06" = "DropDown";
+"key.main.tag.07" = "PopUp";
+"key.main.tag.04" = "Powerful and easy to use API";
+"key.main.tag.05" = "Supports high customization";
 "key.main.tab.selectTab" = "Selected the %@ th Tab";
 "key.main.test.section.title.direction" = "Popup Direction";
 "key.main.test.section.title.animation" = "Popup Animation";

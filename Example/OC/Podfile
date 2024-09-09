@@ -4,7 +4,7 @@ platform :ios, '13.0'
 
 target 'BRCPopUp_Example' do
   pod 'BRCPopUp','~> 1.4.0'
-  pod 'BRCFastTest'
+  pod 'BRCFastTest','~> 0.2.2'
 
   target 'BRCPopUp_Tests' do
     inherit! :search_paths

@@ -13,6 +13,7 @@
 #import "UIControl+YYAdd.h"
 #import "UIView+YYAdd.h"
 #import "Masonry.h"
+#import "BRCFlexTagBoxView.h"
 
 #define kSafeAreaBottomSpcing [UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom
  
@@ -23,6 +24,7 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) MASConstraint *bottomConstraint;
 @property (nonatomic, assign) CGFloat currentKeyboardY;
+@property (nonatomic, strong, readonly) NSArray *componentTagColors;
 
 
 @end
@@ -50,6 +52,15 @@
     }
 }
 
+- (NSInteger)randomNumberBetween:(NSInteger)min and:(NSInteger)max {
+    if (min > max) {
+        NSLog(@"Error: min should be less than or equal to max");
+        return NSNotFound;
+    }
+    NSInteger range = max - min + 1;
+    return min + arc4random_uniform((uint32_t)range);
+};
+
 - (void)setUpViews {
     [self.view addSubview:self.scrollView];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -69,6 +80,45 @@
             make.leading.equalTo(self.scrollView);
         }];
         self.lastView = titleLabel;
+    }
+    if ([self.componentTags isKindOfClass:[NSArray class]] &&
+        self.componentTags.count > 0) {
+        BRCFlexTagBoxView *flexTagView = [[BRCFlexTagBoxView alloc] init];
+        flexTagView.backgroundColor = [UIColor brtest_contentWhite];
+        NSMutableArray *tags = [NSMutableArray array];
+        NSMutableArray *componentTagColors = self.componentTagColors.mutableCopy;
+        [self.componentTags enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj isNotBlank]) {
+                BRCFlexTagModel *tagModel = [[BRCFlexTagModel alloc] init];
+                tagModel.text = [NSString brctest_localizableWithKey:obj];
+                tagModel.style.tagTextColor = [UIColor whiteColor];
+                tagModel.style.tagTextFont = [UIFont boldSystemFontOfSize:13.0];
+                tagModel.style.tagBorderWidth = 1.0;
+                tagModel.style.tagBorderColor = [UIColor brtest_fifthGray];
+                tagModel.style.tagCornerRadius = 5.0;
+                tagModel.style.tagContentInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+                tagModel.style.tagTextAlignment = NSTextAlignmentLeft;
+                
+                NSInteger randomColorIndex = [self randomNumberBetween:0 and:componentTagColors.count];
+                if (randomColorIndex < componentTagColors.count) {
+                    NSString *color = componentTagColors[randomColorIndex];
+                    tagModel.style.tagBackgroundColor = [UIColor colorWithHexString:color];
+                    [componentTagColors removeObject:color];
+                } else {
+                    tagModel.style.tagBackgroundColor = [UIColor colorWithHexString:componentTagColors.lastObject];
+                    [componentTagColors removeLastObject];
+                }
+                [tags addObject:tagModel];
+            }
+        }];
+        [flexTagView setTagList:tags];
+        [self addSubView:flexTagView];
+        [flexTagView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.lastView.mas_bottom).offset(10);
+            make.leading.equalTo(self.scrollView);
+            make.trailing.equalTo(self.scrollView);
+        }];
+        self.lastView = flexTagView;
     }
     if ([self.componentDescription isNotBlank]) {
         UILabel *descriptionLabel = [[UILabel alloc] init];
@@ -431,7 +481,7 @@
     return @"";
 }
 
-- (NSArray *)componentTag {
+- (NSArray *)componentTags {
     return @[];
 }
 
@@ -445,6 +495,42 @@
 
 - (CGFloat)keyBoardBottomSpace {
     return 10;
+}
+
+- (NSArray *)componentTagColors {
+    return @[ @"#F5A623", // 亮橙色
+              @"#50E3C2", // 亮青色
+              @"#F8E71C", // 亮黄色
+              @"#7ED321", // 温和的绿
+              @"#BD10E0", // 明亮的紫色
+              @"#4A90E2", // 亮蓝色
+              @"#D0021B", // 亮红色
+              @"#F6F6F6", // 亮灰白色
+              @"#B0BEC5", // 温和的蓝灰色
+              @"#FFB74D", // 温暖的橙色
+              @"#64B5F6", // 温和的蓝色
+              @"#4DB6AC", // 清新的青色
+              @"#FFF176", // 明亮的黄色
+              @"#7986CB", // 温和的蓝紫色
+              @"#4CAF50", // 亮绿色
+              @"#E57373", // 温和的红色
+              @"#F06292", // 亮粉色
+              @"#BA68C8", // 温和的紫色
+              @"#FFD54F", // 温暖的黄色
+              @"#4DD0E1", // 清新的青色
+              @"#81C784", // 亮绿色
+              @"#64B5F6", // 亮蓝色
+              @"#F48FB1", // 明亮的粉色
+              @"#C5E1A5", // 温和的绿色
+              @"#FFAB91", // 温暖的橙色
+              @"#CE93D8", // 温和的紫色
+              @"#B3E5FC", // 亮蓝色
+              @"#FFCDD2", // 温和的红色
+              @"#C8E6C9", // 清新的绿色
+              @"#B3E5FC", // 亮蓝色
+              @"#D1C4E9", // 温和的紫色
+              @"#F0F4C3" // 温暖的黄色
+    ];
 }
 
 #pragma mark - UIScrollViewDelegate

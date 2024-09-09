@@ -160,5 +160,26 @@
         }];
 }
 
++ (UIColor *)colorWithHexString:(NSString *)hexString {
+    unsigned hexInt = 0;
+    // 创建扫描器
+    NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    // 扫描十六进制值
+    [scanner scanHexInt:&hexInt];
+    return [UIColor colorWithHex:hexInt alpha:1.0];
+}
+
++ (UIColor *)colorWithHex:(UInt32)hex alpha:(CGFloat)alpha {
+    // 分解成RGB组件
+    int r = (hex >> 16) & 0xFF;
+    int g = (hex >> 8) & 0xFF;
+    int b = (hex) & 0xFF;
+
+    return [UIColor colorWithRed:(CGFloat)r / 255.0
+                           green:(CGFloat)g / 255.0
+                            blue:(CGFloat)b / 255.0
+                           alpha:alpha];
+}
+
 
 @end

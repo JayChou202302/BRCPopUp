@@ -8,6 +8,13 @@
 "key.main.tab.test" = "测试";
 "key.main.tab.popup" = "弹出框";
 "key.main.tab.down" = "下拉框";
+"key.main.tag.01" = "iOS";
+"key.main.tag.02" = "Objective-C";
+"key.main.tag.03" = "SwiftUI";
+"key.main.tag.06" = "DropDown";
+"key.main.tag.07" = "PopUp";
+"key.main.tag.04" = "API强大易用";
+"key.main.tag.05" = "支持高度自定义";
 "key.main.tab.selectTab" = "选中了第%@个Tab栏";
 "key.main.test.section.title.direction" = "弹出方向";
 "key.main.test.section.title.animation" = "弹出动画";

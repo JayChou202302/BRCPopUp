@@ -45,7 +45,10 @@ public struct BRCTestSwiftUITabBarView<ContentView : View> : View {
                 Text("UnKown View")
             }
             
-            BRCTestSwiftUITabBar<ContentView>(currentSelectIndex: $currentSelectIndex,tabBarItems: tabBarItems);
+            VStack {
+                Spacer()
+                BRCTestSwiftUITabBar<ContentView>(currentSelectIndex: $currentSelectIndex,tabBarItems: tabBarItems);
+            }
         }
     }
 }
@@ -59,7 +62,6 @@ public struct BRCTestSwiftUITabBar<ContentView : View> : View {
     
     public var body: some View {
         VStack {
-            Spacer();
             HStack(alignment: .center,spacing: 10) {
                 ForEach(Array(tabBarItems.enumerated()),id: \.offset) { index,item in
                     Spacer()
@@ -71,6 +73,8 @@ public struct BRCTestSwiftUITabBar<ContentView : View> : View {
                 }
             }
         }
+        .frame(height: 48)
+        .background(Color.brtest_contentWhite())
     }
 }
 
@@ -95,7 +99,8 @@ public struct BRCTestSwiftUITabBarItemView : View {
                     .foregroundColor(currentSelectIndex == index ? Color.brtest_black() : Color.brtest_gray())
                     .font(.footnote)
             }
-        }.onTapGesture {
+        }
+        .onTapGesture {
             onSelected();
         }
     }
