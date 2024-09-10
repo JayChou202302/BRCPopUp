@@ -6,9 +6,13 @@
   
 */
 
-"key.tag.api.useful" = "API丰富";
-"key.tag.api.easy.use" = "简单易用";
-"key.tag.api.ios.available" = "iOS 13.0 以上";
+"key.main.tag.01" = "iOS";
+"key.main.tag.02" = "Objective-C";
+"key.main.tag.03" = "SwiftUI";
+"key.main.tag.06" = "DropDown";
+"key.main.tag.07" = "PopUp";
+"key.main.tag.04" = "API强大易用";
+"key.main.tag.05" = "支持高度自定义";
 "key.test.label.01" = "1.弹出文本";
 "key.test.label.02" = "2.弹出文本-可跟随锚定视图滑动";
 "key.test.label.03" = "3.弹出菜单-带事件回调";

@@ -5,9 +5,13 @@
   Created by sunzhixiong on 2024/8/15.
   
 */
-"key.tag.api.useful" = "Rich API";
-"key.tag.api.easy.use" = "Easy to use";
-"key.tag.api.ios.available" = "Available on iOS 13.0 and above";
+"key.main.tag.01" = "iOS";
+"key.main.tag.02" = "Objective-C";
+"key.main.tag.03" = "SwiftUI";
+"key.main.tag.06" = "DropDown";
+"key.main.tag.07" = "PopUp";
+"key.main.tag.04" = "Powerful and easy to use API";
+"key.main.tag.05" = "Supports high customization";
 "key.test.label.01" = "1. Display a text message";
 "key.test.label.02" = "2. Display a text message - scrollable with the anchor view";
 "key.test.label.03" = "3. Display a menu - with event callback";

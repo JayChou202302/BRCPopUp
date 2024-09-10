@@ -1,0 +1,6 @@
+framework module BRCFlexTagBox {
+  umbrella header "BRCFlexTagBox-umbrella.h"
+
+  export *
+  module * { export * }
+}

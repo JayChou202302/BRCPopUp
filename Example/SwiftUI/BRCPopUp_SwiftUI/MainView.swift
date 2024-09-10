@@ -8,6 +8,7 @@
 import SwiftUI
 import BRCPopUp
 import BRCFastTest
+import BRCFlexTagBox
 
 struct TagView : View {
     var backgroundColor : Color
@@ -100,6 +101,20 @@ struct MainView: View {
     @State var isTest3Present : Bool = false;
     @State var isTest4Present : Bool = false;
     @State var context : UIView = UIView();
+    @State var tags : [String] = [
+        "key.main.tag.01",
+        "key.main.tag.02",
+        "key.main.tag.03",
+        "key.main.tag.06",
+        "key.main.tag.07",
+        "key.main.tag.04",
+        "key.main.tag.05",
+    ].map { key in
+        return String.brctest_localizableWithKey(key)
+    };
+    @State var contentHeight : CGFloat = 0;
+    
+    
     
     func GetTest2AttributedText() -> NSAttributedString{
         let string =  "SwiftUI helps you build great-looking apps across all Apple platforms with the power of Swift — and surprisingly little code. You can bring even better experiences to everyone, on any Apple device, using just one set of tools and APIs.";
@@ -115,21 +130,17 @@ struct MainView: View {
     
     var body: some View {
         NavigationView {
+        
+        VStack {
+            
             BRCPopUpWrapper(.nearestScrollView) {
+                
                 ScrollView {
+                    BRCFlexTagBox(testTags: tags,contentHeight: $contentHeight)
+                        .tagBackgroundColor(.brtest_contentWhite)
+                        .frame(height: contentHeight)
+                    
                     VStack(spacing: 5) {
-                        HStack {
-                           TagView(.brtest_red(),"Objective-C")
-                           TagView(.brtest_orange(),"Swift")
-                           TagView(.brtest_green(),"SwiftUI")
-                           TagView(.brtest_cyan(),"key.tag.api.useful")
-                           TagView(.brtest_deepPink(),"key.tag.api.easy.use")
-                           Spacer()
-                        }
-                        HStack {
-                            TagView(.brtest_gold(),"key.tag.api.ios.available")
-                            Spacer()
-                        }
                         HStack {
                             Text(String.brctest_localizableWithKey("key.test.label.01"))
                                 .font(.title3)
@@ -217,29 +228,29 @@ struct MainView: View {
                                 })
                             ], customize: {
                                 $0
-                                 .textColor(.brtest_black)
-                                 .textFont(UIFont.boldSystemFont(ofSize: 12.0))
-                                 .contentInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
-                                 .containerSize(.init(width: 100, height: 150))
-                                 .menuSeparatorColor(.brtest_deepRed)
-                                 .didUserDismissPopUper { popUp, view in
+                                    .textColor(.brtest_black)
+                                    .textFont(UIFont.boldSystemFont(ofSize: 12.0))
+                                    .contentInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                                    .containerSize(.init(width: 100, height: 150))
+                                    .menuSeparatorColor(.brtest_deepRed)
+                                    .didUserDismissPopUper { popUp, view in
                                     BRCToast.show("didUserDismissPopUper");
                                     print("didUserDismissPopUper");
-                                 }
-                                 .didHidePopUper { popUp, view in
+                                    }
+                                    .didHidePopUper { popUp, view in
 //                                    BRCToast.show("didHidePopUper");
                                     print("didHidePopUper");
-                                 }
-                                 .didShowPopUper { popUp, view in
+                                    }
+                                    .didShowPopUper { popUp, view in
 //                                    BRCToast.show("didShowPopUper");
                                     print("didShowPopUper");
-                                 }
-                                 .willHidePopUper { popUp, view in
+                                    }
+                                    .willHidePopUper { popUp, view in
                                     print("willHidePopUper");
-                                 }
-                                 .willShowPopUper { popUp, view in
+                                    }
+                                    .willShowPopUper { popUp, view in
                                     print("willShowPopUper");
-                                 }
+                                    }
                             })
                             .onTapGesture {
                                 isTest3Present.toggle()
@@ -263,16 +274,17 @@ struct MainView: View {
                                 BRCPageView()
                             },customize: {
                                 $0
-                                 .containerSize(.init(width: kBRCScreenWidth / 2, height: 200))
-                                 .popUpContext(context)
+                                    .containerSize(.init(width: kBRCScreenWidth / 2, height: 200))
+                                    .popUpContext(context)
                             })
                             .onTapGesture {
                                 isTest4Present.toggle()
                             }
                     }
                 }
-            } onFindContextUIView: { contextView in
-                context = contextView;
+                } onFindContextUIView: { contextView in
+                    context = contextView;
+                }
             }
             .padding(.leading)
             .background(Color.brtest_contentWhite())
@@ -314,6 +326,24 @@ struct MainView: View {
                         }
                 }
             }
+        }
+    }
+}
+
+struct TestView : View {
+    var body: some View {
+        VStack {
+            Text("你好")
+                .background(content: {
+                    Rectangle()
+                        .frame(width: 100,height: 100)
+                        .foregroundColor(.black)
+                })
+                .overlay {
+                    Rectangle()
+                        .frame(width: 50,height: 50)
+                        .foregroundColor(.red)
+                }
         }
     }
 }

@@ -130,8 +130,21 @@ internal struct BRCFindTopUIViewModifier : ViewModifier {
         guard let backView = self.backController?.view,let frontView = self.frontController?.view else{
             return
         }
-        let commonSuperView = findCommonAncestor(view1: backView, view2: frontView);
-        onFindTopView( commonSuperView);
+        guard let backSuperSwiftUIView = backView.superview, let frontSuperSwiftUIView = frontView.superview else {
+            return
+        }
+        guard let findCommonAncestor = findCommonAncestor(view1: backSuperSwiftUIView, view2: frontSuperSwiftUIView) else {
+            return
+        }
+        guard let backIndex = findCommonAncestor.subviews.firstIndex(of: backSuperSwiftUIView),
+              let frontIndex = findCommonAncestor.subviews.firstIndex(of: frontSuperSwiftUIView) else {
+            return
+        }
+        var contentTopView : UIView = findCommonAncestor;
+        if (frontIndex > 1 && backIndex < frontIndex) {
+           contentTopView = findCommonAncestor.subviews[frontIndex - 1]
+       }
+        onFindTopView(contentTopView);
     }
 
     
