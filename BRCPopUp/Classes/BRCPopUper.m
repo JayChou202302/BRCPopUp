@@ -538,8 +538,11 @@
 - (void)hide { [self hideWithAnimated:YES]; }
 
 - (void)hideWithAnimated:(BOOL)isAnimated {
-    if ((![self.anchorView isKindOfClass:[UIView class]]) ||
-        self.display == NO) {
+    if ((![self.anchorView isKindOfClass:[UIView class]])) {
+        return;
+    }
+    if (self.display == NO) {
+        self.anchorView = nil;
         return;
     }
     [self stopMonitoring];
@@ -1187,41 +1190,49 @@
 #pragma mark - public
 
 - (void)setText:(NSString *)text {
+    _text = text;
     if (![self.contentLabel isKindOfClass:[UILabel class]]) return;
     [self.contentLabel setText:text];
 }
 
 - (void)setAttribuedText:(NSAttributedString *)attribuedText {
+    _attribuedText = attribuedText;
     if (![self.contentLabel isKindOfClass:[UILabel class]]) return;
     [self.contentLabel setAttributedText:attribuedText];
 }
 
 - (void)setTextFont:(UIFont *)textFont {
+    _textFont = textFont;
     if (![self.contentLabel isKindOfClass:[UILabel class]]) return;
     [self.contentLabel setFont:textFont];
 }
 
 - (void)setTextColor:(UIColor *)textColor {
+    _textColor = textColor;
     if (![self.contentLabel isKindOfClass:[UILabel class]]) return;
     [self.contentLabel setTextColor:textColor];
 }
 
 - (void)setTextAlignment:(NSTextAlignment)textAlignment {
+    _textAlignment = textAlignment;
     if (![self.contentLabel isKindOfClass:[UILabel class]]) return;
     [self.contentLabel setTextAlignment:textAlignment];
 }
 
 - (void)setTintColor:(UIColor *)tintColor {
+    _tintColor = tintColor;
     if (![self.contentImageView isKindOfClass:[UIImageView class]]) return;
     [self.contentImageView setTintColor:tintColor];
 }
 
 - (void)setImage:(UIImage *)image {
+    _image = image;
     if (![self.contentImageView isKindOfClass:[UIImageView class]]) return;
     [self.contentImageView setImage:image];
 }
 
 - (void)setImageUrl:(NSString *)imageUrl {
+    _imageUrl = imageUrl;
     if (![self.contentImageView isKindOfClass:[UIImageView class]]) return;
     if (self.webImageLoadBlock) self.webImageLoadBlock(self.contentImageView, [NSURL URLWithString:imageUrl]);
 }
@@ -1234,9 +1245,13 @@
         if (self.contentStyle == BRCPopUpContentStyleText) {
             UILabel *label = [[UILabel alloc] init];
             label.numberOfLines = 0;
+            label.textColor = self.textColor;
+            label.font = self.textFont;
+            label.textAlignment = self.textAlignment;
             _contentView = label;
         } else if (self.contentStyle == BRCPopUpContentStyleImage) {
             UIImageView *imageView = [[UIImageView alloc] init];
+            imageView.tintColor = self.tintColor;
             _contentView = imageView;
         }
     }

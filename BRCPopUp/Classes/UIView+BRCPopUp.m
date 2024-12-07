@@ -92,7 +92,7 @@ static const void *const kBRCShowPopUperCustomAnimationKey = &kBRCShowPopUperCus
         popUper.popUpDirection = direction;
         popUper.popUpAnimationType = animationType;
         popUper.anchorView = self;
-        [popUper show];
+        [popUper showAndHideAfter:duration];
     }
 }
 
@@ -129,7 +129,7 @@ static const void *const kBRCShowPopUperCustomAnimationKey = &kBRCShowPopUperCus
         popUper.containerSize = size;
         popUper.popUpAnimationType = animationType;
         popUper.anchorView = self;
-        [popUper show];
+        [popUper showAndHideAfter:duration];
     }
 }
 
