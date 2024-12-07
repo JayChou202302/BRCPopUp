@@ -538,9 +538,6 @@
 - (void)hide { [self hideWithAnimated:YES]; }
 
 - (void)hideWithAnimated:(BOOL)isAnimated {
-    if ((![self.anchorView isKindOfClass:[UIView class]])) {
-        return;
-    }
     if (self.display == NO) {
         self.anchorView = nil;
         return;
