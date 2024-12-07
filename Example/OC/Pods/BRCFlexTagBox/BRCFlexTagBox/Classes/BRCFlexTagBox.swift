@@ -30,10 +30,18 @@ public struct BRCFlexTagBox : UIViewRepresentable {
     public typealias UIViewType = BRCFlexTagBoxView;
     @Binding var tags : Array<Any>;
     @Binding var params : BRCFlexTagBoxParameters;
+    @Binding var contentHeight : CGFloat;
     
-    public init(tags: Binding<[Any]>) {
+    public init(tags: [Any], contentHeight: Binding<CGFloat>) {
+        self._tags = Binding.constant(tags)
+        self._params = Binding.constant(BRCFlexTagBoxParameters());
+        self._contentHeight = contentHeight;
+    }
+    
+    public init(tags: Binding<[Any]>,contentHeight: Binding<CGFloat>) {
         self._tags = tags;
         self._params = Binding.constant(BRCFlexTagBoxParameters());
+        self._contentHeight = contentHeight;
     }
     
     public func makeUIView(context: Context) -> BRCFlexTagBoxView {
@@ -74,49 +82,52 @@ public struct BRCFlexTagBox : UIViewRepresentable {
         if (isNeedUpdate) {
             uiView.reload();
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            contentHeight = uiView.contentSize.height;
+        }
     }
 }
 
 public extension BRCFlexTagBox {
-    private func updateParams(_ block : ((inout BRCFlexTagBoxParameters) -> Void)) -> BRCFlexTagBox {
+    private func updateParams(_ block : ((inout BRCFlexTagBoxParameters) -> Void)) -> some View {
         var input = self;
         var params = input.params;
         block(&params);
         input._params = Binding.constant(params);
         return input;
     }
-    func tagSpacing(line : CGFloat = 5,item : CGFloat = 5) -> BRCFlexTagBox {
+    func tagSpacing(line : CGFloat = 5,item : CGFloat = 5) -> some View {
        return updateParams { params in
            params.lineSpacing = line;
            params.itemSpacing = item;
        }
     }
-    func tagBorder(width : CGFloat,color : UIColor) -> BRCFlexTagBox {
+    func tagBorder(width : CGFloat,color : UIColor) -> some View {
         return updateParams { params in
             params.tagBorderWidth = width;
             params.tagBorderColor = color;
         }
     }
-    func tagShadow(radius : CGFloat,color : UIColor,offset : CGSize) -> BRCFlexTagBox {
+    func tagShadow(radius : CGFloat,color : UIColor,offset : CGSize) -> some View {
         return updateParams { params in
             params.tagShadowRadius = radius;
             params.tagShadowColor = color;
             params.tagShadowOffset = offset;
         }
     }
-    func tagCornerRadius(_ radius : CGFloat) -> BRCFlexTagBox {
+    func tagCornerRadius(_ radius : CGFloat) -> some View {
         return updateParams { params in
             params.tagCornerRadius = radius;
         }
     }
     
-    func tagMaxWidth(_ width : CGFloat) -> BRCFlexTagBox {
+    func tagMaxWidth(_ width : CGFloat) -> some View {
         return updateParams { params in
             params.tagMaxWidth = width;
         }
     }
     
-    func tagTextStyle(_ color : UIColor = .black,_ font : UIFont = .systemFont(ofSize: 13.0,weight: .medium),_ alignment : NSTextAlignment = .center) -> BRCFlexTagBox {
+    func tagTextStyle(_ color : UIColor = .black,_ font : UIFont = .systemFont(ofSize: 13.0,weight: .medium),_ alignment : NSTextAlignment = .center) -> some View {
         return updateParams { params in
             params.tagTextColor = color;
             params.tagTextFont = font;
@@ -124,13 +135,13 @@ public extension BRCFlexTagBox {
         }
     }
     
-    func tagContentInsets(_ insets: UIEdgeInsets) -> BRCFlexTagBox {
+    func tagContentInsets(_ insets: UIEdgeInsets) -> some View {
         return updateParams { params in
             params.tagContentInsets = insets;
         }
     }
     
-    func tagBackgroundColor(_ color : UIColor) -> BRCFlexTagBox {
+    func tagBackgroundColor(_ color : UIColor) -> some View {
         return updateParams { params in
             params.tagBackgroundColor = color;
         }

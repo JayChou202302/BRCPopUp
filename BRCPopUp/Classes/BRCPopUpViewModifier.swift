@@ -37,7 +37,7 @@ class BRCFindTopFrontViewController : UIViewController {
             onViewHasChange?(self)
         }
     }
-
+    
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     override var preferredStatusBarStyle: UIStatusBarStyle { parent?.preferredStatusBarStyle ?? super.preferredStatusBarStyle }
@@ -46,17 +46,17 @@ class BRCFindTopFrontViewController : UIViewController {
         super.viewDidLoad()
         onViewChange?()
     }
-
+    
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent);
         onViewChange?()
     }
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         onViewChange?()
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         onViewChange?()

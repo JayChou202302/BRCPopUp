@@ -35,8 +35,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) UIEdgeInsets tagContentInsets;
 @property (nonatomic, assign) NSTextAlignment tagTextAlignment;
 
-- (BOOL)isEqual:(id)other;
-
 @end
 
 /// The Tag Model

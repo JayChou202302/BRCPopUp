@@ -6,7 +6,6 @@
 
 #import <UIKit/UIKit.h>
 #import "BRCPopUpConst.h"
-#import "BRCPopUpMenu.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,9 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly, nullable) UIImageView  *contentImageView;
 @property (nonatomic, strong, readonly, nullable) UILabel      *contentLabel;
-@property (nonatomic, strong, readonly, nullable) BRCPopUpMenu *contentMenu;
+@property (nonatomic, strong, nullable) UIView                 *anchorView;
 @property (nonatomic, strong) UIView                   *contentView;
-@property (nonatomic, strong) UIView                   *anchorView;
 @property (nonatomic, strong) UIColor                  *backgroundColor;
 @property (nonatomic, strong) UIColor                  *shadowColor;
 @property (nonatomic, strong) UIColor                  *cancelTintColor;
@@ -33,6 +31,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat                  shadowOpacity;
 @property (nonatomic, assign) BOOL                     showCancelButton;
 @property (nonatomic, copy)   void (^webImageLoadBlock)(UIImageView *imageView, NSURL *imageUrl);
+
+#pragma mark - Text
+
+@property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) UIFont   *textFont;
+@property (nonatomic, strong) UIColor  *textColor;
+@property (nonatomic, assign) NSTextAlignment    textAlignment;
+@property (nonatomic, strong) NSAttributedString *attribuedText;
+
+#pragma mark - Image
+
+@property (nonatomic, strong) UIImage  *image;
+@property (nonatomic, strong) NSString *imageUrl;
+@property (nonatomic, strong) UIColor  *tintColor;
 
 #pragma mark - private
 
@@ -284,35 +296,6 @@ NS_ASSUME_NONNULL_BEGIN
  * Call this method to adapt to size - mainly applicable to text
  */
 - (void)sizeThatFits:(CGSize)size;
-
-@end
-
-@interface BRCPopUper (popUpContent)
-
-#pragma mark - Text
-
-/**
- * Sets the popUp's content text / 设置内容文本
- *
- * @param contentText The text to be displayed in the popUp.
- */
-- (void)setContentText:(id)contentText;
-
-#pragma mark - Image
-
-/**
- * Sets the popUp's content image / 设置内容图片
- *
- * @param image The image to be displayed in the popUp.
- */
-- (void)setContentImage:(UIImage *)image;
-
-/**
- * Sets the popUp's content image using a URL / 设置内容网络图片
- *
- * @param imageUrl The URL of the image to be displayed in the popUp.
- */
-- (void)setContentImageUrl:(NSString *)imageUrl;
 
 @end
 

@@ -409,7 +409,7 @@
     _containerSize = CGSizeZero;
     _shadowOffset = CGSizeZero;
     _shadowRadius = 0;
-
+    
     _cancelButtonRelativePosition = CGPointZero;
     _cancelButtonAbsoultePosition = CGPointZero;
     _cancelButtonFrame = CGRectZero;
@@ -586,9 +586,6 @@
             [self.containerView addSubview:self.contentView];
             [self addEdgeConstraintsFromView:self.containerView toView:self.contentView needEdgeInsets:YES];
         }
-        if ([self.contentMenu isKindOfClass:[BRCPopUpMenu class]]) {
-            [self.contentMenu reloadView];
-        }
         [self updateStyleBeforeShow];
         [self.containerView showWithAnimation:animation completionBlock:^(BOOL finished) {
             self.display = YES;
@@ -604,6 +601,7 @@
     [self sendDelegateEventWithSEL:@selector(didHidePopUper:withAchorView:)];
     [self.rootView removeFromSuperview];
     self.display = NO;
+    self.anchorView = nil; // 防止强持有导致的内存泄漏
 }
 
 - (void)dimissContainerView:(BOOL)isAnimated {
@@ -807,13 +805,6 @@
 
 #pragma mark - setter
 
-- (void)setWebImageLoadBlock:(void (^)(UIImageView * _Nonnull, NSURL * _Nonnull))webImageLoadBlock {
-    _webImageLoadBlock = webImageLoadBlock;
-    if ([self.contentMenu isKindOfClass:[BRCPopUpMenu class]]) {
-        self.contentMenu.webImageLoadBlock = webImageLoadBlock;
-    }
-}
-
 - (void)setCancelImage:(UIImage *)cancelImage {
     _cancelImage = cancelImage;
     self.containerView.cancelButton.image = cancelImage;
@@ -862,10 +853,6 @@
 
 #pragma mark - getter
 
-- (BRCPopUpMenu *)contentMenu {
-    if ([self.contentView isKindOfClass:[BRCPopUpMenu class]]) return (BRCPopUpMenu *)self.contentView;
-    return nil;
-}
 
 - (CGFloat)containerHeight { return _containerSize.height; }
 
@@ -890,9 +877,9 @@
 
 - (UIEdgeInsets)bubbleContentInsets {
     CGFloat top = self.arrowDirection == BRCPopUpDirectionTop ? self.arrowSize.height : 0,
-            left = self.arrowDirection == BRCPopUpDirectionRight ? self.arrowSize.width : 0,
-            bottom = self.arrowDirection == BRCPopUpDirectionBottom ? self.arrowSize.height : 0,
-            right = self.arrowDirection == BRCPopUpDirectionLeft ? self.arrowSize.width : 0;
+    left = self.arrowDirection == BRCPopUpDirectionRight ? self.arrowSize.width : 0,
+    bottom = self.arrowDirection == BRCPopUpDirectionBottom ? self.arrowSize.height : 0,
+    right = self.arrowDirection == BRCPopUpDirectionLeft ? self.arrowSize.width : 0;
     return UIEdgeInsetsMake(top, left, bottom, right);
 }
 
@@ -1006,10 +993,7 @@
 
 - (UIWindow *)contextWindow {
     if ([_contextWindow isKindOfClass:[UIWindow class]]) return _contextWindow;
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    return [UIApplication sharedApplication].keyWindow;
-#pragma clang diagnostic pop
+    return [UIApplication sharedApplication].delegate.window;
 }
 
 - (UIView *)popUpSuperView {
@@ -1127,7 +1111,7 @@
         UIResponder *nextResponder = [view nextResponder];
         if ([nextResponder isKindOfClass:[UIViewController class]]) return (UIViewController *)nextResponder;
     }
-   return nil;
+    return nil;
 }
 
 - (BOOL)isInClassViewWithClassName:(NSString *)className withView:(UIView *)view {
@@ -1202,24 +1186,46 @@
 
 #pragma mark - public
 
-- (void)setContentText:(id)contentText {
+- (void)setText:(NSString *)text {
     if (![self.contentLabel isKindOfClass:[UILabel class]]) return;
-    if ([contentText isKindOfClass:[NSString class]]) {
-        [self.contentLabel setText:contentText];
-    } else if ([contentText isKindOfClass:[NSAttributedString class]]) {
-        [self.contentLabel setAttributedText:contentText];
-    }
+    [self.contentLabel setText:text];
 }
 
-- (void)setContentImage:(UIImage *)image {
+- (void)setAttribuedText:(NSAttributedString *)attribuedText {
+    if (![self.contentLabel isKindOfClass:[UILabel class]]) return;
+    [self.contentLabel setAttributedText:attribuedText];
+}
+
+- (void)setTextFont:(UIFont *)textFont {
+    if (![self.contentLabel isKindOfClass:[UILabel class]]) return;
+    [self.contentLabel setFont:textFont];
+}
+
+- (void)setTextColor:(UIColor *)textColor {
+    if (![self.contentLabel isKindOfClass:[UILabel class]]) return;
+    [self.contentLabel setTextColor:textColor];
+}
+
+- (void)setTextAlignment:(NSTextAlignment)textAlignment {
+    if (![self.contentLabel isKindOfClass:[UILabel class]]) return;
+    [self.contentLabel setTextAlignment:textAlignment];
+}
+
+- (void)setTintColor:(UIColor *)tintColor {
+    if (![self.contentImageView isKindOfClass:[UIImageView class]]) return;
+    [self.contentImageView setTintColor:tintColor];
+}
+
+- (void)setImage:(UIImage *)image {
     if (![self.contentImageView isKindOfClass:[UIImageView class]]) return;
     [self.contentImageView setImage:image];
 }
 
-- (void)setContentImageUrl:(NSString *)imageUrl {
+- (void)setImageUrl:(NSString *)imageUrl {
     if (![self.contentImageView isKindOfClass:[UIImageView class]]) return;
     if (self.webImageLoadBlock) self.webImageLoadBlock(self.contentImageView, [NSURL URLWithString:imageUrl]);
 }
+
 
 #pragma mark - props
 

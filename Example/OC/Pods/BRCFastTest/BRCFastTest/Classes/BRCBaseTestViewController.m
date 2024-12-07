@@ -52,15 +52,6 @@
     }
 }
 
-- (NSInteger)randomNumberBetween:(NSInteger)min and:(NSInteger)max {
-    if (min > max) {
-        NSLog(@"Error: min should be less than or equal to max");
-        return NSNotFound;
-    }
-    NSInteger range = max - min + 1;
-    return min + arc4random_uniform((uint32_t)range);
-};
-
 - (void)setUpViews {
     [self.view addSubview:self.scrollView];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -99,9 +90,8 @@
                 tagModel.style.tagContentInsets = UIEdgeInsetsMake(5, 5, 5, 5);
                 tagModel.style.tagTextAlignment = NSTextAlignmentLeft;
                 
-                NSInteger randomColorIndex = [self randomNumberBetween:0 and:componentTagColors.count];
-                if (randomColorIndex < componentTagColors.count) {
-                    NSString *color = componentTagColors[randomColorIndex];
+                if (idx < componentTagColors.count) {
+                    NSString *color = componentTagColors[idx];
                     tagModel.style.tagBackgroundColor = [UIColor colorWithHexString:color];
                     [componentTagColors removeObject:color];
                 } else {
@@ -498,39 +488,7 @@
 }
 
 - (NSArray *)componentTagColors {
-    return @[ @"#F5A623", // 亮橙色
-              @"#50E3C2", // 亮青色
-              @"#F8E71C", // 亮黄色
-              @"#7ED321", // 温和的绿
-              @"#BD10E0", // 明亮的紫色
-              @"#4A90E2", // 亮蓝色
-              @"#D0021B", // 亮红色
-              @"#F6F6F6", // 亮灰白色
-              @"#B0BEC5", // 温和的蓝灰色
-              @"#FFB74D", // 温暖的橙色
-              @"#64B5F6", // 温和的蓝色
-              @"#4DB6AC", // 清新的青色
-              @"#FFF176", // 明亮的黄色
-              @"#7986CB", // 温和的蓝紫色
-              @"#4CAF50", // 亮绿色
-              @"#E57373", // 温和的红色
-              @"#F06292", // 亮粉色
-              @"#BA68C8", // 温和的紫色
-              @"#FFD54F", // 温暖的黄色
-              @"#4DD0E1", // 清新的青色
-              @"#81C784", // 亮绿色
-              @"#64B5F6", // 亮蓝色
-              @"#F48FB1", // 明亮的粉色
-              @"#C5E1A5", // 温和的绿色
-              @"#FFAB91", // 温暖的橙色
-              @"#CE93D8", // 温和的紫色
-              @"#B3E5FC", // 亮蓝色
-              @"#FFCDD2", // 温和的红色
-              @"#C8E6C9", // 清新的绿色
-              @"#B3E5FC", // 亮蓝色
-              @"#D1C4E9", // 温和的紫色
-              @"#F0F4C3" // 温暖的黄色
-    ];
+    return [UIColor componentTagColors];
 }
 
 #pragma mark - UIScrollViewDelegate

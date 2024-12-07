@@ -28,7 +28,9 @@ public struct BRCPopUpWrapper<Content: View> : View {
     var viewType : BRCPopUpContextType
     var onFindContextUIView: (UIView) -> Void
     
-    public init(_ viewType : BRCPopUpContextType? = .topView,@ViewBuilder content: () -> Content, onFindContextUIView: @escaping (UIView) -> Void) {
+    public init(_ viewType : BRCPopUpContextType? = .topView,
+                @ViewBuilder content: () -> Content,
+                onFindContextUIView: @escaping (UIView) -> Void) {
         self.viewType = viewType ?? .topView;
         self.content = content()
         self.onFindContextUIView = onFindContextUIView
@@ -119,7 +121,7 @@ struct BRCPopUpViewModifier<PopupContent : View> : ViewModifier {
                 self.popUper.webImageLoadBlock = parameters!.webImageLoadBlock!;
             }
             self.popUper.contentInsets = UIEdgeInsets(top: parameters!.contentInsets.top, left: parameters!.contentInsets.leading, bottom: parameters!.contentInsets.bottom, right: parameters!.contentInsets.trailing);
-    
+            
             if (parameters!.contextWindow != nil) {
                 self.popUper.contextWindow = parameters!.contextWindow!;
             }
@@ -144,16 +146,6 @@ struct BRCPopUpViewModifier<PopupContent : View> : ViewModifier {
                     }
                     if (self.paramers!.textColor != nil) {
                         self.popUper.contentLabel!.font = self.paramers!.textFont!;
-                    }
-                }
-                if (self.popUper.contentMenu != nil && self.paramers != nil) {
-                    self.popUper.contentMenu?.isNeedSeparator = self.paramers!.isShowMenuSepLine;
-                    self.popUper.contentMenu?.lineColor = self.paramers!.menuSepLineColor;
-                    if (self.paramers!.textColor != nil) {
-                        self.popUper.contentMenu!.foregroundColor = self.paramers!.textColor!;
-                    }
-                    if (self.paramers!.textColor != nil) {
-                        self.popUper.contentMenu!.textFont = self.paramers!.textFont!;
                     }
                 }
                 self.popUper.sizeThatFits(popUperFitSize!);
@@ -213,7 +205,7 @@ internal extension View {
     }
     
     @ViewBuilder
-     func brc_valueChanged<T: Equatable>(value: T, onChange: @escaping (T) -> Void) -> some View {
+    func brc_valueChanged<T: Equatable>(value: T, onChange: @escaping (T) -> Void) -> some View {
         if #available(iOS 14.0, tvOS 14.0, macOS 11.0, watchOS 7.0, *) {
             self.onChange(of: value, perform: onChange)
         } else {
@@ -617,44 +609,19 @@ public struct BRCPopUpParameters {
 
 extension View {
     
-    /// PopUp a Menu / 弹出菜单 
-    public func brc_popUpMenu (
-        isPresented    : Binding<Bool>,
-        menuActions    : [BRCPopUpMenuAction]
-    ) -> some View {
-        let menuView = BRCPopUpMenu(actions: menuActions);
-        let wrapper = BRCPopUpViewModifier<AnyView>(isPresented: isPresented,contentUIView: menuView)
-        return self.modifier(wrapper)
-    }
-    
-    /// PopUp a Menu / 弹出菜单
-    /// - Parameters:
-    ///   - customize:
-    ///   你可以用该属性来完成你对弹出框的自定义
-    ///   You can use this attribute to complete your customization of the pop-up box
-    public func brc_popUpMenu (
-        isPresented    : Binding<Bool>,
-        menuActions    : [BRCPopUpMenuAction],
-        customize      : @escaping (BRCPopUpParameters) -> (BRCPopUpParameters)
-    ) -> some View {
-        let menuView = BRCPopUpMenu(actions: menuActions);
-        let wrapper = BRCPopUpViewModifier<AnyView>(isPresented: isPresented,contentUIView: menuView,parameters: customize(BRCPopUpParameters()))
-        return self.modifier(wrapper)
-    }
-    
     /// Pop up a rich text / 弹出一段富文本
     public func brc_popUpTip (
         isPresented    : Binding<Bool>,
         attributedText : NSAttributedString
     ) -> some View {
         let wrapper = BRCPopUpViewModifier<AnyView>(isPresented: isPresented)
-        wrapper.popUper.setContentText(attributedText);
+        wrapper.popUper.attribuedText = attributedText;
         return self.modifier(wrapper)
     }
     
     /// Pop up a rich text / 弹出一段富文本
     /// - Parameters:
-    ///   - customize: 
+    ///   - customize:
     ///   你可以用该属性来完成你对弹出框的自定义
     ///   You can use this attribute to complete your customization of the pop-up box
     public func brc_popUpTip (
@@ -663,7 +630,7 @@ extension View {
         customize      : @escaping (BRCPopUpParameters) -> (BRCPopUpParameters)
     ) -> some View {
         let wrapper = BRCPopUpViewModifier<AnyView>(isPresented: isPresented,parameters:customize(BRCPopUpParameters()))
-        wrapper.popUper.setContentText(attributedText);
+        wrapper.popUper.attribuedText = attributedText;
         return self.modifier(wrapper)
     }
     
@@ -673,13 +640,13 @@ extension View {
         tipText      : String
     ) -> some View {
         let wrapper = BRCPopUpViewModifier<AnyView>(isPresented: isPresented)
-        wrapper.popUper.setContentText(tipText);
+        wrapper.popUper.text = tipText;
         return self.modifier(wrapper)
     }
     
     /// Pop up a text / 弹出一段文本
     /// - Parameters:
-    ///   - customize: 
+    ///   - customize:
     ///   你可以用该属性来完成你对弹出框的自定义
     ///   You can use this attribute to complete your customization of the pop-up box
     public func brc_popUpTip (
@@ -688,13 +655,13 @@ extension View {
         customize    : @escaping (BRCPopUpParameters) -> (BRCPopUpParameters)
     ) -> some View {
         let wrapper = BRCPopUpViewModifier<AnyView>(isPresented: isPresented,parameters:customize(BRCPopUpParameters()))
-        wrapper.popUper.setContentText(tipText);
+        wrapper.popUper.text = tipText;
         return self.modifier(wrapper)
     }
     
     /// Pop up a webImage / 弹出一张网络图片
     /// - Parameters:
-    ///   - customize: 
+    ///   - customize:
     ///   你可以用该属性来完成你对弹出框的自定义
     ///   You can use this attribute to complete your customization of the pop-up box
     ///
@@ -708,7 +675,7 @@ extension View {
         customize    : @escaping (BRCPopUpParameters) -> (BRCPopUpParameters)
     ) -> some View {
         let wrapper = BRCPopUpViewModifier<AnyView>(isPresented: isPresented,contentStyle: .image,parameters:customize(BRCPopUpParameters()))
-        wrapper.popUper.setContentImageUrl(imageUrl);
+        wrapper.popUper.imageUrl = imageUrl;
         return self.modifier(wrapper)
     }
     
@@ -719,7 +686,7 @@ extension View {
         customize    : @escaping (BRCPopUpParameters) -> (BRCPopUpParameters)
     ) -> some View {
         let wrapper = BRCPopUpViewModifier<AnyView>(isPresented: isPresented,contentStyle: .image,parameters:customize(BRCPopUpParameters()))
-        wrapper.popUper.setContentImage(image);
+        wrapper.popUper.image = image;
         return self.modifier(wrapper)
     }
     
