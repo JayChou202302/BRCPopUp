@@ -336,7 +336,7 @@
 @interface BRCPopUper ()
 
 @property (nonatomic, assign) BOOL                      display;
-@property (nonatomic, strong) UIControl                 *backgroundDismissView;
+@property (nonatomic, strong) UIView                    *backgroundDismissView;
 @property (nonatomic, strong) BRCBubbleContainerView    *containerView;
 @property (nonatomic, strong) CADisplayLink             *displayLink;
 @property (nonatomic, strong) UIView                    *superView;
@@ -877,9 +877,9 @@
 
 - (UIEdgeInsets)bubbleContentInsets {
     CGFloat top = self.arrowDirection == BRCPopUpDirectionTop ? self.arrowSize.height : 0,
-    left = self.arrowDirection == BRCPopUpDirectionRight ? self.arrowSize.width : 0,
+    left = self.arrowDirection == BRCPopUpDirectionLeft ? self.arrowSize.width : 0,
     bottom = self.arrowDirection == BRCPopUpDirectionBottom ? self.arrowSize.height : 0,
-    right = self.arrowDirection == BRCPopUpDirectionLeft ? self.arrowSize.width : 0;
+    right = self.arrowDirection == BRCPopUpDirectionRight ? self.arrowSize.width : 0;
     return UIEdgeInsetsMake(top, left, bottom, right);
 }
 
@@ -1160,13 +1160,15 @@
     return _containerView;
 }
 
-- (UIControl *)backgroundDismissView {
+- (UIView *)backgroundDismissView {
     if (!_backgroundDismissView) {
-        _backgroundDismissView = [[UIControl alloc] init];
+        _backgroundDismissView = [[UIView alloc] init];
         _backgroundDismissView.backgroundColor = [UIColor clearColor];
         _backgroundDismissView.userInteractionEnabled = YES;
         _backgroundDismissView.frame = CGRectMake(0, 0, kBRCScreenWidth, kBRCScreenHeight);
-        [_backgroundDismissView addTarget:self action:@selector(dismissView) forControlEvents:UIControlEventTouchUpInside];
+        
+        UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissView)];
+        [_backgroundDismissView addGestureRecognizer:gesture];
     }
     return _backgroundDismissView;
 }
