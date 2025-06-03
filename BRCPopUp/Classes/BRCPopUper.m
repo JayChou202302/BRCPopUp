@@ -8,13 +8,29 @@
 #import "BRCBubbleContainerView.h"
 #import <objc/message.h>
 
+@interface BRCPopUperBackgroundView : UIView
+
+@property (nonatomic, copy) void(^onTouchBegin)(void);
+
+@end
+
+@implementation BRCPopUperBackgroundView
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    if (self.onTouchBegin) self.onTouchBegin();
+}
+
+@end
+
 @interface BRCPopUper ()
 
 @property (nonatomic, assign) BOOL                      display;
-@property (nonatomic, strong) UIView                    *backgroundDismissView;
+@property (nonatomic, strong) BRCPopUperBackgroundView  *backgroundDismissView;
 @property (nonatomic, strong) BRCBubbleContainerView    *containerView;
 @property (nonatomic, strong) CADisplayLink             *displayLink;
 @property (nonatomic, strong) UIView                    *superView;
+@property (nonatomic, assign) CGFloat                   finalOffsetToAnchorView;
+@property (nonatomic, assign) CFAbsoluteTime            startDisplayTimeInterval;
 @property (nonatomic, assign, readonly) BOOL            isDirectionHorizontal;
 @property (nonatomic, assign, readonly) CGFloat         sildeAnchorViewSize;
 @property (nonatomic, assign, readonly) CGFloat         sildeContainerViewSize;
@@ -60,6 +76,8 @@
 }
 
 - (void)commonInit {
+    _minDisplayTimeInterval = -1;
+    _startDisplayTimeInterval = -1;
     _hideAfterDelayDuration = -1;
     _offsetToAnchorView = 0;
     _contentStyle = BRCPopUpContentStyleCustom;
@@ -76,7 +94,7 @@
     _popUpAnimationType = BRCPopUpAnimationTypeFadeBounce;
     _contentAlignment = BRCPopUpContentAlignmentCenter;
     
-    _autoFitContainerSize = YES;
+    _autoFitContainerStyle = BRCPopUpAutoFitContainerStyleSize;
     _arrowCenterAlignToAnchor = YES;
     
     _backgroundColor = [UIColor systemGray6Color];
@@ -198,6 +216,7 @@
         self.display) {
         return;
     }
+    self.startDisplayTimeInterval = -1;
     [self startMonitoring];
     CAAnimation *popUpAnimation = [animation isKindOfClass:[CAAnimation class]] ? animation : self.popUpAnimation;
     [self showContainerViewWithAnimation:popUpAnimation];
@@ -238,13 +257,18 @@
 #pragma mark - private
 
 - (void)dismissView {
+    [self dismissViewAnimated:YES];
+}
+
+- (void)dismissViewAnimated:(BOOL)animated {
     [self stopMonitoring];
-    [self dimissContainerView:YES];
+    [self dimissContainerView:animated];
     [self sendDelegateEventWithSEL:@selector(didUserDismissPopUper:withAchorView:)];
 }
 
 - (void)showContainerViewWithAnimation:(CAAnimation *)animation{
     if ([self.anchorView isKindOfClass:[UIView class]]) {
+        self.startDisplayTimeInterval = CFAbsoluteTimeGetCurrent();
         [self sendDelegateEventWithSEL:@selector(willShowPopUper:withAchorView:)];
         [self updateContainerViewWithPopupFrame];
         UIView *superView = self.popUpSuperView;
@@ -281,6 +305,7 @@
 }
 
 - (void)dimissContainerView:(BOOL)isAnimated {
+    self.startDisplayTimeInterval = -1;
     [self sendDelegateEventWithSEL:@selector(willHidePopUper:withAchorView:)];
     [self updateBubbleLayerAnchorPoint];
     CAAnimation *animation = [self animationWithIsShow:NO];
@@ -304,8 +329,11 @@
     self.containerView.bubbleLayer.arrowDirection = self.arrowDirection;
     self.containerView.bubbleLayer.arrowSize = self.arrowSize;
     self.containerView.bubbleLayer.arrowRadius = self.arrowRadius;
-    self.containerView.bubbleLayer.arrowAbsolutePosition = self.arrowAbsolutePosition;
-    self.containerView.bubbleLayer.arrowRelativePosition = self.arrowRelativePosition;
+    if (_arrowRelativePosition != -1) {
+        self.containerView.bubbleLayer.arrowRelativePosition = self.arrowRelativePosition;
+    } else {
+        self.containerView.bubbleLayer.arrowAbsolutePosition = self.arrowAbsolutePosition;
+    }
     [self updateBubbleLayerAnchorPoint];
     if ([self isHeightAnimationType]) {
         self.contentView.alpha = 0;
@@ -442,6 +470,7 @@
 - (CGRect)containerFrame {
     CGRect frame = self.isDirectionHorizontal ?  [self getHorizontalDirectionFrame] : [self getVerticalDirectionFrame];
     CGPoint origin = frame.origin;
+    UIView *popUpSuperView = self.popUpSuperView;
     if (self.contentAlignment == BRCPopUpContentAlignmentCenter) {
         CGPoint centerPoint = CGPointMake([self anchorViewCenterX], [self anchorViewCenterY]);
         if (self.isDirectionHorizontal) {
@@ -457,10 +486,30 @@
         }
     }
     frame = CGRectMake(origin.x, origin.y, frame.size.width, frame.size.height);
+    CGFloat finalOffsetToAnchorView = self.offsetToAnchorView;
+    CGFloat autoFitOffsetSpace = self.autoFitOffsetSpace;
+    if (self.autoFitOffsetWhenContentOverFlow) {
+        if (self.isDirectionHorizontal) {
+            if (CGRectGetMinX(frame) < CGRectGetMinX(popUpSuperView.frame)) {
+                finalOffsetToAnchorView = CGRectGetMinX(popUpSuperView.frame) - CGRectGetMinX(frame) + autoFitOffsetSpace;
+            }
+            else if (CGRectGetMaxX(frame) > CGRectGetMaxX(popUpSuperView.frame)) {
+                finalOffsetToAnchorView = CGRectGetMaxX(popUpSuperView.frame) - CGRectGetMaxX(frame) - autoFitOffsetSpace;
+            }
+        } else {
+            if (CGRectGetMinY(frame) < CGRectGetMinY(popUpSuperView.frame)) {
+                finalOffsetToAnchorView = CGRectGetMinY(popUpSuperView.frame) - CGRectGetMinY(frame) + autoFitOffsetSpace;
+            }
+            else if (CGRectGetMaxX(frame) > CGRectGetMaxX(popUpSuperView.frame)) {
+                finalOffsetToAnchorView = CGRectGetMaxY(popUpSuperView.frame) - CGRectGetMaxY(frame) + autoFitOffsetSpace;
+            }
+        }
+    }
+    self.finalOffsetToAnchorView = finalOffsetToAnchorView;
     if (self.isDirectionHorizontal) {
-        frame = CGRectOffset(frame, self.offsetToAnchorView, 0);
+        frame = CGRectOffset(frame, finalOffsetToAnchorView, 0);
     } else {
-        frame = CGRectOffset(frame, 0, self.offsetToAnchorView);
+        frame = CGRectOffset(frame, 0, finalOffsetToAnchorView);
     }
     return frame;
 }
@@ -468,8 +517,14 @@
 - (void)updateContainerViewWithPopupFrame {
     CGFloat containerWidth = self.containerSize.width;
     CGFloat containerHeight = self.containerSize.height;
-    if (self.autoFitContainerSize) {
-        _containerSize = CGSizeMake(self.sildeAnchorViewSize, self.sildeAnchorViewSize);
+    if (self.autoFitContainerStyle != BRCPopUpAutoFitContainerStyleNone) {
+        if (self.autoFitContainerStyle == BRCPopUpAutoFitContainerStyleSize) {
+            _containerSize = CGSizeMake(self.sildeAnchorViewSize, self.sildeAnchorViewSize);
+        } else if (self.autoFitContainerStyle == BRCPopUpAutoFitContainerStyleWidth) {
+            _containerSize = CGSizeMake(containerWidth, self.sildeAnchorViewSize);
+        } else if (self.autoFitContainerStyle == BRCPopUpAutoFitContainerStyleHeight) {
+            _containerSize = CGSizeMake(self.sildeAnchorViewSize, containerHeight);
+        }
         CGSize fitSize = self.isDirectionHorizontal ? CGSizeMake(self.sildeAnchorViewSize, HUGE) : CGSizeMake(HUGE, self.sildeAnchorViewSize);
         [self _sizeThatFits:fitSize isFromInside:YES];
     } else {
@@ -501,18 +556,20 @@
     self.containerHeight = containerSize.height;
     self.containerWidth = containerSize.width;
     if (!CGSizeEqualToSize(containerSize, CGSizeZero)) {
-        self.autoFitContainerSize = NO;
+        self.autoFitContainerStyle = BRCPopUpAutoFitContainerStyleNone;
     }
 }
 
 - (void)setContainerHeight:(CGFloat)containerHeight {
     CGSize originSize = self.containerSize;
     _containerSize = CGSizeMake(originSize.width, containerHeight);
+    self.autoFitContainerStyle = BRCPopUpAutoFitContainerStyleHeight;
 }
 
 - (void)setContainerWidth:(CGFloat)containerWidth {
     CGSize originSize = self.containerSize;
     _containerSize = CGSizeMake(containerWidth, originSize.height);
+    self.autoFitContainerStyle = BRCPopUpAutoFitContainerStyleWidth;
 }
 
 - (void)setAnchorFrame:(CGRect)anchorFrame {
@@ -580,9 +637,11 @@
         CGFloat containerSize = self.sildeContainerViewSize;
         position = anchorSize / 2;
         if (self.contentAlignment == BRCPopUpContentAlignmentRight){
-            position = -position - self.offsetToAnchorView;
+            position = -position - self.finalOffsetToAnchorView;
         } else if (self.contentAlignment == BRCPopUpContentAlignmentLeft){
-            position = position - self.offsetToAnchorView;
+            position = position - self.finalOffsetToAnchorView;
+        } else if (self.contentAlignment == BRCPopUpContentAlignmentCenter) {
+            position = containerSize / 2 - self.finalOffsetToAnchorView;
         }
         if (position > containerSize) {
             position = containerSize / 2;
@@ -627,9 +686,9 @@
     return popUpContextView.frame;
 }
 
-- (BOOL)autoFitContainerSize {
-    if (CGSizeEqualToSize(self.containerSize, CGSizeZero))  return YES;
-    return _autoFitContainerSize;
+- (BRCPopUpAutoFitContainerStyle)autoFitContainerStyle {
+    if (CGSizeEqualToSize(self.containerSize, CGSizeZero)) return BRCPopUpAutoFitContainerStyleSize;
+    return _autoFitContainerStyle;
 }
 
 - (BOOL)isAnchorViewInTabBarOrNavigationBar {
@@ -829,22 +888,39 @@
         __weak typeof(self) weakSelf = self;
         _containerView.onClickCancelButton = ^{
             __strong typeof(self) strongSelf = weakSelf;
-            [strongSelf hide];
-            [strongSelf sendDelegateEventWithSEL:@selector(didClickCloseButton:withAchorView:)];
+            if (self.minDisplayTimeInterval > 0) {
+                double displayTime = fabs(CFAbsoluteTimeGetCurrent() - self.startDisplayTimeInterval);
+                if (displayTime >= self.minDisplayTimeInterval) {
+                    [strongSelf hide];
+                    [strongSelf sendDelegateEventWithSEL:@selector(didClickCloseButton:withAchorView:)];
+                }
+            } else {
+                [strongSelf hide];
+                [strongSelf sendDelegateEventWithSEL:@selector(didClickCloseButton:withAchorView:)];
+            }
         };
     }
     return _containerView;
 }
 
-- (UIView *)backgroundDismissView {
+- (BRCPopUperBackgroundView *)backgroundDismissView {
     if (!_backgroundDismissView) {
-        _backgroundDismissView = [[UIView alloc] init];
+        _backgroundDismissView = [[BRCPopUperBackgroundView alloc] init];
         _backgroundDismissView.backgroundColor = [UIColor clearColor];
         _backgroundDismissView.userInteractionEnabled = YES;
         _backgroundDismissView.frame = CGRectMake(0, 0, kBRCScreenWidth, kBRCScreenHeight);
-        
-        UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissView)];
-        [_backgroundDismissView addGestureRecognizer:gesture];
+        __weak typeof(self) weakSelf = self;
+        _backgroundDismissView.onTouchBegin = ^{
+            __strong typeof(self) strongSelf = weakSelf;
+            if (self.minDisplayTimeInterval > 0) {
+                double displayTime = fabs(CFAbsoluteTimeGetCurrent() - self.startDisplayTimeInterval);
+                if (displayTime >= self.minDisplayTimeInterval) {
+                    [strongSelf dismissViewAnimated:YES];
+                }
+            } else {
+                [strongSelf dismissViewAnimated:YES];
+            }
+        };
     }
     return _backgroundDismissView;
 }

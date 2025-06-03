@@ -93,7 +93,7 @@ struct BRCPopUpViewModifier<PopupContent : View> : ViewModifier {
             self.popUper.dismissMode = parameters!.dismissMode;
             self.popUper.popUpAnimationType = parameters!.animationType;
             self.popUper.contentAlignment = parameters!.contentAlignment;
-            self.popUper.autoFitContainerSize = parameters!.autoFitContainerSize;
+            self.popUper.autoFitContainerStyle = parameters!.autoFitContainerStyle;
             self.popUper.autoCutoffRelief = parameters!.autoCutoffRelief;
             self.popUper.arrowCenterAlignToAnchor = parameters!.arrowCenterAlignToAnchor;
             self.popUper.backgroundColor = parameters!.backgroundColor;
@@ -227,7 +227,7 @@ public struct BRCPopUpParameters {
     var arrowAbsolutePosition    : CGFloat = 12;
     var arrowRelativePosition    : CGFloat = -1;
     var arrowRadius              : CGFloat = 2;
-    var autoFitContainerSize     : Bool = false;
+    var autoFitContainerStyle    : BRCPopUpAutoFitContainerStyle = .none;
     var autoCutoffRelief         : Bool = false;
     var arrowCenterAlignToAnchor : Bool = true;
     var showCancelButton         : Bool = false;
@@ -437,9 +437,9 @@ public struct BRCPopUpParameters {
     /// 当弹出方向是 Left/Right，那么 `ContainerSize = (AnchorViewHeight,AnchorViewHeight)`
     /// When the pop-up direction is Top/Bottom, then `ContainerSize = (AnchorViewWidth,AnchorViewWidth)`
     /// When the pop-up direction is Left/Right, then `ContainerSize = (AnchorViewHeight,AnchorViewHeight)`
-    public func autoFitContainerSize(_  autoFit : Bool) -> BRCPopUpParameters {
+    public func autoFitContainerStyle(_  autoFitContainerStyle : BRCPopUpAutoFitContainerStyle) -> BRCPopUpParameters {
         return updateParams { params in
-            params.autoFitContainerSize = autoFit;
+            params.autoFitContainerStyle = autoFitContainerStyle;
         };
     }
     

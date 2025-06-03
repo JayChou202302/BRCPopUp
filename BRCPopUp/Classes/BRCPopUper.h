@@ -137,7 +137,7 @@ NS_ASSUME_NONNULL_BEGIN
  * When the pop-up direction is Top/Bottom, then `ContainerSize = (AnchorViewWidth,AnchorViewWidth)`
  * When the pop-up direction is Left/Right, then `ContainerSize = (AnchorViewHeight,AnchorViewHeight)`
  */
-@property (nonatomic, assign) BOOL autoFitContainerSize;
+@property (nonatomic, assign) BRCPopUpAutoFitContainerStyle autoFitContainerStyle;
 
 /**
  * Whether to keep the arrow always in the center of the anchored view (if possible) / 是否保持箭头始终在锚定视图的中心（如果可以）
@@ -180,6 +180,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) CGFloat offsetToAnchorView;
 
+@property (nonatomic, assign) BOOL autoFitOffsetWhenContentOverFlow;
+
+@property (nonatomic, assign) CGFloat autoFitOffsetSpace;
+
+// 仅在 Mode =
+@property (nonatomic, assign) NSTimeInterval minDisplayTimeInterval;
 
 #pragma mark - popup custom
 

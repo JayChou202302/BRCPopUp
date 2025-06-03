@@ -63,6 +63,13 @@ typedef NS_ENUM(NSInteger, BRCPopUpArrowStyle) {
     BRCPopUpArrowStyleRoundEquilateral       // Round-edged equilateral triangle arrow
 };
 
+typedef NS_ENUM(NSInteger, BRCPopUpAutoFitContainerStyle) {
+    BRCPopUpAutoFitContainerStyleNone, // No Fit
+    BRCPopUpAutoFitContainerStyleSize, // AutoFit container size
+    BRCPopUpAutoFitContainerStyleWidth, // AutoFit Container Width
+    BRCPopUpAutoFitContainerStyleHeight, // AutoFit Container Height
+};
+
 @class BRCPopUper;
 
 @protocol BRCPopUperDelegate <NSObject>
